@@ -1,0 +1,82 @@
+.nav {
+    $root: &;
+
+    flex: 0 0 100vw;
+    margin-left: -100%;
+    scrollbar-width: 1rem;
+    scrollbar-color: var(accent-dark) var(--accent-light);
+
+    ::-webkit-scrollbar {
+        width: 1rem;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--accent-light);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--accent-dark);
+    }
+    
+    @include media('>=laptop') {
+        flex: 0 0 40rem;
+        margin-left: 0;
+    }
+
+    &--active {
+        margin-left: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 98;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 999rem;
+            height: 999rem;
+            background-color: rgba(#000, 0.7);
+
+            @include media('>=laptop') {
+                content: none;
+            }
+        }
+
+        @include media('>=laptop') {
+            margin-left: -40rem;
+        }
+
+        #{$root}__toggle {
+            right: 0;
+            background-image: url('./images/icons/icon-x.svg');
+
+            @include media('>=laptop') {
+                background-image:  url('./images/icons/icon-menu-2.svg');
+                right: -5rem;
+            }
+        }
+    }
+
+    &__toggle {
+        width: 5rem;
+        height: 5rem;
+        background: center center / 60% no-repeat var(--accent-dark);
+        background-image:  url('./images/icons/icon-menu-2.svg');
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        right: -5rem;
+        cursor: pointer;
+        z-index: 99;
+        border-radius: 0 1rem 1rem 0;
+
+        @include media('>=laptop') {
+            background-image:  url('./images/icons/icon-x.svg');
+        }
+    }
+}

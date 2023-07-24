@@ -1,0 +1,38 @@
+@import '../../node_modules/normalize.css/normalize';
+@import '../../node_modules/include-media/dist/include-media';
+
+@import './variables.scss';
+
+html {
+    font-size: 62.5%;
+}
+
+html,
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    max-width: 100%;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font: 400 1.4rem/1.2 'Manrope', Tahoma, Verdana, sans-serif;
+}
+
+@import './components/card';
+@import './components/container';
+@import './components/content';
+@import './components/filter';
+@import './components/information';
+@import './components/nav';
+@import './components/navbar';
+@import './components/reset';

@@ -1,0 +1,23 @@
+.information {
+    margin-top: auto;
+    margin: -2rem;
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    border-top: 1px dashed var(--accent-dark);
+
+    &__item {
+        display: flex;
+        align-items: center;
+    }
+
+    &__icon {
+        margin-right: 1rem;
+        width: 2rem;
+    }
+
+    &__link {
+        color: var(--accent-dark);
+        text-decoration: none;
+        letter-spacing: -0.5px;
+    }
+}

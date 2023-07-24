@@ -1,0 +1,119 @@
+.card {
+    $root: &;
+
+    flex: 1 1 var(--card-width);
+    max-width: var(--card-width);
+    height: auto;
+    aspect-ratio: 0.7;
+    margin: var(--card-margin);
+    border: 4px solid var(--card-default);
+    border-radius: 1rem;
+    background-color: var(--bg-light);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+    
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    @include media('>=phoneLg') {
+        --card-width: 18rem;
+        --card-margin: 1rem;
+    }
+
+    @include media('>=tablet') {
+        --card-width: 20rem;
+    }
+
+    @include media('>=laptop') {
+        --card-width: 17rem;
+    }
+
+    @include media('>=laptopLg') {
+        --card-width: 18.5rem;
+    }
+
+    @include media('>=desktop') {
+        --card-width: 20rem;
+    }
+
+    &__image {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+
+    &--on,
+    &--off {
+        position: relative;
+        
+        &::after {
+            content: none;
+            position: absolute;
+            bottom: 0.2rem;
+            left: 0.2rem;
+            display: block;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+            background-position: center center;
+            background-size: 70% 70%;
+            background-repeat: no-repeat;
+        }
+
+        #{$root}__image {
+            opacity: 0.5;
+        }
+    }
+
+    &--on {
+        border-color: var(--card-on);
+        
+        &::after {
+            content: '';
+            background-color: var(--card-on);
+            background-image:  url('./images/icons/icon-check.svg');
+        }
+
+        #{$root}__image {
+            filter: grayscale(100%) brightness(75%) sepia(200%) hue-rotate(50deg) saturate(200%);
+        }
+
+        #{$root}__id {
+            background-color: var(--card-on);
+        }
+    }
+
+    &--off {
+        border-color: var(--card-off);
+        
+        &::after {
+            content: '';
+            background-color: var(--card-off);
+            background-image:  url('./images/icons/icon-ban.svg');
+        }
+
+        #{$root}__image {
+            filter: grayscale(100%);
+        }
+
+        #{$root}__id {
+            background-color: var(--card-off);
+        }
+    }
+
+    &__id {
+        display: inline-flex;
+        padding: 0.3rem 0.5rem;
+        background-color: var(--card-default);
+        color: var(--color-light);
+        position: absolute;
+        right: 0;
+        bottom: 34%;
+        font-weight: 700;
+    }
+}

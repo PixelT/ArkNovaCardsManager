@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+    max-width: 100%;
+
+    &__outer {
+        &--sidebar {
+            position: relative;
+        }
+
+        &--content {
+            flex: 1;
+        }
+    }
+
+    &__inner {
+        &--sidebar {
+            max-height: 100vh;
+            height: 100%;
+            width: 100%;
+            overflow-y: auto;
+            max-width: 40rem;
+            background-color: var(--accent-light);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

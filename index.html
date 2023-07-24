@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simple app to managing & filtering cards available in Ark Nova boardgame">
+    <link rel="stylesheet" href="./dist/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./dist/images/general/favicon.png">
+    <title>Ark Nova Cards Manager</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container__outer container__outer--sidebar nav">
+            <div class="nav__toggle"></div>
+            <div class="container__inner container__inner--sidebar">
+                <form action="" class="filter">
+                    <fieldset class="filter__category">
+                        <legend class="filter__type">Animal type:</legend>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Herbivore" name="type" value="2">
+                            <label class="filter__label filter__label--herbivore" for="Herbivore">
+                                <span class="filter__text">Herbivore</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Bird" name="type" value="1">
+                            <label class="filter__label filter__label--bird" for="Bird">
+                                <span class="filter__text">Bird</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Predator" name="type" value="3">
+                            <label class="filter__label filter__label--predator" for="Predator">
+                                <span class="filter__text">Predator</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Reptile" name="type" value="4">
+                            <label class="filter__label filter__label--reptile" for="Reptile">
+                                <span class="filter__text">Reptile</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Primate" name="type" value="5">
+                            <label class="filter__label filter__label--primate" for="Primate">
+                                <span class="filter__text">Primate</span>
+                            </label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="filter__category">
+                        <legend class="filter__type">Animal area:</legend>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Africa" name="area" value="1">
+                            <label class="filter__label filter__label--africa" for="Africa">
+                                <span class="filter__text">Africa</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Americas" name="area" value="2">
+                            <label class="filter__label filter__label--americas" for="Americas">
+                                <span class="filter__text">Americas</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Asia" name="area" value="3">
+                            <label class="filter__label filter__label--asia" for="Asia">
+                                <span class="filter__text">Asia</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Australia" name="area" value="4">
+                            <label class="filter__label filter__label--australia" for="Australia">
+                                <span class="filter__text">Australia</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Europe" name="area" value="5">
+                            <label class="filter__label filter__label--europe" for="Europe">
+                                <span class="filter__text">Europe</span>
+                            </label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="filter__category filter__category--size">
+                        <legend class="filter__type">Animal size &amp; special:</legend>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Size_1" name="size" value="1">
+                            <label class="filter__label filter__label--size-1" for="Size_1">
+                                <span class="filter__text">1</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Size_2" name="size" value="2">
+                            <label class="filter__label filter__label--size-2" for="Size_2">
+                                <span class="filter__text">2</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Size_3" name="size" value="3">
+                            <label class="filter__label filter__label--size-3" for="Size_3">
+                                <span class="filter__text">3</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Size_4" name="size" value="4">
+                            <label class="filter__label filter__label--size-4" for="Size_4">
+                                <span class="filter__text">4</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Size_5" name="size" value="5">
+                            <label class="filter__label filter__label--size-5" for="Size_5">
+                                <span class="filter__text">5</span>
+                            </label>
+                        </div>
+                        <div class="filter__item filter__item--full"></div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Size_small" name="small" value="1">
+                            <label class="filter__label filter__label--size-small" for="Size_small">
+                                <span class="filter__text">Small</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Size_Aviary" name="aviary" value="1">
+                            <label class="filter__label filter__label--size-aviary" for="Size_Aviary">
+                                <span class="filter__text">Aviary</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="Size_Terrarium" name="terrarium" value="1">
+                            <label class="filter__label filter__label--size-terrarium" for="Size_Terrarium">
+                                <span class="filter__text">Terrarium</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="isRock" name="isRock" value="1">
+                            <label class="filter__label filter__label--rock" for="isRock">
+                                <span class="filter__text">Rock</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="isWater" name="isWater" value="1">
+                            <label class="filter__label filter__label--water" for="isWater">
+                                <span class="filter__text">Water</span>
+                            </label>
+                        </div>
+                    </fieldset>
+                    <fieldset class="filter__category">
+                        <legend class="filter__type">Extras:</legend>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="isBear" name="isBear" value="1">
+                            <label class="filter__label filter__label--bear" for="isBear">
+                                <span class="filter__text">Bear</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="isPet" name="isPet" value="1">
+                            <label class="filter__label filter__label--pet" for="isPet">
+                                <span class="filter__text">Small</span>
+                            </label>
+                        </div>
+                        <div class="filter__item filter__item--separator"></div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="conservation" name="conservation" value="1">
+                            <label class="filter__label filter__label--conservation" for="conservation">
+                                <span class="filter__text">C.Points</span>
+                            </label>
+                        </div>
+                        <div class="filter__item">
+                            <input class="filter__checkbox" type="checkbox" id="reputation" name="reputation" value="1">
+                            <label class="filter__label filter__label--reputation" for="reputation">
+                                <span class="filter__text">R.Points</span>
+                            </label>
+                        </div>
+                    </fieldset>
+                    <div class="reset">
+                        <button class="reset__button reset__button--filter" type="reset">Reset filters</button>
+                        <button class="reset__button reset__button--cards">Reset cards</button>
+                    </div>
+                </form>
+                <div class="information">
+                    <div class="information__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="information__icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+                            <path d="M11 14h1v4h1"></path>
+                            <path d="M12 11h.01"></path>
+                         </svg>
+                        <span class="information__label">Ark Nova Cards Manager v0.1.0</span>
+                    </div>
+                    <div class="information__item">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="information__icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M15 8h.01"></path>
+                            <path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z"></path>
+                            <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5"></path>
+                            <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3"></path>
+                         </svg>
+                         <div class="information__label">Cards based on <a href="https://boardgamegeek.com/filepage/225656/cards-part-1-v09-english"  class="information__link" target="_blank">Cards v0.9 by nan3000</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container__outer container__outer--content">
+            <div class="content">
+                <div class="content__navbar navbar">
+                    <div class="navbar__matching">Matching cards: <span></span></div>
+                    <div class="navbar__search">
+                        <input type="number" class="navbar__input" maxlength="3" pattern="[0-9]{3}" placeholder="Search card ID (401-526)">
+                    </div>
+                </div>
+                <div class="content__area"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./dist/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+/* Include-media settings */
+$breakpoints: (
+    'phone': 370px,
+    'phoneLg': 480px,
+    'tablet': 768px,
+    'laptop': 1024px,
+    'laptopLg': 1280px,
+    'desktop': 1440px
+);
+
+:root {
+    --accent-light: #65a30d;
+    --accent-dark: #365314;
+    --bg-light: #f1f5f9;
+    --bg-error: #fecaca;
+    --card-width: 14rem;
+    --card-margin: 0.5rem;
+    --card-default: #fb923c;
+    --card-on: #65a30d;
+    --card-off: #888;
+    --color-light: #f1f5f9;
+    --color-error: #b91c1c;
+    --scroll-light: #f5f5f5;
+    --scroll-dark: #d4d4d4;
+}

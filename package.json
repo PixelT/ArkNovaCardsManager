@@ -1,0 +1,41 @@
+{
+  "name": "ark-nova-cards-manager",
+  "version": "0.1.0",
+  "description": "Simple app to managing & filtering cards available in Ark Nova boardgame",
+  "private": true,
+  "main": "src/js/app.ts",
+  "scripts": {
+    "postinstall": "gulp build"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "devDependencies": {
+    "browser-sync": "^2.26.14",
+    "del": "^6.0.0",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-if": "^3.0.0",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-load-plugins": "^2.0.6",
+    "gulp-notify": "^4.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-svgmin": "^4.1.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp": "^4.0.2",
+    "node-notifier": "^10.0.1",
+    "path": "^0.12.7",
+    "webpack-stream": "^7.0.0",
+    "yargs": "^17.3.1"
+  },
+  "dependencies": {
+    "@types/jquery": "^3.5.14",
+    "include-media": "^2.0.0",
+    "normalize.css": "^8.0.1",
+    "sass": "^1.54.5",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.8.2",
+    "webpack": "^5.74.0"
+  }
+}
