@@ -1,0 +1,35 @@
+$button_background: var(--accent-light);
+$button_border: 2px solid var(--accent-dark);
+$button_color: var(--accent-dark);
+$button_icon-cards: 'icon-settings-cancel';
+$button_icon-filter: 'icon-filter-cancel';
+$button_image-size: 1rem;
+
+.button {
+    $root: &;
+    
+    flex: 0 0 calc(50% - 0.5rem);
+    display: flex;
+    align-items: center;
+    border: $button_border;
+    background-color: $button_background;
+    color: $button_color;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: all 0.25s linear;
+    padding-left: $button_image-size + 3.3rem;
+    border-radius: 0.5rem;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &--filter {
+        background: url('./images/icons/#{$button_icon-filter}.svg') $button_image-size center no-repeat;
+    }
+
+    &--cards {
+        background: url('./images/icons/#{$button_icon-cards}.svg') $button_image-size center no-repeat;
+    }
+}

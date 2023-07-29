@@ -1,0 +1,62 @@
+$action_icon-scroll: 'icon-chevron-up';
+$action_icon-search: 'icon-photo-search';
+$action_image-size: 2.2rem;
+$action_item-background: var(--accent-dark);
+$action_item-size: 4rem;
+$action_search-border: 0.4rem solid var(--accent-light);
+
+.action {
+    $root: &;
+
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    cursor: pointer;
+
+    &--active {
+        #{$root}__search {
+            display: block;
+        }
+
+        #{$root}__item--search {
+            opacity: 1;
+        }
+    }
+
+    &__item {
+        width: $action_item-size;
+        height: $action_item-size;
+        background: no-repeat center center / $action_image-size $action_item-background;
+        margin: 0 0.2rem;
+        position: relative;
+        opacity: 0.5;
+        transition: opacity 0.25s linear;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &--search {
+            background-image: url('./images/icons/#{$action_icon-search}.svg');
+        }
+
+        &--scroll {
+            background-image: url('./images/icons/#{$action_icon-scroll}.svg');
+        }
+    }
+
+    &__search {
+        display: none;
+        border: $action_search-border;
+        width: 15rem;
+        padding: 0 1rem;
+        margin-right: -0.2rem;
+        text-align: center;
+
+        &:focus,
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}

@@ -1,9 +1,15 @@
+$information_link-color: var(--accent-dark);
+$information_border-top: 1px dashed var(--accent-dark);
+$information_icon-size: 2rem;
+
 .information {
+    $root: &;
+    
     margin-top: auto;
     margin: -2rem;
     margin-top: 2rem;
     padding: 1.5rem 2rem;
-    border-top: 1px dashed var(--accent-dark);
+    border-top: $information_border-top;
 
     &__item {
         display: flex;
@@ -12,11 +18,11 @@
 
     &__icon {
         margin-right: 1rem;
-        width: 2rem;
+        width: $information_icon-size;
     }
 
     &__link {
-        color: var(--accent-dark);
+        color: $information_link-color;
         text-decoration: none;
         letter-spacing: -0.5px;
     }

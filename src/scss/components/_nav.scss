@@ -1,25 +1,35 @@
+$nav_max-width: 40rem;
+$nav_scrollbar-thumb: var(--accent-dark);
+$nav_scrollbar-track: var(--accent-light);
+$nav_scrollbar-width: 1rem;
+$nav_toggle-background: var(--accent-dark);
+$nav_toggle-icon-close: 'icon-x';
+$nav_toggle-icon-open: 'icon-menu-2';
+$nav_toggle-icon-size: 60%;
+$nav_toggle-size: 5rem;
+
 .nav {
     $root: &;
 
     flex: 0 0 100vw;
     margin-left: -100%;
-    scrollbar-width: 1rem;
-    scrollbar-color: var(accent-dark) var(--accent-light);
+    scrollbar-width: $nav_scrollbar-width;
+    scrollbar-color: $nav_scrollbar-thumb $nav_scrollbar-track;
 
     ::-webkit-scrollbar {
-        width: 1rem;
+        width: $nav_scrollbar-width;
     }
 
     ::-webkit-scrollbar-track {
-        background: var(--accent-light);
+        background: $nav_scrollbar-track;
     }
 
     ::-webkit-scrollbar-thumb {
-        background-color: var(--accent-dark);
+        background-color: $nav_scrollbar-thumb;
     }
     
     @include media('>=laptop') {
-        flex: 0 0 40rem;
+        flex: 0 0 $nav_max-width;
         margin-left: 0;
     }
 
@@ -46,37 +56,39 @@
         }
 
         @include media('>=laptop') {
-            margin-left: -40rem;
+            margin-left: -#{$nav_max-width};
         }
 
         #{$root}__toggle {
             right: 0;
-            background-image: url('./images/icons/icon-x.svg');
+            border-radius: 0;
+            background-image: url('./images/icons/#{$nav_toggle-icon-close}.svg');
 
             @include media('>=laptop') {
-                background-image:  url('./images/icons/icon-menu-2.svg');
+                background-image:  url('./images/icons/#{$nav_toggle-icon-open}.svg');
                 right: -5rem;
+                border-radius: 0 1rem 1rem 0;
             }
         }
     }
 
     &__toggle {
-        width: 5rem;
-        height: 5rem;
-        background: center center / 60% no-repeat var(--accent-dark);
-        background-image:  url('./images/icons/icon-menu-2.svg');
+        width: $nav_toggle-size;
+        height: $nav_toggle-size;
+        background: center center / $nav_toggle-icon-size no-repeat $nav_toggle-background;
+        background-image:  url('./images/icons/#{$nav_toggle-icon-open}.svg');
         position: absolute;
         display: flex;
         justify-content: center;
         align-items: center;
-        top: 0;
+        top: 0.5rem;
         right: -5rem;
         cursor: pointer;
         z-index: 99;
         border-radius: 0 1rem 1rem 0;
 
         @include media('>=laptop') {
-            background-image:  url('./images/icons/icon-x.svg');
+            background-image:  url('./images/icons/#{$nav_toggle-icon-close}.svg');
         }
     }
 }

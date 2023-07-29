@@ -1,18 +1,18 @@
 import cards from '../data.json';
 
 interface IConfig {
-    cardsOnStorage: string
-    cardsOnClass: string
-    cardsOffStorage: string
-    cardsOffClass: string
+    [key: string]: string;
 };
+
+interface IDataSizes {
+    [key: number | string]: number;
+}
 
 (function() {
     const elForm: HTMLFormElement = document.querySelector(`.filter`);
     const elContent: HTMLDivElement = document.querySelector(`.content__area`);
-    const elMatching: HTMLDivElement = document.querySelector(`.navbar__matching`);
-    const elMatchingSpan: HTMLSpanElement = elMatching.querySelector(`span`);
-    const elSearchField: HTMLInputElement = document.querySelector(`.navbar__input`);
+    const elSearchField: HTMLInputElement = document.querySelector(`.action__search`);
+    const elNavbar: HTMLDivElement = document.querySelector(`.navbar`);
 
     const config: IConfig = {
         cardsOnStorage: `anc_on`,
@@ -20,18 +20,20 @@ interface IConfig {
         cardsOnClass: `card--on`,
         cardsOffClass: `card--off`
     }
-    
+
     let dataCards: Array<Number> = _getAnimalsID();
     let dataFilters: Object = {};
-    let matchingCards: Number = 0;
+    let dataSizes: IDataSizes = _setSizes();
+    let matchingCards: number = 0;
 
     function _init(): void {
         _registerEvents();
         _displayCards(dataCards);
+        _displaySizes(dataSizes);
     }
 
     function _registerEvents(): void {
-        elSearchField.addEventListener(`input`, function() {
+        elSearchField && elSearchField.addEventListener(`input`, function() {
             let _value = this.value;
 
             if (_value.length > this.maxLength) {
@@ -40,9 +42,12 @@ interface IConfig {
 
             if (_value.length === 3 && (parseInt(_value) >= 401 && parseInt(_value) <= 526)) {
                 _displayCards([parseInt(_value)]);
+                _resetSizes();
             } else {
                 _collectCardsData(dataFilters);
+                _collectSizes(dataCards);
                 _displayCards(dataCards);
+                _displaySizes(dataSizes);
             }
         });
 
@@ -78,17 +83,22 @@ interface IConfig {
                     }
 
                     _collectCardsData(dataFilters);
+                    _collectSizes(dataCards);
                     _displayCards(dataCards);
+                    _displaySizes(dataSizes);
                 });
 
-            } else if (el.classList.contains(`reset__button--filter`)) {
+            } else if (el.classList.contains(`button--filter`)) {
 
                 elSearchField.value = '';
                 dataFilters = {};
                 dataCards = _getAnimalsID();
                 _displayCards(dataCards);
 
-            } else if (el.classList.contains(`reset__button--cards`)) {
+                dataSizes = _setSizes();
+                _displaySizes(dataSizes);
+
+            } else if (el.classList.contains(`button--cards`)) {
 
                 ev.preventDefault();
                 localStorage.setItem(config.cardsOnStorage, JSON.stringify([]));
@@ -122,12 +132,42 @@ interface IConfig {
             } else if (el.classList.contains(`nav__toggle`)) {
 
                 el.closest(`.nav`).classList.toggle(`nav--active`);
+
+            } else if (el.classList.contains(`action__item--scroll`)) {
+
+                elContent.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+            } else if (el.classList.contains(`action__item--search`)) {
+
+                elSearchField.parentElement.classList.toggle(`action--active`);
+                
             }
         });
     }
 
+    function _setSizes(reset: boolean = false) {
+        return {
+            1: reset ? 0 : 33,
+            2: reset ? 0 : 30,
+            3: reset ? 0 : 24,
+            4: reset ? 0 : 20,
+            5: reset ? 0 : 19,
+            aviary: reset ? 0 : 10,
+            terrarium: reset ? 0 : 25,
+            rock: reset ? 0 : 19,
+            water: reset ? 0 : 23,
+        }
+    }
+
     function _getAnimalsID(): Array<Number> {
-        return cards.animals.map(item => item[`id`]);
+        return cards.animals.sort((a, b) => {
+            if (a.size < b.size) return 1;
+            if (a.size > b.size) return -1;
+            return 0;
+        }).map(item => item[`id`]);
     }
     
     function _addValueToStorage(key: string, id: number) {
@@ -172,15 +212,65 @@ interface IConfig {
         return dataCards;
     }
 
+    function _collectSizes(data: Array<Number>): void {
+        dataSizes = _setSizes(true);
+
+        data.forEach(elem => {
+            const item = cards.animals.filter(obj => {
+                return obj[`id`] === elem
+            });
+
+            if (item[0][`size`] != 0) {
+                dataSizes[item[0][`size`]]++;
+            }
+            
+            item[0][`aviary`] ? dataSizes[`aviary`]++ : '';
+            item[0][`terrarium`] ? dataSizes[`terrarium`]++ : '';
+            item[0][`isRock`] ? dataSizes[`rock`]++ : '';
+            item[0][`isWater`] ? dataSizes[`water`]++ : '';
+        });
+    }
+
+    function _resetSizes() {
+        elNavbar.innerHTML = '';
+    }
+
+    function _displaySizes(data: Object) {
+        _resetSizes();
+
+        let markup = ``;
+        const cards = +((matchingCards / 126) * 100).toFixed(1);
+
+        markup += `
+            <li class="navbar__item navbar__item--cards icon icon--cards">
+                <span class="navbar__label navbar__label--cards">${matchingCards}</span>
+                <span class="navbar__label navbar__label--percentage">${cards}%</span>
+            </li>
+        `
+
+        Object.entries(data).forEach(([key, value]) => {
+            const percentage = +((value / matchingCards) * 100).toFixed(1);
+
+            markup += `
+                <li class="navbar__item icon icon--${key}" data-id="${key}">
+                    <span class="navbar__label navbar__label--cards">${value}x</span>
+                    <span class="navbar__label navbar__label--percentage">${percentage}%</span>
+                </li>
+            `
+        });
+
+        elNavbar.innerHTML = markup;
+    }
+
     function _filterData(filters: number, data: Array<Number>): Array<Number> {
         const collection: Object = {};
-        
+
         // @ts-ignore
         data.forEach(id => { collection[id] = (collection[id] || 0) + 1; });
 
         return Object.entries(collection).filter(value => {
             return +value[1] >= +filters;
-        }).map((item: any) => item[0]);
+        }).map((item: any) => +item[0]);
     }
 
     function _displayCards(data: Array<Number>, reload: boolean = false): void {        
@@ -196,7 +286,6 @@ interface IConfig {
         
         elContent.innerHTML = cardsMarkup ? cardsMarkup : _displayEmpty();
         matchingCards = Object.values(data).length;
-        (elMatchingSpan.innerHTML as any) = matchingCards;
     }
 
     function _displayEmpty(): string {

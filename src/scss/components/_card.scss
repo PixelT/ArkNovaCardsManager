@@ -1,3 +1,13 @@
+$card_background: var(--bg-light);
+$card_border--off: var(--card-off);
+$card_border--on: var(--card-on);
+$card_border: 4px solid var(--card-default);
+$card_icon-off: 'icon-ban';
+$card_icon-on: 'icon-check';
+$card_icon-size: 3rem;
+$card_id-background: var(--card-default);
+$card_id-color: var(--color-light);
+
 .card {
     $root: &;
 
@@ -6,9 +16,9 @@
     height: auto;
     aspect-ratio: 0.7;
     margin: var(--card-margin);
-    border: 4px solid var(--card-default);
+    border: $card_border;
     border-radius: 1rem;
-    background-color: var(--bg-light);
+    background-color: $card_background;
     position: relative;
     overflow: hidden;
     transition: all 0.1s ease-in-out;
@@ -57,8 +67,8 @@
             bottom: 0.2rem;
             left: 0.2rem;
             display: block;
-            width: 3rem;
-            height: 3rem;
+            width: $card_icon-size;
+            height: $card_icon-size;
             border-radius: 0.5rem;
             background-position: center center;
             background-size: 70% 70%;
@@ -71,12 +81,12 @@
     }
 
     &--on {
-        border-color: var(--card-on);
+        border-color: $card_border--on;
         
         &::after {
             content: '';
-            background-color: var(--card-on);
-            background-image:  url('./images/icons/icon-check.svg');
+            background-color: $card_border--on;
+            background-image:  url('./images/icons/#{$card_icon-on}.svg');
         }
 
         #{$root}__image {
@@ -84,17 +94,17 @@
         }
 
         #{$root}__id {
-            background-color: var(--card-on);
+            background-color: $card_border--on;
         }
     }
 
     &--off {
-        border-color: var(--card-off);
+        border-color: $card_border--off;
         
         &::after {
             content: '';
-            background-color: var(--card-off);
-            background-image:  url('./images/icons/icon-ban.svg');
+            background-color: $card_border--off;
+            background-image:  url('./images/icons/#{$card_icon-off}.svg');
         }
 
         #{$root}__image {
@@ -102,15 +112,15 @@
         }
 
         #{$root}__id {
-            background-color: var(--card-off);
+            background-color: $card_border--off;
         }
     }
 
     &__id {
         display: inline-flex;
         padding: 0.3rem 0.5rem;
-        background-color: var(--card-default);
-        color: var(--color-light);
+        background-color: $card_id-background;
+        color: $card_id-color;
         position: absolute;
         right: 0;
         bottom: 34%;

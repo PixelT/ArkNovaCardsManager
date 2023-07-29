@@ -1,0 +1,114 @@
+$icon_position: 4.17%;
+$icon_border-radius: 50%;
+$icon_sprites: 'sprites';
+$icon_background-size: 100% 2500%;
+
+.icon {
+    $root: &;
+    
+    background: url('./images/general/#{$icon_sprites}.webp') no-repeat;
+    background-size: $icon_background-size;
+    background-position-x: 0;
+    border-radius: $icon_border-radius;
+
+    /* AREA */
+    &--africa {
+        background-position-y: $icon_position * 2;
+    }
+
+    &--europe {
+        background-position-y: $icon_position * 1;
+    }
+
+    &--asia {
+        background-position-y: $icon_position * 3;
+    }
+
+    &--americas {
+        background-position-y: $icon_position * 5;
+    }
+
+    &--australia {
+        background-position-y: $icon_position * 4;
+    }
+
+    /* TYPE */
+    &--bird {
+        background-position-y: $icon_position * 6;
+    }
+
+    &--predator {
+        background-position-y: $icon_position * 7;
+    }
+
+    &--herbivore {
+        background-position-y: $icon_position * 8;
+    }
+
+    &--reptile {
+        background-position-y: $icon_position * 9;
+    }
+
+    &--primate {
+        background-position-y: $icon_position * 10;
+    }
+
+    &--bear {
+        background-position-y: $icon_position * 20;
+    }
+
+    &--pet {
+        background-position-y: $icon_position * 19;
+    }
+
+    /* SIZE */
+    &--1 {
+        background-position-y: $icon_position * 13;
+    }
+
+    &--2 {
+        background-position-y: $icon_position * 15;
+    }
+
+    &--3 {
+        background-position-y: $icon_position * 14;
+    }
+
+    &--4 {
+        background-position-y: $icon_position * 12;
+    }
+
+    &--5 {
+        background-position-y: $icon_position * 11;
+    }
+
+    &--small {
+        background-position-y: $icon_position * 17;
+    }
+
+    &--aviary {
+        background-position-y: $icon_position * 18;
+    }
+
+    &--terrarium {
+        background-position-y: $icon_position * 16;
+    }
+
+    /* SPECIAL */
+    &--rock {
+        background-position-y: $icon_position * 21;
+    }
+
+    &--water {
+        background-position-y: $icon_position * 22;
+    }
+
+    /* BONUSES */
+    &--conservation {
+        background-position-y: $icon_position * 23;
+    }
+
+    &--reputation {
+        background-position-y: $icon_position * 24;
+    }
+}

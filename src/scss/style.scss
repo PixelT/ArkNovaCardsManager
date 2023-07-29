@@ -28,11 +28,13 @@ body {
     font: 400 1.4rem/1.2 'Manrope', Tahoma, Verdana, sans-serif;
 }
 
+@import './components/actions';
+@import './components/button';
 @import './components/card';
 @import './components/container';
 @import './components/content';
 @import './components/filter';
+@import './components/icon';
 @import './components/information';
 @import './components/nav';
 @import './components/navbar';
-@import './components/reset';

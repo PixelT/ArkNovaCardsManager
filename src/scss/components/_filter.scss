@@ -1,3 +1,12 @@
+$filter_category-border: 2px solid var(--accent-dark);
+$filter_type-background: var(--accent-dark);
+$filter_type-color: var(--color-light);
+$filter_item-size: 5rem;
+$filter_checkbox-accent: var(--accent-dark);
+$filter_label-color: var(--color-light);
+$filter_label-background: var(--accent-dark);
+$filter_item-separator-color: var(--accent-dark);
+
 .filter {
     $root: &;
 
@@ -6,7 +15,7 @@
     &__category {
         display: flex;
         flex-wrap: wrap;
-        border: 2px solid var(--accent-dark);
+        border: $filter_category-border;
         padding: 1rem;
         margin-bottom: 1rem;
         border-radius: 1rem;
@@ -23,8 +32,8 @@
     }
 
     &__type {
-        background-color: var(--accent-dark);
-        color: var(--color-light);
+        background-color: $filter_type-background;
+        color: $filter_type-color;
         padding: 0.3rem 1rem;
         font-weight: 400;
         border-radius: 0.5rem;
@@ -32,8 +41,8 @@
 
     &__item {
         display: block;
-        width: 5rem;
-        height: 5rem;
+        width: $filter_item-size;
+        height: $filter_item-size;
         position: relative;
         margin: 0.8rem 0.5rem;
 
@@ -58,7 +67,7 @@
         &--full {
             width: 100%;
             height: 0.1rem;
-            border-bottom: 1px solid var(--accent-dark);
+            border-bottom: 1px solid $filter_item-separator-color;
             margin: 2rem 0 1rem;
             display: none;
         }
@@ -67,7 +76,7 @@
             &::after {
                 content: '';
                 display: block;
-                background-color: var(--accent-dark);
+                background-color: $filter_item-separator-color;
                 position: absolute;
                 top: 0;
                 left: 50%;
@@ -88,7 +97,7 @@
             opacity: 1;
 
             &::before {
-                border-color: var(--accent-dark);
+                border-color: $filter_checkbox-accent;
             }
 
             &::after {
@@ -98,21 +107,15 @@
                 bottom: 0.1rem;
                 width: 0.9rem;
                 height: 0.9rem;
-                background-color: var(--accent-dark);
+                background-color: $filter_checkbox-accent;
             }
         }
     }
 
     &__label {
-        $position: 4.35%;
-
         display: block;
         width: 100%;
         height: 100%;
-        background: url('./images/general/sprites.webp') no-repeat;
-        background-size: 100% 2400%;
-        background-position-x: 0;
-        border-radius: 50%;
         z-index: 99;
         filter: grayscale(100%);
         opacity: 0.5;
@@ -132,118 +135,13 @@
             width: 1.7rem;
             height: 1.7rem;
             background-color: var(--bg-light);
-            border: 2px solid var(--accent-dark);
+            border: 2px solid $filter_checkbox-accent;
         }
 
-        &--size-1,
-        &--size-2,
-        &--size-3,
-        &--size-4,
-        &--size-5 {
+        &--hide {
             #{$root}__text {
                 display: none;
             }
-        }
-
-        /* AREA */
-        &--africa {
-            background-position-y: $position * 1;
-        }
-
-        &--europe {
-            background-position-y: $position * 0;
-        }
-
-        &--asia {
-            background-position-y: $position * 2;
-        }
-
-        &--americas {
-            background-position-y: $position * 4;
-        }
-
-        &--australia {
-            background-position-y: $position * 3;
-        }
-
-        /* TYPE */
-        &--bird {
-            background-position-y: $position * 5;
-        }
-
-        &--predator {
-            background-position-y: $position * 6;
-        }
-
-        &--herbivore {
-            background-position-y: $position * 7;
-        }
-
-        &--reptile {
-            background-position-y: $position * 8;
-        }
-
-        &--primate {
-            background-position-y: $position * 9;
-        }
-
-        &--bear {
-            background-position-y: $position * 19;
-        }
-
-        &--pet {
-            background-position-y: $position * 18;
-        }
-
-        /* SIZE */
-        &--size-1 {
-            background-position-y: $position * 12;
-        }
-
-        &--size-2 {
-            background-position-y: $position * 14;
-        }
-
-        &--size-3 {
-            background-position-y: $position * 13;
-        }
-
-        &--size-4 {
-            background-position-y: $position * 11;
-        }
-
-        &--size-5 {
-            background-position-y: $position * 10;
-        }
-
-        &--size-small {
-            background-position-y: $position * 16;
-        }
-
-        &--size-aviary {
-            background-position-y: $position * 17;
-        }
-
-        &--size-terrarium {
-            background-position-y: $position * 15;
-        }
-
-        /* SPECIAL */
-        &--rock {
-            background-position-y: $position * 20;
-        }
-
-        &--water {
-            background-position-y: $position * 21;
-        }
-
-        /* BONUSES */
-        &--conservation {
-            background-position-y: $position * 22;
-        }
-
-        &--reputation {
-            background-position-y: $position * 23;
         }
     }
 
@@ -253,13 +151,19 @@
         top: calc(100% + 1rem);
         left: 50%;
         transform: translateX(-50%);
-        background-color: var(--accent-dark);
-        color: var(--color-light);
+        background-color: $filter_label-background;
+        color: $filter_label-color;
         padding: 0.3rem 0.5rem;
         font-size: 1.3rem;
 
         @include media('>=laptop') {
             display: block;
         }
+    }
+
+    &__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 }
