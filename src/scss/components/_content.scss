@@ -1,44 +1,20 @@
-$content_navbar-height: 6rem;
-$content_scrollbar-track: var(--scroll-dark);
-$content_scrollbar-thumb: var(--scroll-light);
-$content_scrollbar-width: 1rem;
 $content_empty-background: var(--bg-error);
 $content_empty-color: var(--color-error);
+$content_stats-width: 17rem;
 
 .content {
     $root: &;
     
     flex: 1;
     height: 100%;
-    scrollbar-width: $content_scrollbar-width;
-    scrollbar-color: $content_scrollbar-track $content_scrollbar-thumb;
-
-    ::-webkit-scrollbar {
-        width: $content_scrollbar-width;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: $content_scrollbar-thumb;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background-color: $content_scrollbar-track;
-    }
-     
-    &__navbar {
-        display: flex;
-        height: $content_navbar-height;
-        justify-content: space-between;
-        align-items: center;
-    }
 
     &__area {
-        max-height: calc(100vh - $content_navbar-height);
+        min-height: 100vh;
         overflow-y: auto;
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        padding: 2rem 1rem 0;
+        padding: 0;
         justify-content: center;
     }
 
@@ -47,5 +23,24 @@ $content_empty-color: var(--color-error);
         color: $content_empty-color;
         padding: 1rem 3rem;
         border-radius: 1rem;
+    }
+
+    &__cards {
+        flex: 0 0 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-start;
+        padding: 2rem 0;
+        transition: all linear 3s;
+    }
+
+    &__stats {
+        flex: 0 0 $content_stats-width;
+        max-width: $content_stats-width;
+        display: flex;
+        flex-wrap: wrap;
+        height: auto;
+        align-self: flex-start;
     }
 }

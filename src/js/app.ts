@@ -4,15 +4,15 @@ interface IConfig {
     [key: string]: string;
 };
 
-interface IDataSizes {
+interface IDataStats {
     [key: number | string]: number;
 }
 
 (function() {
     const elForm: HTMLFormElement = document.querySelector(`.filter`);
-    const elContent: HTMLDivElement = document.querySelector(`.content__area`);
+    const elContentCards: HTMLDivElement = document.querySelector(`.content__cards`);
+    const elContentStats: HTMLDivElement = document.querySelector(`.stats`);
     const elSearchField: HTMLInputElement = document.querySelector(`.action__search`);
-    const elNavbar: HTMLDivElement = document.querySelector(`.navbar`);
 
     const config: IConfig = {
         cardsOnStorage: `anc_on`,
@@ -23,13 +23,13 @@ interface IDataSizes {
 
     let dataCards: Array<Number> = _getAnimalsID();
     let dataFilters: Object = {};
-    let dataSizes: IDataSizes = _setSizes();
+    let dataStats: IDataStats = _setStats();
     let matchingCards: number = 0;
 
     function _init(): void {
         _registerEvents();
         _displayCards(dataCards);
-        _displaySizes(dataSizes);
+        _displayStats(dataStats);
     }
 
     function _registerEvents(): void {
@@ -41,14 +41,19 @@ interface IDataSizes {
             }
 
             if (_value.length === 3 && (parseInt(_value) >= 401 && parseInt(_value) <= 526)) {
+                const item = cards.animals.filter(obj => {
+                    return obj[`id`] === parseInt(_value)
+                });
+
+                _collectStats([item[0].id]);
                 _displayCards([parseInt(_value)]);
-                _resetSizes();
             } else {
                 _collectCardsData(dataFilters);
-                _collectSizes(dataCards);
+                _collectStats(dataCards);
                 _displayCards(dataCards);
-                _displaySizes(dataSizes);
             }
+
+            _displayStats(dataStats);
         });
 
         document.addEventListener(`click`, (ev: Event) => {
@@ -83,9 +88,9 @@ interface IDataSizes {
                     }
 
                     _collectCardsData(dataFilters);
-                    _collectSizes(dataCards);
+                    _collectStats(dataCards);
                     _displayCards(dataCards);
-                    _displaySizes(dataSizes);
+                    _displayStats(dataStats);
                 });
 
             } else if (el.classList.contains(`button--filter`)) {
@@ -95,8 +100,8 @@ interface IDataSizes {
                 dataCards = _getAnimalsID();
                 _displayCards(dataCards);
 
-                dataSizes = _setSizes();
-                _displaySizes(dataSizes);
+                dataStats = _setStats();
+                _displayStats(dataStats);
 
             } else if (el.classList.contains(`button--cards`)) {
 
@@ -129,13 +134,17 @@ interface IDataSizes {
                     _removeValueFromStorage(config.cardsOffStorage, cardID);
                 }
 
-            } else if (el.classList.contains(`nav__toggle`)) {
+            } else if (el.classList.contains(`toggle--nav`)) {
 
-                el.closest(`.nav`).classList.toggle(`nav--active`);
+                el.closest(`.container__outer`).classList.toggle(`_active`);
+
+            } else if (el.classList.contains(`toggle--stats`)) {
+
+                el.closest(`.container__outer`).classList.toggle(`_active`);
 
             } else if (el.classList.contains(`action__item--scroll`)) {
 
-                elContent.scrollTo({
+                window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
@@ -143,22 +152,33 @@ interface IDataSizes {
             } else if (el.classList.contains(`action__item--search`)) {
 
                 elSearchField.parentElement.classList.toggle(`action--active`);
+                elSearchField.focus();
                 
             }
         });
     }
 
-    function _setSizes(reset: boolean = false) {
+    function _setStats(isDefault: boolean = true) {
         return {
-            1: reset ? 0 : 33,
-            2: reset ? 0 : 30,
-            3: reset ? 0 : 24,
-            4: reset ? 0 : 20,
-            5: reset ? 0 : 19,
-            aviary: reset ? 0 : 10,
-            terrarium: reset ? 0 : 25,
-            rock: reset ? 0 : 19,
-            water: reset ? 0 : 23,
+            type_1: isDefault ? 25 : 0,
+            type_2: isDefault ? 25 : 0,
+            type_3: isDefault ? 25 : 0,
+            type_4: isDefault ? 25 : 0,
+            type_5: isDefault ? 18 : 0,
+            area_1: isDefault ? 26 : 0,
+            area_2: isDefault ? 19 : 0,
+            area_3: isDefault ? 27 : 0,
+            area_4: isDefault ? 20 : 0,
+            area_5: isDefault ? 26 : 0,
+            size_1: isDefault ? 33 : 0,
+            size_2: isDefault ? 30 : 0,
+            size_3: isDefault ? 24 : 0,
+            size_4: isDefault ? 20 : 0,
+            size_5: isDefault ? 19 : 0,
+            aviary: isDefault ? 10 : 0,
+            terrarium: isDefault ? 25 : 0,
+            rock: isDefault ? 19 : 0,
+            water: isDefault ? 23 : 0,
         }
     }
 
@@ -212,54 +232,72 @@ interface IDataSizes {
         return dataCards;
     }
 
-    function _collectSizes(data: Array<Number>): void {
-        dataSizes = _setSizes(true);
+    function _collectStats(data: Array<Number>): void {
+        dataStats = _setStats(false);
 
         data.forEach(elem => {
             const item = cards.animals.filter(obj => {
                 return obj[`id`] === elem
             });
 
+            if (item[0][`type`] != 0) {
+                dataStats[`type_${item[0][`type`]}`]++;
+            }
+
+            if (item[0][`area`] != 0) {
+                dataStats[`area_${item[0][`area`]}`]++;
+            }
+
             if (item[0][`size`] != 0) {
-                dataSizes[item[0][`size`]]++;
+                dataStats[`size_${item[0][`size`]}`]++;
             }
             
-            item[0][`aviary`] ? dataSizes[`aviary`]++ : '';
-            item[0][`terrarium`] ? dataSizes[`terrarium`]++ : '';
-            item[0][`isRock`] ? dataSizes[`rock`]++ : '';
-            item[0][`isWater`] ? dataSizes[`water`]++ : '';
+            item[0][`aviary`] ? dataStats[`aviary`]++ : '';
+            item[0][`terrarium`] ? dataStats[`terrarium`]++ : '';
+            item[0][`isRock`] ? dataStats[`rock`]++ : '';
+            item[0][`isWater`] ? dataStats[`water`]++ : '';
         });
     }
 
-    function _resetSizes() {
-        elNavbar.innerHTML = '';
+    function _resetStats() {
+        elContentStats.innerHTML = '';
     }
 
-    function _displaySizes(data: Object) {
-        _resetSizes();
+    function _displayStats(data: Object) {
+        _resetStats();
 
         let markup = ``;
         const cards = +((matchingCards / 126) * 100).toFixed(1);
 
+        
+        Object.entries(data).forEach(([key, value]) => {
+            const percentage = value ? +((value / matchingCards) * 100).toFixed(1) : 0;
+            let itemClass: string = `stats__item`
+
+            if (!value) {
+                itemClass = `stats__item stats__item--empty`;
+            }
+            
+            if (key == 'type_null' || key == 'area_null') {
+                return;
+            }
+            
+            markup += `
+            <li class="${itemClass} icon icon--${key}" data-id="${key}">
+                <span class="stats__label stats__label--cards">${value}x</span>
+                <span class="stats__label stats__label--percentage">${percentage}%</span>
+            </li>
+            `
+        });
+        
         markup += `
-            <li class="navbar__item navbar__item--cards icon icon--cards">
-                <span class="navbar__label navbar__label--cards">${matchingCards}</span>
-                <span class="navbar__label navbar__label--percentage">${cards}%</span>
+            <li class="stats__item stats__item--cards icon icon--cards">
+                <span class="stats__label stats__label--cards">${matchingCards}x</span>
+                <span class="stats__label stats__label--percentage">${cards}%</span>
             </li>
         `
 
-        Object.entries(data).forEach(([key, value]) => {
-            const percentage = +((value / matchingCards) * 100).toFixed(1);
-
-            markup += `
-                <li class="navbar__item icon icon--${key}" data-id="${key}">
-                    <span class="navbar__label navbar__label--cards">${value}x</span>
-                    <span class="navbar__label navbar__label--percentage">${percentage}%</span>
-                </li>
-            `
-        });
-
-        elNavbar.innerHTML = markup;
+        elContentStats.innerHTML = markup;
     }
 
     function _filterData(filters: number, data: Array<Number>): Array<Number> {
@@ -284,12 +322,12 @@ interface IDataSizes {
             cardsMarkup += _card((data as any)[card]);
         }
         
-        elContent.innerHTML = cardsMarkup ? cardsMarkup : _displayEmpty();
+        elContentCards.innerHTML = cardsMarkup ? cardsMarkup : _displayEmpty();
         matchingCards = Object.values(data).length;
     }
 
     function _displayEmpty(): string {
-        return `<p class="content__empty">No matching cards found</p>`
+        return `<p class="content__empty">No matching cards found</p>`;
     }
 
     function _card(id: number): string {       

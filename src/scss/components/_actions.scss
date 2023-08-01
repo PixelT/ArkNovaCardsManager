@@ -11,8 +11,13 @@ $action_search-border: 0.4rem solid var(--accent-light);
     position: fixed;
     bottom: 1rem;
     right: 1rem;
-    display: flex;
+    display: none;
     cursor: pointer;
+    z-index: 200;
+
+    @include media('>=tablet') {
+        display: flex;
+    }
 
     &--active {
         #{$root}__search {

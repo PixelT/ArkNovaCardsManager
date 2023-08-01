@@ -1,14 +1,12 @@
-$information_link-color: var(--accent-dark);
 $information_border-top: 1px dashed var(--accent-dark);
 $information_icon-size: 2rem;
+$information_link-color: var(--accent-dark);
 
 .information {
     $root: &;
     
-    margin-top: auto;
-    margin: -2rem;
-    margin-top: 2rem;
-    padding: 1.5rem 2rem;
+    padding: 2rem;
+    padding-top: 1.5rem;
     border-top: $information_border-top;
 
     &__item {

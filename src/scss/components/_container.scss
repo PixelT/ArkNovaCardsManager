@@ -1,5 +1,7 @@
 $container_sidebar-background: var(--accent-light);
-$container_sidebar-max-width: 40rem;
+$container_sidebar-width: 39rem;
+$container_stats-background: var(--bg-light);
+$container_stats-width: 17rem;
 
 .container {
     $root: &;
@@ -9,26 +11,98 @@ $container_sidebar-max-width: 40rem;
     max-width: 100%;
 
     &__outer {
-        &--sidebar {
-            position: relative;
+        z-index: 100;
+
+        &--sidebar,
+        &--stats {
+            &._active {
+                z-index: 199;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    background-color: rgba(#000, 0.75);
+                    width: 99rem;
+                    height: 100vh;
+
+                    @include media('>=laptop') {
+                        content: none;
+                    }
+                }
+            }
         }
 
+        &--sidebar {
+            background-color: $container_sidebar-background;
+            flex: 0 0 32rem;
+            max-width: 32rem;
+            margin-left: -32rem;
+            position: fixed;
+            width: 100%;
+            min-height: 100%;
+            left: 0;
+
+            @include media('>=phoneLg') {
+                flex: 0 0 $container_sidebar-width;
+                max-width: $container_sidebar-width;
+                margin-left: -$container_sidebar-width;
+            }
+
+            &._active {
+                margin-left: 0;
+
+                &::before {
+                    right: -99rem;
+                }
+            }
+
+            @include media('>=laptop') {
+                position: relative;
+                margin-left: 0;
+
+                &._active {
+                    margin-left: -$container_sidebar-width;
+                }
+            }
+        }
+        
         &--content {
-            flex: 1;
+            flex: 1 1 100%;
+            max-width: 100%;
+            z-index: 99;
+        }
+
+        &--stats {
+            background-color: $container_stats-background;
+            flex: 0 0 $container_stats-width;
+            max-width: $container_stats-width;
+            margin-right: -$container_stats-width;
+            position: fixed;
+            min-height: 100%;
+            right: 0;
+
+            &._active {
+                margin-right: 0;
+
+                &::before {
+                    left: -99rem;
+                }
+            }
+
+            @include media('>=laptop') {
+                position: relative;
+                margin-right: 0;
+
+                &._active {
+                    margin-right: -$container_stats-width;
+                }
+            }
         }
     }
 
     &__inner {
-        &--sidebar {
-            max-height: 100vh;
-            height: 100%;
-            width: 100%;
-            overflow-y: auto;
-            max-width: $container_sidebar-max-width;
-            background-color: $container_sidebar-background;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-        }
+        min-height: auto;
+        position: sticky;
+        top: 0;
     }
 }

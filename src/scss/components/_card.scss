@@ -32,23 +32,19 @@ $card_id-color: var(--color-light);
 
     @include media('>=phoneLg') {
         --card-width: 18rem;
-        --card-margin: 1rem;
+        --card-margin: 0.8rem;
     }
 
     @include media('>=tablet') {
-        --card-width: 20rem;
-    }
-
-    @include media('>=laptop') {
         --card-width: 17rem;
     }
 
-    @include media('>=laptopLg') {
-        --card-width: 18.5rem;
+    @include media('>=laptop') {
+        --card-width: 15rem;
     }
 
-    @include media('>=desktop') {
-        --card-width: 20rem;
+    @include media('>=laptopLg') {
+        --card-width: 17rem;
     }
 
     &__image {

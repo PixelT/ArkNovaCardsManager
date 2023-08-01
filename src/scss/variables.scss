@@ -9,17 +9,18 @@ $breakpoints: (
 );
 
 :root {
-    --accent-light: #65a30d;
     --accent-dark: #365314;
-    --bg-light: #f1f5f9;
+    --accent-light: #65a30d;
     --bg-error: #fecaca;
-    --card-width: 14rem;
-    --card-margin: 0.5rem;
+    --bg-light: #f1f5f9;
     --card-default: #fb923c;
-    --card-on: #65a30d;
+    --card-margin: 0.5rem;
     --card-off: #888;
-    --color-light: #f1f5f9;
+    --card-on: #65a30d;
+    --card-width: 14rem;
     --color-error: #b91c1c;
-    --scroll-light: #f5f5f5;
+    --color-light: #f1f5f9;
+    --color-white: #fff;
     --scroll-dark: #d4d4d4;
+    --scroll-light: #f5f5f5;
 }

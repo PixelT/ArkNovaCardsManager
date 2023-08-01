@@ -3,6 +3,10 @@
 
 @import './variables.scss';
 
+$general_scrollbar-thumb: var(--scroll-light);
+$general_scrollbar-track: var(--scroll-dark);
+$general_scrollbar-width: 1rem;
+
 html {
     font-size: 62.5%;
 }
@@ -26,6 +30,21 @@ html {
 
 body {
     font: 400 1.4rem/1.2 'Manrope', Tahoma, Verdana, sans-serif;
+    overflow-x: hidden;
+    scrollbar-width: $general_scrollbar-width;
+    scrollbar-color: $general_scrollbar-track $general_scrollbar-thumb;
+}
+
+::-webkit-scrollbar {
+    width: $general_scrollbar-width;
+}
+
+::-webkit-scrollbar-track {
+    background: $general_scrollbar-thumb;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $general_scrollbar-track;
 }
 
 @import './components/actions';
@@ -36,5 +55,5 @@ body {
 @import './components/filter';
 @import './components/icon';
 @import './components/information';
-@import './components/nav';
-@import './components/navbar';
+@import './components/stats';
+@import './components/toggle';

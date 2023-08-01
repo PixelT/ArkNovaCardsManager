@@ -1,22 +1,28 @@
 $filter_category-border: 2px solid var(--accent-dark);
+$filter_checkbox-accent: var(--accent-dark);
+$filter_item-separator-color: var(--accent-dark);
+$filter_label-background: var(--accent-dark);
+$filter_label-color: var(--color-light);
 $filter_type-background: var(--accent-dark);
 $filter_type-color: var(--color-light);
-$filter_item-size: 5rem;
-$filter_checkbox-accent: var(--accent-dark);
-$filter_label-color: var(--color-light);
-$filter_label-background: var(--accent-dark);
-$filter_item-separator-color: var(--accent-dark);
 
 .filter {
     $root: &;
 
     flex: 1 0 auto;
 
+    padding: 1rem;
+
+    @include media('>=phone') {
+        padding: 2rem;
+    }
+
     &__category {
         display: flex;
         flex-wrap: wrap;
         border: $filter_category-border;
         padding: 1rem;
+        margin: 0;
         margin-bottom: 1rem;
         border-radius: 1rem;
 
@@ -41,17 +47,18 @@ $filter_item-separator-color: var(--accent-dark);
 
     &__item {
         display: block;
-        width: $filter_item-size;
-        height: $filter_item-size;
+        flex: 0 0 calc(20% - 1rem);
+        aspect-ratio: 1;
         position: relative;
-        margin: 0.8rem 0.5rem;
+        margin: 0.5rem;
+        
+        @include media('>=phoneLg') {
+            flex: 0 0 calc(20% - 1.6rem);
+            margin: 0.8rem;
+        }
 
         &:nth-child(n+7) {
             margin-top: 1rem;
-        }
-        
-        @include media('>=phoneLg') {
-            margin: 0.5rem 0.7rem;
         }
 
         @include media('>=laptop') {
