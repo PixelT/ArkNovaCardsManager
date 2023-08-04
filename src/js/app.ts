@@ -40,7 +40,7 @@ interface IDataStats {
                 this.value = _value.slice(0, this.maxLength);
             }
 
-            if (_value.length === 3 && (parseInt(_value) >= 401 && parseInt(_value) <= 526)) {
+            if (_value.length === 3 && (parseInt(_value) >= 401 && parseInt(_value) <= 528)) {
                 const item = cards.animals.filter(obj => {
                     return obj[`id`] === parseInt(_value)
                 });
