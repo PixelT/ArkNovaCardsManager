@@ -17,7 +17,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 17,
-            "science": false
+            "science": false,
+            "action": "sprint"
         },
         {
             "id": 402,
@@ -36,7 +37,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 16,
-            "science": false
+            "science": false,
+            "action": "pack"
         },
         {
             "id": 403,
@@ -55,7 +57,8 @@
             "conservation": 1,
             "reputation": 0,
             "price": 20,
-            "science": false
+            "science": false,
+            "action": "hunter"
         },
         {
             "id": 404,
@@ -74,7 +77,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 9,
-            "science": false
+            "science": false,
+            "action": "hunter"
         },
         {
             "id": 405,
@@ -93,7 +97,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 8,
-            "science": false
+            "science": false,
+            "action": "clever"
         },
         {
             "id": 406,
@@ -112,7 +117,8 @@
             "conservation": 1,
             "reputation": 1,
             "price": 30,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 407,
@@ -131,7 +137,8 @@
             "conservation": 1,
             "reputation": 1,
             "price": 26,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 408,
@@ -150,7 +157,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 14,
-            "science": false
+            "science": false,
+            "action": "boost"
         },
         {
             "id": 409,
@@ -169,7 +177,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 16,
-            "science": false
+            "science": false,
+            "action": "action"
         },
         {
             "id": 410,
@@ -188,7 +197,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 7,
-            "science": false
+            "science": false,
+            "action": "hunter"
         },
         {
             "id": 411,
@@ -207,7 +217,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 22,
-            "science": false
+            "science": false,
+            "action": "inventive"
         },
         {
             "id": 412,
@@ -226,7 +237,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 16,
-            "science": false
+            "science": false,
+            "action": "hunter"
         },
         {
             "id": 413,
@@ -245,7 +257,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 10,
-            "science": false
+            "science": false,
+            "action": "jumping"
         },
         {
             "id": 414,
@@ -264,7 +277,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 11,
-            "science": false
+            "science": false,
+            "action": "inventive"
         },
         {
             "id": 415,
@@ -283,7 +297,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 11,
-            "science": false
+            "science": false,
+            "action": "boost"
         },
         {
             "id": 416,
@@ -302,7 +317,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 20,
-            "science": false
+            "science": false,
+            "action": "multipler"
         },
         {
             "id": 417,
@@ -321,7 +337,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "pack"
         },
         {
             "id": 418,
@@ -340,7 +357,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 11,
-            "science": false
+            "science": false,
+            "action": "iconic-animal"
         },
         {
             "id": 419,
@@ -359,7 +377,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 5,
-            "science": false
+            "science": false,
+            "action": "boost"
         },
         {
             "id": 420,
@@ -378,7 +397,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 4,
-            "science": false
+            "science": false,
+            "action": "hunter"
         },
         {
             "id": 421,
@@ -397,7 +417,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 17,
-            "science": false
+            "science": false,
+            "action": "full-throated"
         },
         {
             "id": 422,
@@ -416,7 +437,8 @@
             "conservation": 1,
             "reputation": 0,
             "price": 18,
-            "science": false
+            "science": false,
+            "action": "sunbathing"
         },
         {
             "id": 423,
@@ -435,7 +457,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 17,
-            "science": false
+            "science": false,
+            "action": "pack"
         },
         {
             "id": 424,
@@ -454,7 +477,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 13,
-            "science": false
+            "science": false,
+            "action": "pack"
         },
         {
             "id": 425,
@@ -473,7 +497,8 @@
             "conservation": 0,
             "reputation": 1,
             "price": 11,
-            "science": false
+            "science": false,
+            "action": "pouch"
         },
         {
             "id": 426,
@@ -492,7 +517,8 @@
             "conservation": 0,
             "reputation": 1,
             "price": 36,
-            "science": false
+            "science": false,
+            "action": "resistance"
         },
         {
             "id": 427,
@@ -511,7 +537,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 24,
-            "science": false
+            "science": false,
+            "action": "assertion"
         },
         {
             "id": 428,
@@ -530,7 +557,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 16,
-            "science": false
+            "science": false,
+            "action": "boost"
         },
         {
             "id": 429,
@@ -549,7 +577,8 @@
             "conservation": 0,
             "reputation": 1,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "boost"
         },
         {
             "id": 430,
@@ -568,7 +597,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 15,
-            "science": false
+            "science": false,
+            "action": "action"
         },
         {
             "id": 431,
@@ -587,7 +617,8 @@
             "conservation": 1,
             "reputation": 0,
             "price": 33,
-            "science": false
+            "science": false,
+            "action": "resistance"
         },
         {
             "id": 432,
@@ -606,7 +637,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 25,
-            "science": false
+            "science": false,
+            "action": "assertion"
         },
         {
             "id": 433,
@@ -625,7 +657,8 @@
             "conservation": 1,
             "reputation": 1,
             "price": 27,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 434,
@@ -644,7 +677,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 16,
-            "science": false
+            "science": false,
+            "action": "multipler"
         },
         {
             "id": 435,
@@ -663,7 +697,8 @@
             "conservation": 0,
             "reputation": 1,
             "price": 17,
-            "science": false
+            "science": false,
+            "action": "digging"
         },
         {
             "id": 436,
@@ -682,7 +717,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 18,
-            "science": false
+            "science": false,
+            "action": "iconic-animal"
         },
         {
             "id": 437,
@@ -701,7 +737,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 13,
-            "science": false
+            "science": false,
+            "action": "sponsor-magnet"
         },
         {
             "id": 438,
@@ -720,7 +757,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "flock-animal"
         },
         {
             "id": 439,
@@ -739,7 +777,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 10,
-            "science": false
+            "science": false,
+            "action": "flock-animal"
         },
         {
             "id": 440,
@@ -758,7 +797,8 @@
             "conservation": 1,
             "reputation": 0,
             "price": 15,
-            "science": false
+            "science": false,
+            "action": "digging"
         },
         {
             "id": 441,
@@ -777,7 +817,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 19,
-            "science": false
+            "science": false,
+            "action": "sponsor-magnet"
         },
         {
             "id": 442,
@@ -796,7 +837,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 19,
-            "science": false
+            "science": false,
+            "action": "multipler"
         },
         {
             "id": 443,
@@ -815,7 +857,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "flock-animal"
         },
         {
             "id": 444,
@@ -834,7 +877,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 10,
-            "science": false
+            "science": false,
+            "action": "jumping"
         },
         {
             "id": 445,
@@ -853,7 +897,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 8,
-            "science": false
+            "science": false,
+            "action": "digging"
         },
         {
             "id": 446,
@@ -872,7 +917,8 @@
             "conservation": 1,
             "reputation": 0,
             "price": 25,
-            "science": false
+            "science": false,
+            "action": "digging"
         },
         {
             "id": 447,
@@ -891,7 +937,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 23,
-            "science": false
+            "science": false,
+            "action": "pouch"
         },
         {
             "id": 448,
@@ -910,7 +957,8 @@
             "conservation": 0,
             "reputation": 1,
             "price": 21,
-            "science": false
+            "science": false,
+            "action": "pouch"
         },
         {
             "id": 449,
@@ -929,7 +977,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 10,
-            "science": false
+            "science": false,
+            "action": "venom"
         },
         {
             "id": 450,
@@ -948,7 +997,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 9,
-            "science": false
+            "science": false,
+            "action": "pouch"
         },
         {
             "id": 451,
@@ -967,7 +1017,8 @@
             "conservation": 1,
             "reputation": 0,
             "price": 32,
-            "science": false
+            "science": false,
+            "action": "dominance"
         },
         {
             "id": 452,
@@ -986,7 +1037,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 10,
-            "science": false
+            "science": false,
+            "action": "iconic-animal"
         },
         {
             "id": 453,
@@ -1005,7 +1057,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 20,
-            "science": false
+            "science": false,
+            "action": "action"
         },
         {
             "id": 454,
@@ -1024,7 +1077,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "sunbathing"
         },
         {
             "id": 455,
@@ -1043,7 +1097,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 13,
-            "science": false
+            "science": false,
+            "action": "clever"
         },
         {
             "id": 456,
@@ -1062,7 +1117,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 13,
-            "science": false
+            "science": false,
+            "action": "pilfering"
         },
         {
             "id": 457,
@@ -1081,7 +1137,8 @@
             "conservation": 1,
             "reputation": 0,
             "price": 28,
-            "science": false
+            "science": false,
+            "action": "multipler"
         },
         {
             "id": 458,
@@ -1100,7 +1157,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 18,
-            "science": false
+            "science": false,
+            "action": "pilfering"
         },
         {
             "id": 459,
@@ -1119,7 +1177,8 @@
             "conservation": 0,
             "reputation": 1,
             "price": 17,
-            "science": false
+            "science": false,
+            "action": "inventive"
         },
         {
             "id": 460,
@@ -1138,7 +1197,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "clever"
         },
         {
             "id": 461,
@@ -1157,7 +1217,8 @@
             "conservation": 0,
             "reputation": 1,
             "price": 14,
-            "science": false
+            "science": false,
+            "action": "jumping"
         },
         {
             "id": 462,
@@ -1176,7 +1237,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 13,
-            "science": false
+            "science": false,
+            "action": "jumping"
         },
         {
             "id": 463,
@@ -1195,7 +1257,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 14,
-            "science": false
+            "science": false,
+            "action": "pilfering"
         },
         {
             "id": 464,
@@ -1214,7 +1277,8 @@
             "conservation": 1,
             "reputation": 0,
             "price": 17,
-            "science": false
+            "science": false,
+            "action": "inventive"
         },
         {
             "id": 465,
@@ -1233,7 +1297,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 10,
-            "science": false
+            "science": false,
+            "action": "clever"
         },
         {
             "id": 466,
@@ -1252,7 +1317,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "boost"
         },
         {
             "id": 467,
@@ -1271,7 +1337,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "clever"
         },
         {
             "id": 468,
@@ -1290,7 +1357,8 @@
             "conservation": 1,
             "reputation": 1,
             "price": 15,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 469,
@@ -1309,7 +1377,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 13,
-            "science": false
+            "science": false,
+            "action": "snapping"
         },
         {
             "id": 470,
@@ -1328,7 +1397,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 13,
-            "science": false
+            "science": false,
+            "action": "venom"
         },
         {
             "id": 471,
@@ -1347,7 +1417,8 @@
             "conservation": 1,
             "reputation": 0,
             "price": 22,
-            "science": false
+            "science": false,
+            "action": "sunbathing"
         },
         {
             "id": 472,
@@ -1366,7 +1437,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "sunbathing"
         },
         {
             "id": 473,
@@ -1385,7 +1457,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 9,
-            "science": false
+            "science": false,
+            "action": "sunbathing"
         },
         {
             "id": 474,
@@ -1404,7 +1477,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 14,
-            "science": false
+            "science": false,
+            "action": "constriction"
         },
         {
             "id": 475,
@@ -1423,7 +1497,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 13,
-            "science": false
+            "science": false,
+            "action": "hypnosis"
         },
         {
             "id": 476,
@@ -1442,7 +1517,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 14,
-            "science": false
+            "science": false,
+            "action": "iconic-animal"
         },
         {
             "id": 477,
@@ -1461,7 +1537,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 14,
-            "science": false
+            "science": false,
+            "action": "snapping"
         },
         {
             "id": 478,
@@ -1480,7 +1557,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 8,
-            "science": false
+            "science": false,
+            "action": "sunbathing"
         },
         {
             "id": 479,
@@ -1499,7 +1577,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 18,
-            "science": false
+            "science": false,
+            "action": "snapping"
         },
         {
             "id": 480,
@@ -1518,7 +1597,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 16,
-            "science": false
+            "science": false,
+            "action": "snapping"
         },
         {
             "id": 481,
@@ -1537,7 +1617,8 @@
             "conservation": 1,
             "reputation": 1,
             "price": 30,
-            "science": false
+            "science": false,
+            "action": "sunbathing"
         },
         {
             "id": 482,
@@ -1556,7 +1637,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 13,
-            "science": false
+            "science": false,
+            "action": "constriction"
         },
         {
             "id": 483,
@@ -1575,7 +1657,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 16,
-            "science": false
+            "science": false,
+            "action": "constriction"
         },
         {
             "id": 484,
@@ -1594,7 +1677,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 9,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 485,
@@ -1613,7 +1697,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 10,
-            "science": false
+            "science": false,
+            "action": "hypnosis"
         },
         {
             "id": 486,
@@ -1632,7 +1717,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 4,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 487,
@@ -1651,7 +1737,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 8,
-            "science": false
+            "science": false,
+            "action": "clever"
         },
         {
             "id": 488,
@@ -1670,7 +1757,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 4,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 489,
@@ -1689,7 +1777,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 23,
-            "science": false
+            "science": false,
+            "action": "snapping"
         },
         {
             "id": 490,
@@ -1708,7 +1797,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 15,
-            "science": false
+            "science": false,
+            "action": "scavenging"
         },
         {
             "id": 491,
@@ -1727,7 +1817,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "sprint"
         },
         {
             "id": 492,
@@ -1746,7 +1837,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 10,
-            "science": false
+            "science": false,
+            "action": "venom"
         },
         {
             "id": 493,
@@ -1765,7 +1857,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 6,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 494,
@@ -1784,7 +1877,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 20,
-            "science": false
+            "science": false,
+            "action": "sprint"
         },
         {
             "id": 495,
@@ -1803,7 +1897,8 @@
             "conservation": 1,
             "reputation": 0,
             "price": 14,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 496,
@@ -1822,7 +1917,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 10,
-            "science": false
+            "science": false,
+            "action": "scavenging"
         },
         {
             "id": 497,
@@ -1841,7 +1937,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 15,
-            "science": false
+            "science": false,
+            "action": "posturing"
         },
         {
             "id": 498,
@@ -1860,7 +1957,8 @@
             "conservation": 1,
             "reputation": 0,
             "price": 9,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 499,
@@ -1879,7 +1977,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 16,
-            "science": false
+            "science": false,
+            "action": "scavenging"
         },
         {
             "id": 500,
@@ -1898,7 +1997,8 @@
             "conservation": 1,
             "reputation": 1,
             "price": 20,
-            "science": false
+            "science": false,
+            "action": "scavenging"
         },
         {
             "id": 501,
@@ -1917,7 +2017,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 18,
-            "science": false
+            "science": false,
+            "action": "posturing"
         },
         {
             "id": 502,
@@ -1936,7 +2037,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 13,
-            "science": false
+            "science": false,
+            "action": "boost"
         },
         {
             "id": 503,
@@ -1955,7 +2057,8 @@
             "conservation": 0,
             "reputation": 1,
             "price": 11,
-            "science": false
+            "science": false,
+            "action": "perception"
         },
         {
             "id": 504,
@@ -1974,7 +2077,8 @@
             "conservation": 0,
             "reputation": 1,
             "price": 17,
-            "science": false
+            "science": false,
+            "action": "scavenging"
         },
         {
             "id": 505,
@@ -1993,7 +2097,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 23,
-            "science": false
+            "science": false,
+            "action": "determination"
         },
         {
             "id": 506,
@@ -2012,7 +2117,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "scavenging"
         },
         {
             "id": 507,
@@ -2031,7 +2137,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "sprint"
         },
         {
             "id": 508,
@@ -2050,7 +2157,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 16,
-            "science": false
+            "science": false,
+            "action": "posturing"
         },
         {
             "id": 509,
@@ -2069,7 +2177,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 20,
-            "science": false
+            "science": false,
+            "action": "determination"
         },
         {
             "id": 510,
@@ -2088,7 +2197,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 9,
-            "science": false
+            "science": false,
+            "action": "multipler"
         },
         {
             "id": 511,
@@ -2107,7 +2217,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 16,
-            "science": false
+            "science": false,
+            "action": "posturing"
         },
         {
             "id": 512,
@@ -2126,7 +2237,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 10,
-            "science": false
+            "science": false,
+            "action": "perception"
         },
         {
             "id": 513,
@@ -2145,7 +2257,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "perception"
         },
         {
             "id": 514,
@@ -2164,7 +2277,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 22,
-            "science": false
+            "science": false,
+            "action": "peacocking"
         },
         {
             "id": 515,
@@ -2183,7 +2297,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 13,
-            "science": false
+            "science": false,
+            "action": "action"
         },
         {
             "id": 516,
@@ -2202,7 +2317,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 12,
-            "science": false
+            "science": false,
+            "action": "multipler"
         },
         {
             "id": 517,
@@ -2221,7 +2337,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 9,
-            "science": false
+            "science": false,
+            "action": "iconic-animal"
         },
         {
             "id": 518,
@@ -2240,7 +2357,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 15,
-            "science": false
+            "science": false,
+            "action": "posturing"
         },
         {
             "id": 519,
@@ -2259,7 +2377,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 7,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 520,
@@ -2278,7 +2397,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 7,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 521,
@@ -2297,7 +2417,8 @@
             "conservation": 0,
             "reputation": 1,
             "price": 7,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 522,
@@ -2316,7 +2437,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 7,
-            "science": false
+            "science": false,
+            "action": "inventive"
         },
         {
             "id": 523,
@@ -2335,7 +2457,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 7,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 524,
@@ -2354,7 +2477,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 7,
-            "science": false
+            "science": false,
+            "action": "digging"
         },
         {
             "id": 525,
@@ -2373,7 +2497,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 7,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 526,
@@ -2392,7 +2517,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 7,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 527,
@@ -2411,7 +2537,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 7,
-            "science": false
+            "science": false,
+            "action": ""
         },
         {
             "id": 528,
@@ -2430,7 +2557,8 @@
             "conservation": 0,
             "reputation": 0,
             "price": 7,
-            "science": false
+            "science": false,
+            "action": "pouch"
         }
     ]
 }

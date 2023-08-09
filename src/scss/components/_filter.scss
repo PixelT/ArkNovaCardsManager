@@ -5,6 +5,7 @@ $filter_label-background: var(--accent-dark);
 $filter_label-color: var(--color-light);
 $filter_type-background: var(--accent-dark);
 $filter_type-color: var(--color-light);
+$filter_action-reset-icon: 'icon-x'; 
 
 .filter {
     $root: &;
@@ -91,6 +92,38 @@ $filter_type-color: var(--color-light);
                 height: 100%;
             }
         }
+    }
+
+    &__action {
+        flex: 1;
+        padding-left: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: relative;
+    }
+
+    &__action-title {
+        color: var(--accent-dark);
+        font-size: 1.2rem;
+        margin-block: 0.8rem;
+    }
+
+    &__action-form {
+        border: 2px solid var(--accent-dark);
+        padding: 0.2rem 0.5rem;
+        width: calc(100% - 3rem);
+        margin-right: 3rem;
+    }
+
+    &__action-reset {
+        position: absolute;
+        bottom: 0.2rem;
+        right: 0;
+        width: 2.8rem;
+        height: 2.8rem;
+        background: url('./images/icons/#{$filter_action-reset-icon}.svg') no-repeat center center transparent;
     }
 
     &__checkbox {

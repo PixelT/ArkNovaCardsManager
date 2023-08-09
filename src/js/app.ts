@@ -9,7 +9,7 @@ interface IDataCards {
     [key: string]: Array<Number>
 };
 interface IDataStats {
-    [key: number | string]: number;
+    [key: number | string]: any;
 };
 
 interface IDataFilters {
@@ -22,6 +22,7 @@ interface IDataFilters {
     const elContentSponsorCards: HTMLDivElement = document.querySelector(`.content__sponsors`);
     const elContentStats: HTMLDivElement = document.querySelector(`.stats`);
     const elSearchField: HTMLInputElement = document.querySelector(`.action__search`);
+    const elFilterAction: HTMLSelectElement = document.querySelector(`.filter__action-form`);
 
     const config: IConfig = {
         cardsOnStorage: `anc_on`,
@@ -30,10 +31,7 @@ interface IDataFilters {
         cardsOffClass: `card--off`
     }
 
-    let dataCards: IDataCards = {        
-        animals: _getCardsID(animals.data, 'size'),
-        sponsors: _getCardsID(sponsors.data, 'id'),
-    }
+    let dataCards: IDataCards = _setCardsDefault();
 
     let dataFilters: IDataFilters = {
         category: [`animal`, `sponsor`]
@@ -84,6 +82,10 @@ interface IDataFilters {
             _displayStats(dataStats);
         });
 
+        elFilterAction.addEventListener('change', () => {
+            _updateCards();
+        });
+
         document.addEventListener(`click`, (ev: Event) => {
             const el: HTMLElement = (ev.target as HTMLElement);
 
@@ -100,34 +102,13 @@ interface IDataFilters {
                 
                 radioBox.checked = !radioBox.checked;
                 elSearchField.value = '';
-                dataFilters = {};
-    
-                _promise().then(() => {
-                    const formData: FormData = new FormData(elForm);
-
-                    for (const [key, value] of formData) {
-                        const objValue = isNaN(value as any) ? value : +value;
-
-                        if (dataFilters.hasOwnProperty(key)) {
-                            (dataFilters as any)[key].push(objValue);
-                        } else {
-                            Object.assign(dataFilters, {[key]: [objValue]});
-                        }
-                    }
-
-                    _collectCardsData(dataFilters);
-                    _collectStats(dataCards.animals, dataCards.sponsors);
-                    _displayCards(dataCards.animals, dataCards.sponsors);
-                    _displayStats(dataStats);
-                });
+                
+                _updateCards();
 
             } else if (el.classList.contains(`button--filter`)) {
                 elSearchField.value = '';
                 dataFilters = {};
-                dataCards = {        
-                    animals: _getCardsID(animals.data, 'size'),
-                    sponsors: _getCardsID(sponsors.data, 'id'),
-                }
+                dataCards = _setCardsDefault();
                 dataStats = _setStats();
 
                 _displayCards(dataCards.animals, dataCards.sponsors);
@@ -138,6 +119,11 @@ interface IDataFilters {
                 localStorage.setItem(config.cardsOffStorage, JSON.stringify([]));
 
                 _displayCards(dataCards.animals, dataCards.sponsors);
+            } else if (el.classList.contains(`filter__action-reset`)) {
+                ev.preventDefault();
+                elFilterAction.selectedIndex = 0;
+ 
+                _updateCards();
             } else if (el.classList.contains(`card__image`)) {
                 ev.preventDefault();
                 const card: HTMLElement = el.closest(`.card`);
@@ -182,7 +168,7 @@ interface IDataFilters {
     function _setStats(isDefault: boolean = true) {
         return {
             animal: isDefault ? 128 : 0,
-            sponsor: isDefault ? 63 : 0,
+            sponsor: isDefault ? 64 : 0,
             type_2: isDefault ? 25 : 0,
             area_1: isDefault ? 26 : 0,
             type_1: isDefault ? 25 : 0, 
@@ -203,6 +189,14 @@ interface IDataFilters {
             water: isDefault ? 23 : 0,
             size_5: isDefault ? 19 : 0,
             science: isDefault ? 50 : 0,
+            action: isDefault ? '' : '',
+        }
+    }
+
+    function _setCardsDefault() {
+        return {
+            animals: _getCardsID(animals.data, 'size'),
+            sponsors: _getCardsID(sponsors.data, 'id').reverse(),
         }
     }
 
@@ -224,14 +218,14 @@ interface IDataFilters {
             elContentAnimalCards.innerHTML = _displayMessage(`Select at least one card type: <strong>Animals</strong> | <strong>Sponsors</strong>`);
         } else if ((Object.keys(dataFilters)?.length === 1 && dataFilters?.category)) {
             dataFilters?.category.includes(`animal`) ? dataCards.animals = _getCardsID(animals.data, 'size') : ``;
-            dataFilters?.category.includes(`sponsor`) ? dataCards.sponsors = _getCardsID(sponsors.data, 'id') : ``;
+            dataFilters?.category.includes(`sponsor`) ? dataCards.sponsors = _getCardsID(sponsors.data, 'id').reverse() : ``;
         } else {
             if (!dataFilters.category) {
                 dataCards.animals = [];
                 dataCards.sponsors = [];
                 elContentAnimalCards.innerHTML = _displayMessage(`Select at least one card type: <strong>Animals</strong> | <strong>Sponsors</strong>`);
             }
-
+            
             if (dataFilters?.category?.includes(`animal`)) {
                 Object.entries(animals.data).forEach(element => {
                     for (const property in dataFilters) {
@@ -259,8 +253,7 @@ interface IDataFilters {
             const activeFiltersType = Object.keys(dataFilters).length;
 
             if (!activeFiltersType) {
-                dataCards.animals = _getCardsID(animals.data, 'size');
-                dataCards.sponsors = _getCardsID(sponsors.data, 'id');
+                dataCards = _setCardsDefault();
             }
 
             if (activeFiltersType > 1) {
@@ -360,7 +353,7 @@ interface IDataFilters {
                 itemClass = `stats__item stats__item--empty`;
             }
             
-            if (key == 'type_null' || key == 'area_null') {
+            if (key == 'type_null' || key == 'area_null' || key == 'action') {
                 return;
             }
             
@@ -391,7 +384,7 @@ interface IDataFilters {
         matchingAnimalCards = dataAnimals?.length ? Object.values(dataAnimals).length : 0;
 
         if (dataSponsors?.length) {
-            for (const card in dataSponsors.reverse()) {
+            for (const card in dataSponsors) {
                 sponsorCardsMarkup += _card((dataSponsors as any)[card]);
             }
             elContentSponsorCards.innerHTML = sponsorCardsMarkup;
@@ -404,6 +397,33 @@ interface IDataFilters {
 
     function _displayMessage(message: string = null): string {
         return message ? `<p class="content__message">${message}</p>` : ``;
+    }
+
+    function _updateCards() {
+        dataFilters = {};
+    
+        _promise().then(() => {
+            const formData: FormData = new FormData(elForm);
+
+            for (const [key, value] of formData) {
+                const objValue = isNaN(value as any) ? value : +value;
+
+                if (key === 'action' && !value) {
+                    continue;
+                }
+
+                if (dataFilters.hasOwnProperty(key)) {
+                    (dataFilters as any)[key].push(objValue);
+                } else {
+                    Object.assign(dataFilters, {[key]: [objValue]});
+                }
+            }
+
+            _collectCardsData(dataFilters);
+            _collectStats(dataCards.animals, dataCards.sponsors);
+            _displayCards(dataCards.animals, dataCards.sponsors);
+            _displayStats(dataStats);
+        });
     }
 
     function _resetStats() {

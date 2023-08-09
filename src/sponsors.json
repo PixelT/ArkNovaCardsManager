@@ -58,7 +58,9 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
-            "science": 1
+            "science": 1,
+            "conservation": 1,
+            "reputation": 1
         },
         {
             "id": 206,
@@ -310,7 +312,8 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
-            "science": 1
+            "science": 1,
+            "reputation": 1
         },
         {
             "id": 227,
@@ -637,6 +640,20 @@
             "science": 0
         },
         {
+            "id": 254,
+            "category": "sponsor",
+            "name": "Zoo school",
+            "type": 0,
+            "area": 0,
+            "isPet": 0,
+            "isBear": 0,
+            "isRock": 0,
+            "isWater": 0,
+            "science": 0,
+            "conservation": 1,
+            "reputation": 1
+        },
+        {
             "id": 255,
             "category": "sponsor",
             "name": "Adventure playground",
@@ -718,7 +735,8 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
-            "science": 0
+            "science": 0,
+            "conservation": 1
         },
         {
             "id": 262,
