@@ -1,9 +1,9 @@
 # Ark Nova Cards Manager
 > [https://pixelt.github.io/ArkNovaCardsManager/](https://pixelt.github.io/ArkNovaCardsManager/)
 
-![Screenshot](screenshot.jpg)
+![Screenshot](screenshot.webp)
 
-Simple app to managing & filtering cards available in Ark Nova boardgame:
+Simple app to managing & filtering animals & sponsors cards available in Ark Nova boardgame:
 - use options in left sidebar to filtering cards based on selected values
 - click / tap on card to change card status (cards statuses are saved afer reload the page)
 - use search in bottom right corner to display card with a specifid ID (401-526)
