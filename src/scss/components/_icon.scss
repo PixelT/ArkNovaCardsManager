@@ -1,6 +1,6 @@
-$icon_background-size: 100% 2500%;
+$icon_background-size: 100% 2800%;
 $icon_border-radius: 50%;
-$icon_position: 4.17%;
+$icon_position: 3.71%;
 $icon_sprites: 'sprites';
 
 .icon {
@@ -11,193 +11,112 @@ $icon_sprites: 'sprites';
     background-position-x: 0;
     border-radius: $icon_border-radius;
 
-    &--cards {
-        .stats & {
-            order: 20;
-        }
+    &--animal {
+        background-position-y: $icon_position * 2;
+    }
+
+    &--sponsor {
+        background-position-y: $icon_position * 0;
     }
 
     &--area_1 { // Africa
-        background-position-y: $icon_position * 2;
-
-        .stats & {
-            order: 1;
-        }
+        background-position-y: $icon_position * 5;
     }
 
     &--area_2 { // Europe
-        background-position-y: $icon_position * 1;
-
-        .stats & {
-            order: 9;
-        }
+        background-position-y: $icon_position * 4;
     }
 
     &--area_3 { // Asia
-        background-position-y: $icon_position * 3;
-
-        .stats & {
-            order: 5;
-        }
+        background-position-y: $icon_position * 6;
     }
 
     &--area_5 { // Americas
-        background-position-y: $icon_position * 5;
-
-        .stats & {
-            order: 3;
-        }
+        background-position-y: $icon_position * 8;
     }
 
     &--area_4 { // Australia
-        background-position-y: $icon_position * 4;
-
-        .stats & {
-            order: 7;
-        }
+        background-position-y: $icon_position * 7;
     }
 
     &--type_1 { // Bird
-        background-position-y: $icon_position * 6;
-
-        .stats & {
-            order: 4;
-        }
+        background-position-y: $icon_position * 9;
     }
 
     &--type_3 { // Predator
-        background-position-y: $icon_position * 7;
-
-        .stats & {
-            order: 6;
-        }
+        background-position-y: $icon_position * 10;
     }
 
     &--type_2 { // Herbivore
-        background-position-y: $icon_position * 8;
-
-        .stats & {
-            order: 2;
-        }
+        background-position-y: $icon_position * 11;
     }
 
     &--type_4 { // Reptile
-        background-position-y: $icon_position * 9;
-
-        .stats & {
-            order: 8;
-        }
+        background-position-y: $icon_position * 12;
     }
 
     &--type_5 { // Primate
-        background-position-y: $icon_position * 10;
-
-        .stats & {
-            order: 10;
-        }
+        background-position-y: $icon_position * 13;
     }
 
     &--bear {
-        background-position-y: $icon_position * 20;
-
-        .stats & {
-            order: 0;
-        }
-    }
-
-    &--pet {
-        background-position-y: $icon_position * 19;
-
-        .stats & {
-            order: 0;
-        }
-    }
-
-    &--size_1 {
-        background-position-y: $icon_position * 13;
-
-        .stats & {
-            order: 11;
-        }
-    }
-
-    &--size_2 {
-        background-position-y: $icon_position * 15;
-
-        .stats & {
-            order: 13;
-        }
-    }
-
-    &--size_3 {
-        background-position-y: $icon_position * 14;
-
-        .stats & {
-            order: 15;
-        }
-    }
-
-    &--size_4 {
-        background-position-y: $icon_position * 12;
-
-        .stats & {
-            order: 17;
-        }
-    }
-
-    &--size_5 {
-        background-position-y: $icon_position * 11;
-
-        .stats & {
-            order: 19;
-        }
-    }
-
-    &--small {
-        background-position-y: $icon_position * 17;
-
-        .stats & {
-            order: 0;
-        }
-    }
-
-    &--aviary {
-        background-position-y: $icon_position * 18;
-
-        .stats & {
-            order: 12;
-        }
-    }
-
-    &--terrarium {
-        background-position-y: $icon_position * 16;
-
-        .stats & {
-            order: 14;
-        }
-    }
-
-    &--rock {
-        background-position-y: $icon_position * 21;
-
-        .stats & {
-            order: 16;
-        }
-    }
-
-    &--water {
-        background-position-y: $icon_position * 22;
-
-        .stats & {
-            order: 18;
-        }
-    }
-
-    &--conservation {
         background-position-y: $icon_position * 23;
     }
 
-    &--reputation {
+    &--pet {
+        background-position-y: $icon_position * 22;
+    }
+
+    &--size_1 {
+        background-position-y: $icon_position * 16;
+    }
+
+    &--size_2 {
+        background-position-y: $icon_position * 18;
+    }
+
+    &--size_3 {
+        background-position-y: $icon_position * 17;
+    }
+
+    &--size_4 {
+        background-position-y: $icon_position * 15;
+    }
+
+    &--size_5 {
+        background-position-y: $icon_position * 14;
+    }
+
+    &--small {
+        background-position-y: $icon_position * 20;
+    }
+
+    &--aviary {
+        background-position-y: $icon_position * 21;
+    }
+
+    &--terrarium {
+        background-position-y: $icon_position * 19;
+    }
+
+    &--rock {
         background-position-y: $icon_position * 24;
     }
+
+    &--water {
+        background-position-y: $icon_position * 25;
+    }
+
+    &--conservation {
+        background-position-y: $icon_position * 26;
+    }
+
+    &--reputation {
+        background-position-y: $icon_position * 27;
+    }
+
+    &--science {
+        background-position-y: $icon_position * 3;
+    }
+
 }

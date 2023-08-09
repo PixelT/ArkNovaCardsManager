@@ -1,5 +1,5 @@
-$content_empty-background: var(--bg-error);
-$content_empty-color: var(--color-error);
+$content_message-background: var(--bg-error);
+$content_message-color: var(--color-error);
 $content_stats-width: 17rem;
 
 .content {
@@ -14,15 +14,16 @@ $content_stats-width: 17rem;
         display: flex;
         flex-wrap: wrap;
         width: 100%;
-        padding: 0;
+        padding: 0 1rem;
         justify-content: center;
     }
 
-    &__empty {
-        background-color: $content_empty-background;
-        color: $content_empty-color;
+    &__message {
+        background-color: $content_message-background;
+        color: $content_message-color;
         padding: 1rem 3rem;
         border-radius: 1rem;
+        margin: 0;
     }
 
     &__cards {
@@ -33,6 +34,27 @@ $content_stats-width: 17rem;
         align-content: flex-start;
         padding: 2rem 0;
         transition: all linear 3s;
+    }
+
+    &__animals,
+    &__sponsors {
+        flex: 0 0 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-start;
+        padding: 2rem 0;
+        transition: all linear 3s;
+        border: 1px dashed #eee;
+        margin: 1rem;
+
+        &:empty {
+            display: none;
+        }
+    }
+
+    &__sponsors {
+        margin-top: 0;
     }
 
     &__stats {

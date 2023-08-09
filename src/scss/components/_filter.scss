@@ -62,7 +62,7 @@ $filter_type-color: var(--color-light);
         }
 
         @include media('>=laptop') {
-            margin-bottom: 3.5rem;
+            margin-bottom: 2rem;
         }
 
         &--no-label {
@@ -111,7 +111,7 @@ $filter_type-color: var(--color-light);
                 content: '';
                 position: absolute;
                 right: 0.1rem;
-                bottom: 0.1rem;
+                top: 0.1rem;
                 width: 0.9rem;
                 height: 0.9rem;
                 background-color: $filter_checkbox-accent;
@@ -137,7 +137,7 @@ $filter_type-color: var(--color-light);
         &::before {
             content: '';
             position: absolute;
-            bottom: -0.3rem;
+            top: -0.3rem;
             right: -0.3rem;
             width: 1.7rem;
             height: 1.7rem;
@@ -155,7 +155,7 @@ $filter_type-color: var(--color-light);
     &__text {
         display: none;
         position: absolute;
-        top: calc(100% + 1rem);
+        top: 90%;
         left: 50%;
         transform: translateX(-50%);
         background-color: $filter_label-background;
