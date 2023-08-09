@@ -165,7 +165,7 @@ interface IDataFilters {
         return new Promise(resolve => setTimeout(resolve, time));
     }
 
-    function _setStats(isDefault: boolean = true) {
+    function _setStats(isDefault: boolean = true): Object {
         return {
             animal: isDefault ? 128 : 0,
             sponsor: isDefault ? 64 : 0,
@@ -193,17 +193,17 @@ interface IDataFilters {
         }
     }
 
-    function _setCardsDefault() {
+    function _setCardsDefault(): IDataCards {
         return {
-            animals: _getCardsID(animals.data, 'size'),
-            sponsors: _getCardsID(sponsors.data, 'id').reverse(),
+            animals: _getCardsID(animals.data, 'id'),
+            sponsors: _getCardsID(sponsors.data, 'id'),
         }
     }
 
-    function _getCardsID(dataType: Array<any>, sortBy: string) {
+    function _getCardsID(dataType: Array<any>, sortBy: string): Array<Number> {
         return dataType.sort((a: any, b: any) => {
-            if (a[sortBy] < b[sortBy]) return 1;
-            if (a[sortBy] > b[sortBy]) return -1;
+            if (a[sortBy] > b[sortBy]) return 1;
+            if (a[sortBy] < b[sortBy]) return -1;
             return 0;
         }).map(item => item[`id`]);
     }
@@ -217,8 +217,8 @@ interface IDataFilters {
         if (Object.keys(dataFilters).length === 0) {
             elContentAnimalCards.innerHTML = _displayMessage(`Select at least one card type: <strong>Animals</strong> | <strong>Sponsors</strong>`);
         } else if ((Object.keys(dataFilters)?.length === 1 && dataFilters?.category)) {
-            dataFilters?.category.includes(`animal`) ? dataCards.animals = _getCardsID(animals.data, 'size') : ``;
-            dataFilters?.category.includes(`sponsor`) ? dataCards.sponsors = _getCardsID(sponsors.data, 'id').reverse() : ``;
+            dataFilters?.category.includes(`animal`) ? dataCards.animals = _getCardsID(animals.data, 'id') : [];
+            dataFilters?.category.includes(`sponsor`) ? dataCards.sponsors = _getCardsID(sponsors.data, 'id') : [];
         } else {
             if (!dataFilters.category) {
                 dataCards.animals = [];
@@ -229,8 +229,16 @@ interface IDataFilters {
             if (dataFilters?.category?.includes(`animal`)) {
                 Object.entries(animals.data).forEach(element => {
                     for (const property in dataFilters) {
-                        if ((dataFilters[property as keyof typeof dataFilters] as any).includes((element[1] as any)[property])) {
-                            (dataCards.animals as Array<Number>).push(+element[1][`id`]);
+                        if (property === 'action' && element[1][`action`]?.indexOf(`|`) !== -1) {
+                            element[1][`action`].split(`|`).forEach((el) => {
+                                if (dataFilters?.action[0].trim() === el.trim()) {
+                                    (dataCards.animals as Array<Number>).push(+element[1][`id`]);
+                                } 
+                            });
+                        } else {
+                            if ((dataFilters[property as keyof typeof dataFilters] as any).includes((element[1] as any)[property])) {
+                                (dataCards.animals as Array<Number>).push(+element[1][`id`]);
+                            }
                         }
                     }
                 });
@@ -262,6 +270,7 @@ interface IDataFilters {
                 dataFilteredAnimals.length ? dataCards.animals = dataFilteredAnimals : dataCards.animals = [];
             }
         }
+        
         return dataCards;
     }
 
@@ -333,7 +342,7 @@ interface IDataFilters {
         }).map((item: any) => +item[0]);
     }
 
-    function _displayStats(data: Object) {
+    function _displayStats(data: Object): void {
         _resetStats();
 
         let markup = ``;
@@ -399,7 +408,7 @@ interface IDataFilters {
         return message ? `<p class="content__message">${message}</p>` : ``;
     }
 
-    function _updateCards() {
+    function _updateCards(): void {
         dataFilters = {};
     
         _promise().then(() => {
@@ -426,11 +435,11 @@ interface IDataFilters {
         });
     }
 
-    function _resetStats() {
+    function _resetStats(): void {
         elContentStats.innerHTML = '';
     }
 
-    function _resetCards() {
+    function _resetCards(): void {
         elContentAnimalCards.innerHTML = '';
         elContentSponsorCards.innerHTML = '';
     }
@@ -462,7 +471,7 @@ interface IDataFilters {
         `;
     }
 
-    function _addValueToStorage(key: string, id: number) {
+    function _addValueToStorage(key: string, id: number): void {
         const values = JSON.parse(localStorage.getItem(key)) || [];
 
         if (!values.includes(id)) {
@@ -471,7 +480,7 @@ interface IDataFilters {
         };
     }
 
-    function _removeValueFromStorage(key: string, id: number) {
+    function _removeValueFromStorage(key: string, id: number): void {
         const values = JSON.parse(localStorage.getItem(key)) || [];
         
         if (values.includes(id)) {

@@ -218,7 +218,7 @@
             "reputation": 0,
             "price": 22,
             "science": false,
-            "action": "inventive"
+            "action": "inventive | full-throated"
         },
         {
             "id": 412,
@@ -318,7 +318,7 @@
             "reputation": 0,
             "price": 20,
             "science": false,
-            "action": "multipler"
+            "action": "multipler | full-throated"
         },
         {
             "id": 417,
@@ -578,7 +578,7 @@
             "reputation": 1,
             "price": 12,
             "science": false,
-            "action": "boost"
+            "action": "boost | flock-animal"
         },
         {
             "id": 430,
@@ -838,7 +838,7 @@
             "reputation": 0,
             "price": 19,
             "science": false,
-            "action": "multipler"
+            "action": "multipler | flock-animal"
         },
         {
             "id": 443,
@@ -938,7 +938,7 @@
             "reputation": 0,
             "price": 23,
             "science": false,
-            "action": "pouch"
+            "action": "pouch | flock-animal"
         },
         {
             "id": 448,
@@ -2378,7 +2378,7 @@
             "reputation": 0,
             "price": 7,
             "science": false,
-            "action": ""
+            "action": "petting-zoo-animal"
         },
         {
             "id": 520,
@@ -2398,7 +2398,7 @@
             "reputation": 0,
             "price": 7,
             "science": false,
-            "action": ""
+            "action": "petting-zoo-animal"
         },
         {
             "id": 521,
@@ -2418,7 +2418,7 @@
             "reputation": 1,
             "price": 7,
             "science": false,
-            "action": ""
+            "action": "petting-zoo-animal"
         },
         {
             "id": 522,
@@ -2438,7 +2438,7 @@
             "reputation": 0,
             "price": 7,
             "science": false,
-            "action": "inventive"
+            "action": "petting-zoo-animal | inventive"
         },
         {
             "id": 523,
@@ -2458,7 +2458,7 @@
             "reputation": 0,
             "price": 7,
             "science": false,
-            "action": ""
+            "action": "petting-zoo-animal"
         },
         {
             "id": 524,
@@ -2478,7 +2478,7 @@
             "reputation": 0,
             "price": 7,
             "science": false,
-            "action": "digging"
+            "action": "petting-zoo-animal | digging"
         },
         {
             "id": 525,
@@ -2498,7 +2498,7 @@
             "reputation": 0,
             "price": 7,
             "science": false,
-            "action": ""
+            "action": "petting-zoo-animal"
         },
         {
             "id": 526,
@@ -2518,7 +2518,7 @@
             "reputation": 0,
             "price": 7,
             "science": false,
-            "action": ""
+            "action": "petting-zoo-animal"
         },
         {
             "id": 527,
@@ -2538,7 +2538,7 @@
             "reputation": 0,
             "price": 7,
             "science": false,
-            "action": ""
+            "action": "petting-zoo-animal"
         },
         {
             "id": 528,
@@ -2558,7 +2558,7 @@
             "reputation": 0,
             "price": 7,
             "science": false,
-            "action": "pouch"
+            "action": "pouch | petting-zoo-animal"
         }
     ]
 }
