@@ -6,7 +6,7 @@ interface IConfig {
 };
 
 interface IDataCards {
-    [key: string]: Array<Number>
+    [key: string]: Array<any>;
 };
 interface IDataStats {
     [key: number | string]: any;
@@ -195,30 +195,26 @@ interface IDataFilters {
 
     function _setCardsDefault(): IDataCards {
         return {
-            animals: _getCardsID(animals.data, 'id'),
-            sponsors: _getCardsID(sponsors.data, 'id'),
+            animals: _getCardsID(animals.data, 'size'),
+            sponsors: _getCardsID(sponsors.data, 'value'),
         }
     }
 
-    function _getCardsID(dataType: Array<any>, sortBy: string): Array<Number> {
-        return dataType.sort((a: any, b: any) => {
-            if (a[sortBy] > b[sortBy]) return 1;
-            if (a[sortBy] < b[sortBy]) return -1;
-            return 0;
-        }).map(item => item[`id`]);
+    function _getCardsID(dataType: Array<any>, sortBy: string): Array<any> {
+        return dataType.sort(_sortByValue(sortBy)).map(item => [item[`id`], item[sortBy], item[`price`]]);
     }
 
     function _collectCardsData(dataFilters: any): Object {
         dataCards.animals = [];
         dataCards.sponsors = [];
-
+        
         _resetCards();
-
+        
         if (Object.keys(dataFilters).length === 0) {
             elContentAnimalCards.innerHTML = _displayMessage(`Select at least one card type: <strong>Animals</strong> | <strong>Sponsors</strong>`);
         } else if ((Object.keys(dataFilters)?.length === 1 && dataFilters?.category)) {
-            dataFilters?.category.includes(`animal`) ? dataCards.animals = _getCardsID(animals.data, 'id') : [];
-            dataFilters?.category.includes(`sponsor`) ? dataCards.sponsors = _getCardsID(sponsors.data, 'id') : [];
+            dataFilters?.category.includes(`animal`) ? dataCards.animals = _getCardsID(animals.data, 'size') : [];
+            dataFilters?.category.includes(`sponsor`) ? dataCards.sponsors = _getCardsID(sponsors.data, 'value') : [];
         } else {
             if (!dataFilters.category) {
                 dataCards.animals = [];
@@ -232,12 +228,12 @@ interface IDataFilters {
                         if (property === 'action' && element[1][`action`]?.indexOf(`|`) !== -1) {
                             element[1][`action`].split(`|`).forEach((el) => {
                                 if (dataFilters?.action[0].trim() === el.trim()) {
-                                    (dataCards.animals as Array<Number>).push(+element[1][`id`]);
+                                    (dataCards.animals).push([+element[1][`id`], +element[1][`size`], +element[1][`price`]]);
                                 } 
                             });
                         } else {
                             if ((dataFilters[property as keyof typeof dataFilters] as any).includes((element[1] as any)[property])) {
-                                (dataCards.animals as Array<Number>).push(+element[1][`id`]);
+                                (dataCards.animals).push([+element[1][`id`], +element[1][`size`], +element[1][`price`]]);
                             }
                         }
                     }
@@ -251,8 +247,8 @@ interface IDataFilters {
                             continue;
                         }
 
-                        if ((dataFilters[property as keyof typeof dataFilters] as any).includes((element[1] as any)[property])) {
-                            (dataCards.sponsors as Array<Number>).push(+element[1][`id`]);
+                        if ((dataFilters[property as keyof typeof dataFilters] as any)?.includes((element[1] as any)[property])) {
+                            (dataCards.sponsors).push([+element[1][`id`], +element[1][`value`]]);
                         }
                     }
                 });
@@ -270,7 +266,10 @@ interface IDataFilters {
                 dataFilteredAnimals.length ? dataCards.animals = dataFilteredAnimals : dataCards.animals = [];
             }
         }
-        
+
+        dataCards.animals.sort(_sortByValue(1));
+        dataCards.sponsors.sort(_sortByValue(1));
+
         return dataCards;
     }
 
@@ -280,7 +279,8 @@ interface IDataFilters {
         if (dataAnimals) {
             dataAnimals.forEach(elem => {
                 const item = animals.data.filter(obj => {
-                    return obj[`id`] === elem
+                    // @ts-ignore
+                    return obj[`id`] === +elem[0];
                 });
 
                 if (item[0][`category`] === `animal`) {
@@ -309,7 +309,8 @@ interface IDataFilters {
         if (dataSponsors) {
             dataSponsors.forEach(elem => {
                 const item = sponsors.data.filter(obj => {
-                    return obj[`id`] === elem
+                    // @ts-ignore
+                    return obj[`id`] === +elem[0];
                 });
 
                 if (item[0][`category`] === `sponsor`) {
@@ -331,16 +332,25 @@ interface IDataFilters {
         }
     }
 
-    function _filterData(filters: number, data: Array<Number>): Array<Number> {
+    function _filterData(filters: number, data: Array<Number>): Array<any> {
         const collection: Object = {};
-
+        
         // @ts-ignore
-        data.forEach(id => { collection[id] = (collection[id] || 0) + 1; });
+        data.forEach(id => { collection[id[0]] = [(parseInt(collection[id[0]]) || 0) + 1, id[1], id[2]] });
 
         return Object.entries(collection).filter(value => {
-            return +value[1] >= +filters;
-        }).map((item: any) => +item[0]);
+            return +value[1][0] >= +filters;
+        }).map(item => {
+            return [+item[0], +item[1][1], +item[1][2]]
+        });           
     }
+
+    function _sortByValue(sortBy: string | number = `size`) {
+        return function(a: any, b: any): number {
+            if (a[sortBy] === b[sortBy]) return 0;
+            return (a[sortBy] < b[sortBy]) ? 1 : -1;       
+        }
+    };
 
     function _displayStats(data: Object): void {
         _resetStats();
@@ -348,6 +358,17 @@ interface IDataFilters {
         let markup = ``;
         const cardsAmount = matchingAnimalCards + matchingSponsorCards;
 
+        const avgCost = _avgSum(dataCards.animals, 2);
+        const avgSize = _avgSum(dataCards.animals, 1);
+
+        markup += `
+        <li class="stats__average">
+            Avg. size: <span>${isNaN(avgSize) ? 0 : avgSize}</span>
+            <br>
+            Avg. cost: <span>${isNaN(avgCost) ? 0 : avgCost}</span>
+        </li>
+        `
+        
         markup += `
         <li class="stats__item stats__item--cards">
             <span class="stats__label stats__label--cards">${cardsAmount} ${cardsAmount === 1 ? `card` : `cards`}</span>
@@ -377,13 +398,18 @@ interface IDataFilters {
         elContentStats.innerHTML = markup;
     }
 
+    function _avgSum(data: Array<any>, index: number): number {
+        // @ts-ignore
+        return +(data.reduce((accumulator: number, currentValue: number) => accumulator + currentValue[index], 0) / data.length).toFixed(2);
+    }
+
     function _displayCards(dataAnimals: Array<Number>, dataSponsors: Array<Number>): void {        
         let animalCardsMarkup: string = '';
         let sponsorCardsMarkup: string = '';
 
         if (dataAnimals?.length) {
             for (const card in dataAnimals) {
-                animalCardsMarkup += _card((dataAnimals as any)[card]);
+                animalCardsMarkup += _card((dataAnimals as any)[card][0]);
             }
             elContentAnimalCards.innerHTML = animalCardsMarkup;
         } else if ((dataFilters?.category as Array<String>)?.includes(`animal`)) {
@@ -394,7 +420,7 @@ interface IDataFilters {
 
         if (dataSponsors?.length) {
             for (const card in dataSponsors) {
-                sponsorCardsMarkup += _card((dataSponsors as any)[card]);
+                sponsorCardsMarkup += _card((dataSponsors as any)[card][0]);
             }
             elContentSponsorCards.innerHTML = sponsorCardsMarkup;
         } else if ((dataFilters?.category as Array<String>)?.includes(`sponsor`)) {

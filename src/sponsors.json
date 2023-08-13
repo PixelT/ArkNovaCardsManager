@@ -10,6 +10,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 1
         },
         {
@@ -22,6 +23,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 1
         },
         {
@@ -34,6 +36,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 1
         },
         {
@@ -46,6 +49,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 1
         },
         {
@@ -58,6 +62,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 3,
             "science": 1,
             "conservation": 1,
             "reputation": 1
@@ -72,6 +77,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 1
         },
         {
@@ -84,6 +90,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 1
         },
         {
@@ -96,6 +103,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 1
         },
         {
@@ -108,6 +116,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 1
         },
         {
@@ -120,6 +129,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 0
         },
         {
@@ -132,6 +142,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -144,6 +155,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -156,6 +168,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -168,6 +181,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 0
         },
         {
@@ -180,6 +194,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 0
         },
         {
@@ -192,6 +207,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -204,6 +220,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 0
         },
         {
@@ -216,6 +233,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 0
         },
         {
@@ -228,6 +246,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 1
         },
         {
@@ -240,6 +259,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 1
         },
         {
@@ -252,6 +272,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 1
         },
         {
@@ -264,6 +285,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -276,6 +298,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 3,
             "science": 1
         },
         {
@@ -288,6 +311,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 1
         },
         {
@@ -300,6 +324,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 3,
             "science": 1
         },
         {
@@ -312,6 +337,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 6,
             "science": 1,
             "reputation": 1
         },
@@ -325,6 +351,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 6,
             "science": 0
         },
         {
@@ -337,6 +364,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -349,6 +377,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -361,6 +390,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 0
         },
         {
@@ -373,6 +403,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 3,
             "science": 0
         },
         {
@@ -385,6 +416,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 3,
             "science": 0
         },
         {
@@ -397,6 +429,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 3,
             "science": 0
         },
         {
@@ -409,6 +442,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 3,
             "science": 0
         },
         {
@@ -421,6 +455,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 3,
             "science": 0
         },
         {
@@ -433,6 +468,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 0
         },
         {
@@ -445,6 +481,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 0
         },
         {
@@ -457,6 +494,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 0
         },
         {
@@ -469,6 +507,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 0
         },
         {
@@ -481,6 +520,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 4,
             "science": 0
         },
         {
@@ -493,6 +533,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 1,
+            "value": 5,
             "science": 0
         },
         {
@@ -505,6 +546,7 @@
             "isBear": 0,
             "isRock": 1,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -517,6 +559,7 @@
             "isBear": 0,
             "isRock": 1,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -529,6 +572,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 1,
+            "value": 5,
             "science": 0
         },
         {
@@ -541,6 +585,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 1,
+            "value": 5,
             "science": 0
         },
         {
@@ -553,6 +598,7 @@
             "isBear": 0,
             "isRock": 1,
             "isWater": 0,
+            "value": 6,
             "science": 0
         },
         {
@@ -565,6 +611,7 @@
             "isBear": 0,
             "isRock": 1,
             "isWater": 0,
+            "value": 6,
             "science": 0
         },
         {
@@ -577,6 +624,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -589,6 +637,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 6,
             "science": 0
         },
         {
@@ -601,6 +650,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 1,
+            "value": 5,
             "science": 0
         },
         {
@@ -613,6 +663,7 @@
             "isBear": 1,
             "isRock": 0,
             "isWater": 1,
+            "value": 5,
             "science": 0
         },
         {
@@ -625,6 +676,7 @@
             "isBear": 0,
             "isRock": 1,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -637,6 +689,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 6,
             "science": 0
         },
         {
@@ -649,6 +702,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0,
             "conservation": 1,
             "reputation": 1
@@ -663,6 +717,7 @@
             "isBear": 0,
             "isRock": 1,
             "isWater": 0,
+            "value": 3,
             "science": 0
         },
         {
@@ -675,6 +730,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 1,
+            "value": 3,
             "science": 0
         },
         {
@@ -687,6 +743,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 3,
             "science": 0
         },
         {
@@ -699,6 +756,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -711,6 +769,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -723,6 +782,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -735,6 +795,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 3,
             "science": 0,
             "conservation": 1
         },
@@ -748,6 +809,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -760,6 +822,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         },
         {
@@ -772,6 +835,7 @@
             "isBear": 0,
             "isRock": 0,
             "isWater": 0,
+            "value": 5,
             "science": 0
         }
     ]

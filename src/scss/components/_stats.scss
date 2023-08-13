@@ -16,6 +16,24 @@ $stats_percentage-color: var(--accent-light);
     justify-content: center;
     padding: 1rem;
 
+    &__average {
+        color: var(--card-animal);
+        font-size: 1.2rem;
+        width: 12rem;
+        padding: 0.5rem 1rem;
+        border: 1px dashed var(--card-animal);
+        border-radius: 3px;
+
+        span {  
+            text-decoration: underline;
+            font-weight: 700;
+            display: inline-block;
+            letter-spacing: -1px;
+            border-radius: 3px;
+            padding: 0 0.2rem;
+        }
+    }
+
     &__item {
         width: $stats_item-size - 1;
         height: $stats_item-size - 1;
@@ -35,8 +53,8 @@ $stats_percentage-color: var(--accent-light);
             display: block;
         }
 
-        &:nth-child(3),
-        &:nth-child(13) {
+        &:nth-child(7),
+        &:nth-child(17) {
             margin-bottom: 3rem;
             position: relative;
 
