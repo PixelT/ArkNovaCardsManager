@@ -63,15 +63,15 @@ interface IDataFilters {
                         return obj[`id`] === _value;
                     });
 
-                    _collectStats([item[0].id], null);
-                    _displayCards([_value], null);
+                    _collectStats([[item[0].id, item[0].size] as any], []);
+                    _displayCards([[_value] as any], []);
                 } else if (_value >= 201 && _value <= 264) {
                     const item = sponsors.data.filter(obj => {
                         return obj[`id`] === _value;
                     });
 
-                    _collectStats(null, [item[0].id]);
-                    _displayCards(null, [_value]);
+                    _collectStats([], [[item[0].id, item[0].value] as any]);
+                    _displayCards([], [[_value] as any]);
                 }
             } else {
                 _collectCardsData(dataFilters);
@@ -156,7 +156,12 @@ interface IDataFilters {
                 });
             } else if (el.classList.contains(`action__item--search`)) {
                 elSearchField.parentElement.classList.toggle(`action--active`);
-                elSearchField.focus();
+                if (elSearchField.parentElement.classList.contains(`action--active`)) {
+                    elSearchField.focus();
+                } else {
+                    elSearchField.value = '';
+                    _updateCards();
+                }
             }
         });
     }
@@ -360,14 +365,6 @@ interface IDataFilters {
 
         const avgCost = _avgSum(dataCards.animals, 2);
         const avgSize = _avgSum(dataCards.animals, 1);
-
-        markup += `
-        <li class="stats__average">
-            Avg. size: <span>${isNaN(avgSize) ? 0 : avgSize}</span>
-            <br>
-            Avg. cost: <span>${isNaN(avgCost) ? 0 : avgCost}</span>
-        </li>
-        `
         
         markup += `
         <li class="stats__item stats__item--cards">
@@ -394,6 +391,16 @@ interface IDataFilters {
             </li>
             `;
         });
+
+        markup += `
+        <li class="stats__average">
+            Average animal:
+            <br>
+            - size: <span>${isNaN(avgSize) ? 0 : avgSize}</span>
+            <br>
+            - cost: <span>${isNaN(avgCost) ? 0 : avgCost}</span>
+        </li>
+        `
 
         elContentStats.innerHTML = markup;
     }

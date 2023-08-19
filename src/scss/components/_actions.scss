@@ -9,11 +9,15 @@ $action_search-border: 0.4rem solid var(--accent-light);
     $root: &;
 
     position: fixed;
-    bottom: 1rem;
-    right: 1rem;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: none;
     cursor: pointer;
     z-index: 200;
+    background-color: var(--bg-light);
+    padding: 1rem;
+    border-radius: 3px 3px 0 0;
 
     @include media('>=tablet') {
         display: flex;
