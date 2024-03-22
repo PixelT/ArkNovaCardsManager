@@ -1,6 +1,7 @@
 # Ark Nova Cards Manager
 
-> [https://pixelt.github.io/ArkNovaCardsManager/](https://pixelt.github.io/ArkNovaCardsManager/) || short URL: [https://bit.ly/ancm/](https://bit.ly/ancm/)
+> URL (default): [https://pixelt.github.io/ArkNovaCardsManager/](https://pixelt.github.io/ArkNovaCardsManager/)
+> URL (short): [https://bit.ly/ancm](https://bit.ly/ancm)
 
 ![Screenshot](screenshot.webp)
 

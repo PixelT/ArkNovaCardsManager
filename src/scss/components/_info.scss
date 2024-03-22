@@ -1,25 +1,61 @@
 $info_background: var(--accent-medium);
+$info_border-color: var(--accent-light);
 $info_color: var(--color-white);
 $info_padding: 1rem;
 
-$info_font-size: 1.4rem;
+$info_link-color: var(--color-white);
+$info_link-color--hover: var(--accent-light);
+
+$info_icon-github: 'brand-github';
+$info_icon-home: 'world-www';
+$info_icon-size: 2rem;
+
+$info_font-size: 1.5rem;
 $info_font-weight: 500;
 
 .info {
     $root: &;
 
+    background-color: $info_background;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
     margin-top: auto;
+    padding: 1rem;
+
+    &__item {
+        &:not(:last-child) {
+            border-right: 1px solid $info_border-color;
+        }
+    }
     
     &__link {
-        background-color: $info_background;
-        color: var(--color-white);
+        background: 1rem center / $info_icon-size no-repeat $info_background;
+        color: $info_link-color;
         display: flex;
         font-size: $info_font-size;
         font-weight: $info_font-weight;
         justify-content: center;
-        padding: $info_padding;
+        margin: -1rem 0;
+        padding: 1rem;
+        padding-left: 3.6rem;
         text-decoration: none;
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                text-decoration: underline;
+                text-decoration-color: $info_link-color--hover;
+                text-underline-offset: 0.3rem;
+            }
+        }
+
+        &--github {
+            background-image: url('./images/icons/#{$info_icon-github}.svg');
+        }
+        
+        &--home {
+            background-image: url('./images/icons/#{$info_icon-home}.svg');
+        }
     }
 }
