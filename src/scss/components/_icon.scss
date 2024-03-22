@@ -1,122 +1,133 @@
-$icon_background-size: 100% 2800%;
+$icon_background-size: 100% 3100%;
 $icon_border-radius: 50%;
-$icon_position: 3.71%;
+$icon_position: 3.34%;
 $icon_sprites: 'sprites';
 
 .icon {
     $root: &;
     
     background: url('./images/general/#{$icon_sprites}.webp') no-repeat;
-    background-size: $icon_background-size;
     background-position-x: 0;
+    background-size: $icon_background-size;
     border-radius: $icon_border-radius;
 
-    &--animal {
-        background-position-y: $icon_position * 2;
-    }
-
-    &--sponsor {
+    &--marine {
         background-position-y: $icon_position * 0;
     }
 
-    &--area_1 { // Africa
-        background-position-y: $icon_position * 5;
-    }
-
-    &--area_2 { // Europe
-        background-position-y: $icon_position * 4;
-    }
-
-    &--area_3 { // Asia
-        background-position-y: $icon_position * 6;
-    }
-
-    &--area_5 { // Americas
-        background-position-y: $icon_position * 8;
-    }
-
-    &--area_4 { // Australia
-        background-position-y: $icon_position * 7;
-    }
-
-    &--type_1 { // Bird
-        background-position-y: $icon_position * 9;
-    }
-
-    &--type_3 { // Predator
-        background-position-y: $icon_position * 10;
-    }
-
-    &--type_2 { // Herbivore
-        background-position-y: $icon_position * 11;
-    }
-
-    &--type_4 { // Reptile
-        background-position-y: $icon_position * 12;
-    }
-
-    &--type_5 { // Primate
-        background-position-y: $icon_position * 13;
-    }
-
-    &--bear {
-        background-position-y: $icon_position * 23;
-    }
-
-    &--pet {
-        background-position-y: $icon_position * 22;
-    }
-
-    &--size_1 {
-        background-position-y: $icon_position * 16;
-    }
-
-    &--size_2 {
-        background-position-y: $icon_position * 18;
-    }
-
-    &--size_3 {
-        background-position-y: $icon_position * 17;
-    }
-
-    &--size_4 {
-        background-position-y: $icon_position * 15;
-    }
-
-    &--size_5 {
-        background-position-y: $icon_position * 14;
-    }
-
-    &--small {
-        background-position-y: $icon_position * 20;
-    }
-
-    &--aviary {
-        background-position-y: $icon_position * 21;
-    }
-
-    &--terrarium {
-        background-position-y: $icon_position * 19;
-    }
-
-    &--rock {
-        background-position-y: $icon_position * 24;
-    }
-
-    &--water {
-        background-position-y: $icon_position * 25;
-    }
-
-    &--conservation {
-        background-position-y: $icon_position * 26;
-    }
-
-    &--reputation {
-        background-position-y: $icon_position * 27;
-    }
-
-    &--science {
+    &--animal {
         background-position-y: $icon_position * 3;
     }
 
+    &--sponsor {
+        background-position-y: $icon_position * 1;
+    }
+
+    &--area_1 { // Africa
+        background-position-y: $icon_position * 6;
+    }
+
+    &--area_2 { // Europe
+        background-position-y: $icon_position * 5;
+    }
+
+    &--area_3 { // Asia
+        background-position-y: $icon_position * 7;
+    }
+
+    &--area_5 { // Americas
+        background-position-y: $icon_position * 9;
+    }
+
+    &--area_4 { // Australia
+        background-position-y: $icon_position * 8;
+    }
+
+    &--type_1 { // Bird
+        background-position-y: $icon_position * 10;
+    }
+
+    &--type_3 { // Predator
+        background-position-y: $icon_position * 11;
+    }
+
+    &--type_2 { // Herbivore
+        background-position-y: $icon_position * 12;
+    }
+
+    &--type_4 { // Reptile
+        background-position-y: $icon_position * 13;
+    }
+
+    &--type_5 { // Primate
+        background-position-y: $icon_position * 14;
+    }
+    
+    &--type_6 { // Sea
+        background-position-y: $icon_position * 29;
+    }
+
+    &--bear {
+        background-position-y: $icon_position * 24;
+    }
+
+    &--pet {
+        background-position-y: $icon_position * 23;
+    }
+
+    &--size_1 {
+        background-position-y: $icon_position * 17;
+    }
+
+    &--size_2 {
+        background-position-y: $icon_position * 19;
+    }
+
+    &--size_3 {
+        background-position-y: $icon_position * 18;
+    }
+
+    &--size_4 {
+        background-position-y: $icon_position * 16;
+    }
+
+    &--size_5 {
+        background-position-y: $icon_position * 15;
+    }
+
+    &--small {
+        background-position-y: $icon_position * 21;
+    }
+
+    &--aviary {
+        background-position-y: $icon_position * 22;
+    }
+
+    &--terrarium {
+        background-position-y: $icon_position * 20;
+    }
+
+    &--aquarium {
+        background-position-y: $icon_position * 30;
+    }
+
+    &--rock {
+        background-position-y: $icon_position * 25;
+    }
+
+    &--water {
+        background-position-y: $icon_position * 26;
+    }
+
+    &--conservation {
+        background-position-y: $icon_position * 27;
+    }
+
+    &--reputation {
+        background-position-y: $icon_position * 28;
+    }
+
+    &--science {
+        background-position-y: $icon_position * 4;
+    }
 }

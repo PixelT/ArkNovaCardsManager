@@ -1,65 +1,112 @@
-$filter_category-border: 2px solid var(--accent-dark);
-$filter_checkbox-accent: var(--accent-dark);
-$filter_item-separator-color: var(--accent-dark);
-$filter_label-background: var(--accent-dark);
-$filter_label-color: var(--color-light);
-$filter_type-background: var(--accent-dark);
-$filter_type-color: var(--color-light);
-$filter_action-reset-icon: 'icon-x'; 
+$filter_category-border: 1px solid var(--accent-medium);
+$filter_category-padding: 1.5rem 1rem;
+
+$filter_checkbox-background: var(--color-white);
+$filter_checkbox-color: var(--accent-dark);
+
+$filter_label-color: var(--accent-dark);
+$filter_label-size: 1.2rem;
+$filter_label-weight: 500;
+
+$filter_stat-background: var(--color-white);
+$filter_stat-color: var(--color-black);
+$filter_stat-padding: 0.2rem 0.5rem 0.1rem;
+$filter_stat-size: 1.5rem;
+$filter_stat-weight: 600;
+
+$filter_tooltip-background: var(--color-black);
+$filter_tooltip-color: var(--color-white);
+$filter-tooltip-padding: 0.3rem 0.5rem 0.2rem;
+$filter-tooltip-size: 1.4rem;
+$filter-tooltip-weight: 600;
 
 .filter {
     $root: &;
 
-    flex: 1 0 auto;
-
-    padding: 1rem;
-
-    @include media('>=phone') {
+    &--sidebar {
+        flex: 1 0 auto;
         padding: 2rem;
+        padding-left: 3rem;
+
+        #{$root}__item {
+            flex: 0 0 calc(16.66% - 1rem);
+            margin: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
     }
 
     &__category {
+        border: $filter_category-border;
         display: flex;
         flex-wrap: wrap;
-        border: $filter_category-border;
-        padding: 1rem;
         margin: 0;
         margin-bottom: 1rem;
-        border-radius: 1rem;
+        padding: $filter_category-padding;
+        position: relative;
 
-        &--hide {
-            display: none;
-        }
-
-        &--size {
-            #{$root}__item:nth-child(-n+6) {
-                margin-bottom: 0;
+        &--extras {
+            @include media('<phoneLg') {
+                #{$root}__item {
+                    margin-bottom: 0;
+                }
+                
+                #{$root}__stat {
+                    display: none;
+                }
             }
         }
     }
 
     &__type {
-        background-color: $filter_type-background;
-        color: $filter_type-color;
-        padding: 0.3rem 1rem;
-        font-weight: 400;
-        border-radius: 0.5rem;
+        color: $filter_label-color;
+        font-size: $filter_label-size;
+        font-weight: $filter_label-weight;
+        left: -0.1rem;
+        padding: 0.2rem 0;
+        position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+        top: 50%;
+        transform: rotate(90deg) translateX(-50%);
+        transform-origin: 0 0;
     }
 
     &__item {
-        display: block;
-        flex: 0 0 calc(20% - 1rem);
         aspect-ratio: 1;
+        display: block;
         position: relative;
-        margin: 0.5rem;
-        
-        @include media('>=phoneLg') {
-            flex: 0 0 calc(20% - 1.6rem);
-            margin: 0.8rem;
-        }
 
-        &:nth-child(n+7) {
-            margin-top: 1rem;
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                cursor: pointer;
+                
+                #{$root}__label {
+                    filter: grayscale(0);
+                    opacity: 1;
+                }
+            }
+        }
+        
+        @media (hover: hover) and (pointer: fine) {
+            &[data-tooltip]:hover {
+                &::after {
+                    background-color: $filter_tooltip-background;
+                    color: $filter_tooltip-color;
+                    content: attr(data-tooltip);
+                    font-size: $filter-tooltip-size;
+                    font-weight: $filter_tooltip-weight;
+                    left: 50%;
+                    min-width: 100%;
+                    padding: $filter_tooltip-padding;
+                    position: absolute;
+                    text-align: center;
+                    text-transform: uppercase;
+                    top: 90%;
+                    transform: translateX(-50%);
+                    white-space: nowrap;
+                    z-index: 20;
+                }
+            }
         }
 
         @include media('>=laptop') {
@@ -71,111 +118,52 @@ $filter_action-reset-icon: 'icon-x';
                 margin-bottom: 0.7rem;
             }
         }
-
-        &--full {
-            width: 100%;
-            height: 0.1rem;
-            border-bottom: 1px solid $filter_item-separator-color;
-            margin: 2rem 0 1rem;
-            display: none;
-        }
-
-        &--separator {
-            &::after {
-                content: '';
-                display: block;
-                background-color: $filter_item-separator-color;
-                position: absolute;
-                top: 0;
-                left: 50%;
-                width: 0.1rem;
-                height: 100%;
-            }
-        }
-    }
-
-    &__action {
-        flex: 1;
-        padding-left: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        position: relative;
-    }
-
-    &__action-title {
-        color: var(--accent-dark);
-        font-size: 1.2rem;
-        margin-block: 0.8rem;
-    }
-
-    &__action-form {
-        border: 2px solid var(--accent-dark);
-        padding: 0.2rem 0.5rem;
-        width: calc(100% - 3rem);
-        margin-right: 3rem;
-    }
-
-    &__action-reset {
-        position: absolute;
-        bottom: 0.2rem;
-        right: 0;
-        width: 2.8rem;
-        height: 2.8rem;
-        background: url('./images/icons/#{$filter_action-reset-icon}.svg') no-repeat center center transparent;
     }
 
     &__checkbox {
         height: 0;
-        width: 0;
-        visibility: hidden;
         position: absolute;
+        visibility: hidden;
+        width: 0;
 
         &:checked + #{$root}__label {
             filter: grayscale(0);
             opacity: 1;
 
             &::before {
-                border-color: $filter_checkbox-accent;
+                border-color: $filter_checkbox-color;
             }
 
             &::after {
+                background-color: $filter_checkbox-color;
                 content: '';
+                height: 0.9rem;
                 position: absolute;
                 right: 0.1rem;
-                top: 0.1rem;
+                top: 0.3rem;
                 width: 0.9rem;
-                height: 0.9rem;
-                background-color: $filter_checkbox-accent;
             }
         }
     }
 
     &__label {
         display: block;
-        width: 100%;
-        height: 100%;
-        z-index: 99;
         filter: grayscale(100%);
+        height: 100%;
         opacity: 0.5;
         transition: all 0.25s linear;
-
-        &:hover {
-            cursor: pointer;
-            filter: grayscale(0%);
-            opacity: 1;
-        }
+        width: 100%;
+        z-index: 99;
 
         &::before {
+            background-color: $filter_checkbox-background;
+            border: 2px solid $filter_checkbox-color;
             content: '';
-            position: absolute;
-            top: -0.3rem;
-            right: -0.3rem;
-            width: 1.7rem;
             height: 1.7rem;
-            background-color: var(--bg-light);
-            border: 2px solid $filter_checkbox-accent;
+            position: absolute;
+            right: -0.3rem;
+            top: -0.1rem;
+            width: 1.7rem;
         }
 
         &--hide {
@@ -185,16 +173,17 @@ $filter_action-reset-icon: 'icon-x';
         }
     }
 
-    &__text {
-        display: none;
+    &__stat {
+        background-color: $filter_stat-background;
+        color: $filter_stat-color;
+        font-size: $filter_stat-size;
+        font-weight: $filter_stat-weight;
+        left: 50%;
+        padding: $filter_stat-padding;
         position: absolute;
         top: 90%;
-        left: 50%;
         transform: translateX(-50%);
-        background-color: $filter_label-background;
-        color: $filter_label-color;
-        padding: 0.3rem 0.5rem;
-        font-size: 1.3rem;
+        white-space: nowrap;
 
         @include media('>=laptop') {
             display: block;

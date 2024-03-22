@@ -1,0 +1,24 @@
+$croll_height: 4rem;
+$scroll_icon-size: 2.5rem;
+$scroll_icon: 'chevron-up';
+$scroll_width: $croll_height;
+
+.scroll {
+    background: url('./images/icons/#{$scroll_icon}.svg') no-repeat center center / $scroll_icon-size var(--accent-dark);
+    bottom: 0;
+    cursor: pointer;
+    height: $croll_height;
+    margin: 1rem;
+    opacity: 0.8;
+    position: fixed;
+    right: 0;
+    transition: opacity 0.25s linear;
+    width: $scroll_width;
+    z-index: 99;
+
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

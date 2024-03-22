@@ -1,36 +1,40 @@
 $card_background: var(--bg-light);
+$card_border--animal: 4px solid var(--card-animal);
 $card_border--off: var(--card-off);
 $card_border--on: var(--card-on);
-$card_border--animal: 4px solid var(--card-animal);
 $card_border--sponsor: 4px solid var(--card-sponsor);
-$card_icon-off: 'icon-ban';
-$card_icon-on: 'icon-check';
+
+$card_icon-off: 'ban';
+$card_icon-on: 'check';
 $card_icon-size: 3rem;
+
 $card_id-background--animal: var(--card-animal);
 $card_id-background--sponsor: var(--card-sponsor);
 $card_id-color: var(--color-light);
+$card_id-weight: 600;
+$card-id-size: 1.2rem;
 
 .card {
     $root: &;
 
-    flex: 1 1 var(--card-width);
-    max-width: var(--card-width);
-    height: auto;
     aspect-ratio: 0.7;
-    margin: var(--card-margin);
-    border-radius: 1rem;
     background-color: $card_background;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.1s ease-in-out;
+    border-radius: 1rem;
     cursor: pointer;
+    flex: 1 1 var(--card-width);
+    height: auto;
+    margin: var(--card-margin);
+    max-width: var(--card-width);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.1s ease-in-out;
 
     &--animal {
         border: $card_border--animal;
 
         #{$root}__id {
-            bottom: 32.5%;
             background-color: $card_id-background--animal;
+            bottom: 32.5%;
         }
     }
 
@@ -38,8 +42,8 @@ $card_id-color: var(--color-light);
         border: $card_border--sponsor;
 
         #{$root}__id {
-            bottom: 37%;
             background-color: $card_id-background--sponsor;
+            bottom: 37%;
         }
     }
     
@@ -50,26 +54,26 @@ $card_id-color: var(--color-light);
     }
 
     @include media('>=phoneLg') {
-        --card-width: 18rem;
+        --card-width: 20rem;
         --card-margin: 0.8rem;
     }
 
     @include media('>=tablet') {
-        --card-width: 17rem;
+        --card-width: 19rem;
     }
 
     @include media('>=laptop') {
-        --card-width: 15rem;
-    }
-
-    @include media('>=laptopLg') {
         --card-width: 17rem;
     }
 
+    @include media('>=laptopLg') {
+        --card-width: 19rem;
+    }
+
     &__image {
+        height: 100%;
         object-fit: cover;
         width: 100%;
-        height: 100%;
     }
 
     &--on,
@@ -77,17 +81,17 @@ $card_id-color: var(--color-light);
         position: relative;
         
         &::after {
-            content: none;
-            position: absolute;
-            bottom: 0.2rem;
-            left: 0.2rem;
-            display: block;
-            width: $card_icon-size;
-            height: $card_icon-size;
-            border-radius: 0.5rem;
             background-position: center center;
-            background-size: 70% 70%;
             background-repeat: no-repeat;
+            background-size: 70% 70%;
+            border-radius: 0.5rem;
+            bottom: 0.2rem;
+            content: none;
+            display: block;
+            height: $card_icon-size;
+            left: 0.2rem;
+            position: absolute;
+            width: $card_icon-size;
         }
 
         #{$root}__image {
@@ -99,9 +103,9 @@ $card_id-color: var(--color-light);
         border-color: $card_border--on;
         
         &::after {
-            content: '';
             background-color: $card_border--on;
             background-image:  url('./images/icons/#{$card_icon-on}.svg');
+            content: '';
         }
 
         #{$root}__image {
@@ -117,9 +121,9 @@ $card_id-color: var(--color-light);
         border-color: $card_border--off;
         
         &::after {
-            content: '';
             background-color: $card_border--off;
             background-image:  url('./images/icons/#{$card_icon-off}.svg');
+            content: '';
         }
 
         #{$root}__image {
@@ -132,11 +136,12 @@ $card_id-color: var(--color-light);
     }
 
     &__id {
-        display: inline-flex;
-        padding: 0.3rem 0.5rem;
         color: $card_id-color;
+        display: inline-flex;
+        font-size: $card-id-size;
+        font-weight: $card_id-weight;
+        padding: 0.3rem 0.5rem;
         position: absolute;
         right: 0;
-        font-weight: 700;
     }
 }

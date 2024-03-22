@@ -113,8 +113,8 @@ $.gulp.task('watch', $.gulp.parallel(['browserSync'], () => {
     $.gulp.watch(['**/*.php', '**/*.html'], {cwd:'./'}).on('change', $.browserSync.reload);
     $.gulp.watch('src/js/**/*.ts', {cwd: './'}, $.gulp.parallel(['compileTs'])).on('change', $.browserSync.reload);
     $.gulp.watch('src/scss/**/*.scss', {cwd: './'}, $.gulp.parallel(['compileScss']));
-    $.gulp.watch('src/img/**/*.{png,gif,jpg,webp}', {cwd: './'}, $.gulp.parallel(['optimizeImages']));
-    $.gulp.watch('src/img/**/*.svg', {cwd: './'}, $.gulp.parallel(['optimizeSVG']));
+    $.gulp.watch('src/images/**/*.{png,gif,jpg,webp}', {cwd: './'}, $.gulp.parallel(['optimizeImages'])).on('change', $.browserSync.reload);
+    $.gulp.watch('src/images/**/*.svg', {cwd: './'}, $.gulp.parallel(['optimizeSVG'])).on('change', $.browserSync.reload);
 }));
 
 

@@ -1,0 +1,126 @@
+
+$dialog_icon-sprites: 'sprites';
+$dialog_item-border: 1px solid var(--color-primary-medium);
+$dialog_item-background--hover: var(--bg-light);
+
+$dialog_action-size: 1.4rem;
+$dialog_action-size--title: 1.6rem;
+$dialog_action-weight: 400;
+$dialog_action-weight--title: 600;
+$dialog_action-padding: 1.8rem 2.5rem;
+
+$dialog_sort-size: 1.6rem;
+$dialog_sort-weight: 600;
+$dialog_sort-padding: 1.8rem 2.5rem 1.8rem 5rem;
+
+.dialog {
+    $root: &;   
+    
+    &--offcanvas {
+        border: 0;
+        height: 100%;
+        margin: 0;
+        margin-left: auto;
+        max-width: 40rem;
+        min-height: 100vh;
+        padding: 0;
+        width: 80%;
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        background: no-repeat 1.5rem center transparent;
+        border-bottom: $dialog_item-border;
+        cursor: pointer;
+        padding: 1rem 2rem;
+        padding-left: 5rem;
+
+        @media (hover: hover) and (pointer: fine) {
+            &:hover {
+                background-color: $dialog_item-background--hover;
+            }
+        }
+
+        &--id-desc,
+        &--price-desc,
+        &--appeal-desc {
+            background-image: url('/dist/images/icons/sort-descending-numbers.svg');
+        }
+        
+        &--id-asc,
+        &--price-asc,
+        &--appeal-asc {
+            background-image: url('/dist/images/icons/sort-ascending-numbers.svg');
+        }
+
+        &--size-desc {
+            background-image: url('/dist/images/icons/sort-descending-small-big.svg');
+        }
+        
+        &--size-asc {
+            background-image: url('/dist/images/icons/sort-ascending-small-big.svg');
+        }
+        
+        &--conservation,
+        &--reputation {
+            background-image: url('/dist/images/icons/sort-descending.svg');
+        }
+        
+        &--type {
+            background-image: url('/dist/images/icons/sort-ascending-shapes.svg');
+        }
+        
+        &--area {
+            background-image: url('/dist/images/icons/sort-descending-2.svg');
+        }
+
+        &--name-desc {
+            background-image: url('/dist/images/icons/sort-descending-letters.svg');
+        }
+        
+        &--name-asc {
+            background-image: url('/dist/images/icons/sort-ascending-letters.svg');
+        }
+
+        &--marine {
+            #{$root}--action & {
+                &::before {
+                    background: url('./images/general/#{$dialog_icon-sprites}.webp') no-repeat 100% 0 / 2.2rem transparent;
+                }
+            }
+        }
+
+        #{$root}--sort & {
+            font-size: $dialog_sort-size;
+            font-weight: $dialog_sort-weight;
+            padding: $dialog_sort-padding;
+            text-transform: uppercase;
+        }
+
+        #{$root}--action & {
+            font-size: $dialog_action-size;
+            font-weight: $dialog_action-weight;
+            padding: $dialog_action-padding;
+            position: relative;
+
+            &::before {
+                content: attr(data-value);
+                display: block;
+                font-size: $dialog_action-size--title;
+                font-weight: $dialog_action-weight--title;
+                margin-bottom: 0.2rem;
+                text-transform: uppercase;
+            }
+        }
+    }
+    
+    &::backdrop {
+        background-color: rgba(#222, 0.8);
+        cursor: pointer;
+    }
+}

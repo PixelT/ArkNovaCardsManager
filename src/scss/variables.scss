@@ -9,20 +9,31 @@ $breakpoints: (
 );
 
 :root {
-    --accent-dark: #365314;
+    --accent-dark: #3f6212;
+    --accent-medium: #4d7c0f;
     --accent-light: #65a30d;
+
     --bg-error: #fecaca;
-    --bg-light: #f1f5f9;
+    --bg-light: #f3f4f6;
+
     --card-animal: #fb923c;
     --card-sponsor: #558BAF;
     --card-margin: 0.5rem;
     --card-off: #888;
     --card-on: #65a30d;
-    --card-width: 14rem;
+    --card-width: 13rem;
+
     --color-error: #b91c1c;
     --color-light: #f1f5f9;
     --color-white: #fff;
+    --color-black: #222;
+    
+    --color-primary-light: #e5e7eb;
+    --color-primary-medium: #d1d5db;
+    --color-primary-dark: #9ca3af;
+
+    --color-overlay: rgba(#222, 0.5);
+
     --scroll-dark: #d4d4d4;
     --scroll-light: #f5f5f5;
-    --border-stats: #ccc;
 }

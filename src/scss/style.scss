@@ -7,32 +7,36 @@ $general_scrollbar-thumb: var(--scroll-light);
 $general_scrollbar-track: var(--scroll-dark);
 $general_scrollbar-width: 1rem;
 
-html {
-    font-size: 62.5%;
-}
-
-html,
-body {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    max-width: 100%;
-}
-
-html {
-    box-sizing: border-box;
-}
-
 *,
 *:before,
 *:after {
     box-sizing: inherit;
 }
 
+html {
+    font-size: 62.5%;
+}
+
+html,
 body {
-    font: 400 1.4rem/1.2 'Manrope', Tahoma, Verdana, sans-serif;
+    max-width: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+
+html {
+    box-sizing: border-box;
+    height: -webkit-fill-available;
+}
+
+
+body {
+    font: 400 1.5rem/1.2 'Rajdhani', Tahoma, Verdana, sans-serif;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     overflow-x: hidden;
-    scrollbar-width: $general_scrollbar-width;
     scrollbar-color: $general_scrollbar-track $general_scrollbar-thumb;
+    scrollbar-width: $general_scrollbar-width;
 }
 
 ::-webkit-scrollbar {
@@ -47,13 +51,19 @@ body {
     background-color: $general_scrollbar-track;
 }
 
-@import './components/actions';
+._no-scroll {
+    overflow-y: hidden;
+}
+
 @import './components/button';
 @import './components/card';
 @import './components/container';
 @import './components/content';
+@import './components/dialog';
 @import './components/filter';
 @import './components/icon';
-@import './components/information';
-@import './components/stats';
-@import './components/toggle';
+@import './components/info';
+@import './components/logo';
+@import './components/overlay';
+@import './components/scroll';
+@import './components/topbar';

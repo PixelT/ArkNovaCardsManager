@@ -4,276 +4,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Simple app to managing & filtering cards available in Ark Nova boardgame">
-    <link rel="stylesheet" href="./dist/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="./dist/images/general/favicon.png">
     <title>Ark Nova Cards Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="./dist/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Simple app to managing & filtering cards available in Ark Nova boardgame">
+    <link rel="shortcut icon" href="./dist/images/general/favicon.png">
 </head>
 
 <body>
     <div class="container">
         <div class="container__outer container__outer--sidebar">
             <div class="container__inner container__inner--sidebar">
-                <div class="toggle toggle--nav"></div>
-                <form action="" class="filter">
-                    <fieldset class="filter__category">
-                        <legend class="filter__type">Animal type:</legend>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Herbivore" name="type" value="2">
-                            <label class="filter__label icon icon--herbivore icon--type_2" for="Herbivore">
-                                <span class="filter__text">Herbivore</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Bird" name="type" value="1">
-                            <label class="filter__label icon icon--bird icon--type_1" for="Bird">
-                                <span class="filter__text">Bird</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Predator" name="type" value="3">
-                            <label class="filter__label icon icon--predator icon--type_3" for="Predator">
-                                <span class="filter__text">Predator</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Reptile" name="type" value="4">
-                            <label class="filter__label icon icon--reptile icon--type_4" for="Reptile">
-                                <span class="filter__text">Reptile</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Primate" name="type" value="5">
-                            <label class="filter__label icon icon--primate icon--type_5" for="Primate">
-                                <span class="filter__text">Primate</span>
-                            </label>
-                        </div>
+                <header class="header">
+                    <a href="/" class="header__link">
+                        <h1 class="header__headline">Ark nova</h1>
+                        <h2 class="header__subheadline">Card Manager v0.6.0</h2>
+                    </a>
+                    <div class="header__close"></div>
+                </header>
+                <form action="#" class="filter filter--sidebar">
+                    <fieldset class="filter__category filter__category--type">
+                        <legend class="filter__type">Type:</legend>
+                        <label class="filter__item" data-tooltip="Bird" for="Bird">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Bird" name="type" value="1">
+                            <div class="filter__label icon icon--bird icon--type_1">
+                                <span class="filter__stat" data-type_1></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Herbivore">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Herbivore" name="type" value="2">
+                            <div class="filter__label icon icon--herbivore icon--type_2" for="Herbivore">
+                                <span class="filter__stat" data-type_2></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Predator" for="Predator">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Predator" name="type" value="3">
+                            <div class="filter__label icon icon--predator icon--type_3">
+                                <span class="filter__stat" data-type_3></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Reptile" for="Reptile">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Reptile" name="type" value="4">
+                            <div class="filter__label icon icon--reptile icon--type_4">
+                                <span class="filter__stat" data-type_4></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Primate" for="Primate">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Primate" name="type" value="5">
+                            <div class="filter__label icon icon--primate icon--type_5">
+                                <span class="filter__stat" data-type_5></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Sea"  for="Sea">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Sea" name="type" value="6">
+                            <div class="filter__label icon icon--sea icon--type_6">
+                                <span class="filter__stat" data-type_6></span>
+                            </div>
+                        </label>
                     </fieldset>
-                    <fieldset class="filter__category">
-                        <legend class="filter__type">Animal area:</legend>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Africa" name="area" value="1">
-                            <label class="filter__label icon icon--africa icon--area_1" for="Africa">
-                                <span class="filter__text">Africa</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Americas" name="area" value="5">
-                            <label class="filter__label icon icon--americas icon--area_5" for="Americas">
-                                <span class="filter__text">Americas</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Asia" name="area" value="3">
-                            <label class="filter__label icon icon--asia icon--area_3" for="Asia">
-                                <span class="filter__text">Asia</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Australia" name="area" value="4">
-                            <label class="filter__label icon icon--australia icon--area_4" for="Australia">
-                                <span class="filter__text">Australia</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Europe" name="area" value="2">
-                            <label class="filter__label icon icon--europe icon--area_2" for="Europe">
-                                <span class="filter__text">Europe</span>
-                            </label>
-                        </div>
+                    <fieldset class="filter__category filter__category--area">
+                        <legend class="filter__type">Area:</legend>
+                        <label class="filter__item" data-tooltip="Africa" for="Africa">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Africa" name="area" value="1">
+                            <div class="filter__label icon icon--africa icon--area_1">
+                                <span class="filter__stat" data-area_1></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Europe" for="Europe">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Europe" name="area" value="2">
+                            <div class="filter__label icon icon--europe icon--area_2">
+                                <span class="filter__stat" data-area_2></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Asia" for="Asia">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Asia" name="area" value="3">
+                            <div class="filter__label icon icon--asia icon--area_3">
+                                <span class="filter__stat" data-area_3></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Australia" for="Australia">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Australia" name="area" value="4">
+                            <div class="filter__label icon icon--australia icon--area_4">
+                                <span class="filter__stat" data-area_4></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Americas" for="Americas">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Americas" name="area" value="5">
+                            <div class="filter__label icon icon--americas icon--area_5">
+                                <span class="filter__stat" data-area_5></span>
+                            </div>
+                        </label>
                     </fieldset>
                     <fieldset class="filter__category filter__category--size">
-                        <legend class="filter__type">Animal size &amp; special:</legend>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Size_1" name="size" value="1">
-                            <label class="filter__label filter__label--hide icon icon--size_1" for="Size_1">
-                                <span class="filter__text">1</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Size_2" name="size" value="2">
-                            <label class="filter__label filter__label--hide icon icon--size_2" for="Size_2">
-                                <span class="filter__text">2</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Size_3" name="size" value="3">
-                            <label class="filter__label filter__label--hide icon icon--size_3" for="Size_3">
-                                <span class="filter__text">3</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Size_4" name="size" value="4">
-                            <label class="filter__label filter__label--hide icon icon--size_4" for="Size_4">
-                                <span class="filter__text">4</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Size_5" name="size" value="5">
-                            <label class="filter__label filter__label--hide icon icon--size_5" for="Size_5">
-                                <span class="filter__text">5</span>
-                            </label>
-                        </div>
-                        <div class="filter__item filter__item--full"></div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Size_small" name="small" value="1">
-                            <label class="filter__label icon icon--small" for="Size_small">
-                                <span class="filter__text">Small</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Size_Aviary" name="aviary" value="1">
-                            <label class="filter__label icon icon--aviary" for="Size_Aviary">
-                                <span class="filter__text">Aviary</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="Size_Terrarium" name="terrarium" value="1">
-                            <label class="filter__label icon icon--terrarium" for="Size_Terrarium">
-                                <span class="filter__text">Terrarium</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="isRock" name="isRock" value="1">
-                            <label class="filter__label icon icon--rock" for="isRock">
-                                <span class="filter__text">Rock</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="isWater" name="isWater" value="1">
-                            <label class="filter__label icon icon--water" for="isWater">
-                                <span class="filter__text">Water</span>
-                            </label>
-                        </div>
+                        <legend class="filter__type">Size:</legend>
+                        <label class="filter__item" data-tooltip="Size: 1" for="Size_1">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Size_1" name="size" value="1">
+                            <div class="filter__label icon icon--size_1">
+                                <span class="filter__stat" data-size_1></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Size: 2" for="Size_2">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Size_2" name="size" value="2">
+                            <div class="filter__label icon icon--size_2">
+                                <span class="filter__stat" data-size_2></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Size: 3" for="Size_3">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Size_3" name="size" value="3">
+                            <div class="filter__label icon icon--size_3">
+                                <span class="filter__stat" data-size_3></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Size: 4" for="Size_4">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Size_4" name="size" value="4">
+                            <div class="filter__label icon icon--size_4">
+                                <span class="filter__stat" data-size_4></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Size: 5" for="Size_5">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Size_5" name="size" value="5">
+                            <div class="filter__label icon icon--size_5">
+                                <span class="filter__stat" data-size_5></span>
+                            </div>
+                        </label>
                     </fieldset>
-                    <fieldset class="filter__category">
+                    <fieldset class="filter__category filter__category--special">
+                        <legend class="filter__type">Special:</legend>
+                        <label class="filter__item" data-tooltip="Small">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Size_small" name="small" value="1">
+                            <div class="filter__label icon icon--small" for="Size_small">
+                                <span class="filter__stat" data-small></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Terrarium">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Size_Terrarium" name="terrarium" value="1">
+                            <div class="filter__label icon icon--terrarium" for="Size_Terrarium">
+                                <span class="filter__stat" data-terrarium></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Aviary">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Size_Aviary" name="aviary" value="1">
+                            <div class="filter__label icon icon--aviary" for="Size_Aviary">
+                                <span class="filter__stat" data-aviary></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Aquarium">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="Size_Aquarium" name="aquarium" value="1">
+                            <div class="filter__label icon icon--aquarium" for="Size_Aquarium">
+                                <span class="filter__stat" data-aquarium></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Rock">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="isRock" name="isRock" value="1">
+                            <div class="filter__label icon icon--rock" for="isRock">
+                                <span class="filter__stat" data-rock></span>
+                            </div>
+                        </label>
+                        <label class="filter__item" data-tooltip="Water">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="isWater" name="isWater" value="1">
+                            <div class="filter__label icon icon--water" for="isWater">
+                                <span class="filter__stat" data-water></span>
+                            </div>
+                        </label>
+                    </fieldset>
+                    <fieldset class="filter__category filter__category--extras">
                         <legend class="filter__type">Extras:</legend>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="isBear" name="isBear" value="1">
-                            <label class="filter__label icon icon--bear" for="isBear">
-                                <span class="filter__text">Bear</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="isPet" name="isPet" value="1">
-                            <label class="filter__label icon icon--pet" for="isPet">
-                                <span class="filter__text">Small</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="science" name="science" value="1">
-                            <label class="filter__label icon icon--science" for="science">
-                                <span class="filter__text">Science</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="conservation" name="conservation" value="1">
-                            <label class="filter__label icon icon--conservation" for="conservation">
-                                <span class="filter__text">C.Points</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="reputation" name="reputation" value="1">
-                            <label class="filter__label icon icon--reputation" for="reputation">
-                                <span class="filter__text">R.Points</span>
-                            </label>
-                        </div>
-                    </fieldset>
-                    <fieldset class="filter__category">
-                        <legend class="filter__type">Card type & action:</legend>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="animal" name="category" value="animal" checked="checked">
-                            <label class="filter__label icon icon--animal" for="animal">
-                                <span class="filter__text">Animals</span>
-                            </label>
-                        </div>
-                        <div class="filter__item">
-                            <input class="filter__checkbox" type="checkbox" id="sponsor" name="category" value="sponsor" checked="checked">
-                            <label class="filter__label icon icon--sponsor" for="sponsor">
-                                <span class="filter__text">Sponsors</span>
-                            </label>
-                        </div>
-                        <div class="filter__action">
-                            <a class="filter__action-reset" href="#"></a>
-                            <p class="filter__action-title">
-                                Filter <strong>animal</strong> cards by card action or effect.
-                            </p>
-                            <select class="filter__action-form" name="action">
-                                <option value="" selected>-- No action --</option>
-                                <option value="action">Action</option>
-                                <option value="assertion">Assertion</option>
-                                <option value="boost">Boost</option>
-                                <option value="clever">Clever</option>
-                                <option value="constriction">Constriction</option>
-                                <option value="determination">Determination</option>
-                                <option value="digging">Digging</option>
-                                <option value="dominance">Dominance</option>
-                                <option value="flock-animal">Flock animal</option>
-                                <option value="full-throated">Full-throated</option>
-                                <option value="hunter">Hunter</option>
-                                <option value="hypnosis">Hypnosis</option>
-                                <option value="iconic-animal">Iconic Animal</option>
-                                <option value="inventive">Inventive</option>
-                                <option value="jumping">Jumping</option>
-                                <option value="multipler">Multipler</option>
-                                <option value="pack">Pack</option>
-                                <option value="peacocking">Peacocking</option>
-                                <option value="perception">Perception</option>
-                                <option value="petting-zoo-animal">Petting zoo animal</option>
-                                <option value="pilfering">Pilfering</option>
-                                <option value="posturing">Posturing</option>
-                                <option value="pouch">Pouch</option>
-                                <option value="resistance">Resistance</option>
-                                <option value="scavenging">Scavenging</option>
-                                <option value="snapping">Snapping</option>
-                                <option value="sponsor-magnet">Sponsor magnet</option>
-                                <option value="sunbathing">Sunbathing</option>
-                                <option value="venom">Venom</option>
-                            </select>
-                        </div>
+                        <label class="filter__item" for="isBear">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="isBear" name="isBear" value="1">
+                            <div class="filter__label icon icon--bear">
+                                <span class="filter__stat">Bear</span>
+                            </div>
+                        </label>
+                        <label class="filter__item" for="isPet">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="isPet" name="isPet" value="1">
+                            <div class="filter__label icon icon--pet">
+                                <span class="filter__stat">Small</span>
+                            </div>
+                        </label>
+                        <label class="filter__item" for="science">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="science" name="science" value="1">
+                            <div class="filter__label icon icon--science">
+                                <span class="filter__stat">Science</span>
+                            </div>
+                        </label>
+                        <label class="filter__item" for="conservation">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="conservation" name="conservation" value="1">
+                            <div class="filter__label icon icon--conservation">
+                                <span class="filter__stat">C.Points</span>
+                            </div>
+                        </label>
+                        <label class="filter__item" for="reputation">
+                            <input class="checkbox filter__checkbox" type="checkbox" id="reputation" name="reputation" value="1">
+                            <div class="filter__label icon icon--reputation">
+                                <span class="filter__stat">R.Points</span>
+                            </div>
+                        </label>
                     </fieldset>
                     <div class="filter__buttons">
                         <button class="button button--filter" type="reset">Reset filters</button>
                         <button class="button button--cards">Reset cards</button>
                     </div>
                 </form>
-                <div class="information">
-                    <div class="information__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="information__icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
-                            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
-                            <path d="M11 14h1v4h1"></path>
-                            <path d="M12 11h.01"></path>
-                         </svg>
-                        <span class="information__label">Ark Nova Cards Manager v0.5.3</span>
-                    </div>
-                    <div class="information__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="information__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
-                            <path stroke="none" d="M0 0h24v24H0z"/>
-                            <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>
-                        </svg>
-                        <div class="information__label">
-                            <a href="https://github.com/PixelT/ArkNovaCardsManager" target="_blank" class="information__link">Github | Report issue</a>
-                        </div>
-                    </div>
-                    <div class="information__item">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="information__icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M15 8h.01"></path>
-                            <path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12z"></path>
-                            <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5"></path>
-                            <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3"></path>
-                         </svg>
-                         <div class="information__label">Cards based on <a href="https://boardgamegeek.com/filepage/225656/cards-part-1-v09-english" class="information__link" target="_blank">Cards v0.9 by nan3000</a></div>
-                    </div>
+                <div class="info">
+                    <a href="#" class="info__link">bit.ly/ancm</a>
                 </div>
             </div>
         </div>
         <div class="container__outer container__outer--content">
             <div class="content">
+                <div class="topbar">
+                    <div class="topbar__menu"></div>
+                    <form action="#" class="topbar__form">
+                        <section class="topbar__section topbar__section--action">
+                            <div class="topbar__item topbar__item--action" data-label="Action:">
+                                <label class="topbar__label topbar__label--action" for="action">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="topbar__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 12h3v4h-3z" /><path d="M10 6h-6a1 1 0 0 0 -1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1 -1v-12a1 1 0 0 0 -1 -1h-6" /><path d="M10 3m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v3a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M14 16h2" /><path d="M14 12h4" /></svg>
+                                </label>
+                                <input class="topbar__input" type="text" name="action" value="" id="action" placeholder="Select card action" data-option="action" readonly>
+                                <div class="topbar__reset"></div>
+                            </div>
+                            <div class="topbar__item topbar__item--action" data-label="Sort by:">
+                                <label class="topbar__label topbar__label--sort" for="sort">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="topbar__icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 9l4 -4l4 4m-4 -4v14" /><path d="M21 15l-4 4l-4 -4m4 4v-14" /></svg>
+                                </label>
+                                <input class="topbar__input" type="text" name="sort" value="ID - ASC" id="sort" data-option="sort" readonly>
+                            </div>
+                        </section>
+                        <section class="topbar__section filter filter--topbar">
+                            <div class="topbar__item" data-label="Animals:">
+                                <input class="checkbox topbar__checkbox" type="checkbox" id="animal" name="category" value="animal" checked="checked">
+                                <label class="topbar__label topbar__label--option topbar__label--animal icon icon--animal" for="animal">
+                                    <span class="topbar__label" data-animal></span>
+                                </label>
+                            </div>
+                            <div class="topbar__item" data-label="Sponsors:">
+                                <input class="checkbox topbar__checkbox" type="checkbox" id="sponsor" name="category" value="sponsor" checked="checked">
+                                <label class="topbar__label topbar__label--option topbar__label--sponsor icon icon--sponsor" for="sponsor">
+                                    <span class="topbar__label" data-sponsor></span>
+                                </label>
+                            </div>
+                        </section>
+                        <section class="topbar__section filter filter--topbar">
+                            <div class="topbar__item" data-label="Marine world:">
+                                <input class="checkbox topbar__checkbox" type="checkbox" id="marineExt" name="extension" value="marineExt">
+                                <label class="topbar__label topbar__label--option topbar__label--marine icon icon--marine" for="marineExt">
+                                    <span class="topbar__label" data-marineWorld></span>
+                                </label>
+                            </div>
+                        </section>
+                    </form>
+                </div>
                 <div class="content__area">
                     <div class="content__cards">
                         <div class="content__animals"></div>
@@ -282,18 +264,74 @@
                 </div>
             </div>
         </div>
-        <div class="container__outer container__outer--stats">
-            <div class="container__inner container__inner--stats">
-                <div class="toggle toggle--stats"></div>
-                <ul class="stats"></ul>
-            </div>
-        </div>
-        <div class="action">
-            <input class="action__search" type="number" maxlength="3" pattern="[0-9]{3}" placeholder="ID: 201-264; 401-528">
-            <div class="action__item action__item--search"></div>
-            <div class="action__item action__item--scroll"></div>
-        </div>
     </div>
+
+    <dialog class="dialog dialog--offcanvas dialog--sort" data-modal="sort">
+        <ul class="dialog__list">
+            <li class="dialog__item dialog__item--id-asc" data-value="ID - ASC">ID - ASC</li>
+            <li class="dialog__item dialog__item--id-desc" data-value="ID - DESC">ID - DESC</li>
+            <li class="dialog__item dialog__item--size-asc" data-value="Size - ASC">Size - ASC</li>
+            <li class="dialog__item dialog__item--size-desc" data-value="Size - DESC">Size - DESC</li>
+            <li class="dialog__item dialog__item--price-asc" data-value="Price - ASC">Price - ASC</li>
+            <li class="dialog__item dialog__item--price-desc" data-value="Price - DESC">Price - DESC</li>
+            <li class="dialog__item dialog__item--conservation" data-value="Conservation">Conservation</li>
+            <li class="dialog__item dialog__item--reputation" data-value="Reputation">Reputation</li>
+            <li class="dialog__item dialog__item--type" data-value="Type">Type</li>
+            <li class="dialog__item dialog__item--area" data-value="Area">Area</li>
+            <li class="dialog__item dialog__item--name-asc" data-value="Name - ASC">Name - ASC</li>
+            <li class="dialog__item dialog__item--name-desc" data-value="Name - DESC">Name - DESC</li>
+            <li class="dialog__item dialog__item--appeal-asc" data-value="Appeal - ASC">Appeal - ASC</li>
+            <li class="dialog__item dialog__item--appeal-desc" data-value="Appeal - DESC">Appeal - DESC</li>
+        </ul>
+    </dialog>
+
+    <dialog class="dialog dialog--offcanvas dialog--action" data-modal="action">
+        <ul class="dialog__list">
+            <li class="dialog__item" data-value="Action">After finishing this action, you may take the [X] action</li>
+            <li class="dialog__item dialog__item--marine" data-value="Adapt">Draw X Final Scoring cards, then discard 2 Final Scoring cards.</li>
+            <li class="dialog__item" data-value="Assertion">You may add any 1 of the unused base conservation projects to your hand</li>
+            <li class="dialog__item" data-value="Boost">After finishing this action, you may place your [X] Action card on 1 or 5</li>
+            <li class="dialog__item" data-value="Clever">After finishing this action, you may place any Action card on 1</li>
+            <li class="dialog__item" data-value="Constriction">Each player ahead of you on a track gains 1 Constriction token for each of those tracks</li>
+            <li class="dialog__item dialog__item--marine" data-value="Cut Down">You may remove 1 empty standard enclosure from your zoo map and gain back its cost.</li>
+            <li class="dialog__item dialog__item--marine" data-value="Camouflage">If you play 1 other animal during this turn, you may ignore 1 of its conditions.</li>
+            <li class="dialog__item" data-value="Determination">After finishing this action, you take 1 other action</li>
+            <li class="dialog__item" data-value="Digging">Choose up to [X]x: Discard 1 card from the display and replenish OR discard 1 card from your hand and draw 1 other from the deck</li>
+            <li class="dialog__item" data-value="Dominance">You may add the base conservation project Primates to your hand if it is not already in the game</li>
+            <li class="dialog__item dialog__item--marine" data-value="Extra Shift">You may return 1 of your association workers to your notepad</li>
+            <li class="dialog__item" data-value="Flock Animal">May share the existing enclosure of a Herbivore with X+</li>
+            <li class="dialog__item" data-value="Full Throated">Hire an association worker</li>
+            <li class="dialog__item dialog__item--marine" data-value="Glide">Discard up to X cards from your hand. For every Sea icon of them, gain 1 of these 3 effects: 1 / 2 / pavilion</li>
+            <li class="dialog__item" data-value="Hunter">Reveal the X topmost cards of the deck. Choose 1 animal card and add it to your hand. Discard the other cards</li>
+            <li class="dialog__item" data-value="Hypnosis">After finishing this action, you may take 1 action from an Action card in slot 1, 2 or 3 of the player with the most points</li> <!-- to do points-->
+            <li class="dialog__item" data-value="Iconic Animal">Gain 1 point for each X icon in all zoos (max. 8)</li>
+            <li class="dialog__item" data-value="Inventive">Gains 1/2/3 tokens for 1/3/5 primate icons in your zoo</li>
+            <li class="dialog__item" data-value="Jumping">Advance the break token X spaces. Gain X</li>
+            <li class="dialog__item dialog__item--marine" data-value="Mark">After finishing this action, may 1 Animal card in the display.</li>
+            <li class="dialog__item" data-value="Multipler">Place 1 x2 on your X Action card</li>
+            <li class="dialog__item" data-value="Pack">Gain 1 point for each predator icon in your zoo</li>
+            <li class="dialog__item" data-value="Peacocking">You may place a Large Bird Aviary for free, if possible</li>
+            <li class="dialog__item" data-value="Perception">Draw 4 cards from the deck. Add 2 to your hand and discard the rest</li>
+            <li class="dialog__item" data-value="Petting Zoo Animal">Gain 3 poinst for each Petting Zoo Animal icon in your zoo</li>
+            <li class="dialog__item" data-value="Pilfering">Draw 1 card from the hand of or take 5 from the player with the most points. They decide.</li>
+            <li class="dialog__item" data-value="Posturing">You may place 1 free kiosk or pavilion</li>
+            <li class="dialog__item" data-value="Pouch">You may place 1 card from your hand under this card to gain 2 point</li>
+            <li class="dialog__item" data-value="Resistance">Draw 2 Final Scoring cards. Keep 1 and discard the other.</li>
+            <li class="dialog__item" data-value="Scavenging">Shuffle the discard pile and draw X cards. Add 1 to your hand and discard the others.</li>
+            <li class="dialog__item dialog__item--marine" data-value="Scuba Dive">Reveal the X topmost cards of the deck. Choose 1 Sponsor card and add it to your hand. Discard the other cards. X is the number of Sea + Reptile in your zoo.</li>
+            <li class="dialog__item dialog__item--marine" data-value="Sea Animal Magnet">Add all cards with the Sea icon from the display to your hand.</li>
+            <li class="dialog__item dialog__item--marine" data-value="Shark Attack">Discard X Animal cards in reputation range from the display. Gain half the points of those cards (round down).</li>
+            <li class="dialog__item" data-value="Snapping">Gain any 1 card from the display.</li>
+            <li class="dialog__item" data-value="Sponsor Magnet">Add all sponsors cards from the display to your hand</li>
+            <li class="dialog__item" data-value="Sunbathing">You may sell up to X cards from your hand for 4 each</li>
+            <li class="dialog__item dialog__item--marine" data-value="Symbiosis">Use 1 ability (not a Reef Dweller effect) of 1 other Sea card in your zoo.</li>
+            <li class="dialog__item dialog__item--marine" data-value="Trade">You may trade exactly 1-X Marker of 5 or vice versa.</li> <!-- TODO -->
+            <li class="dialog__item" data-value="Venom">Each player ahead of you on the Appeal track gains X Venom token(s).</li>
+        </ul>
+    </dialog>
+
+    <div class="scroll"></div>
+    <div class="overlay"></div>
 
     <script src="./dist/app.js" defer></script>
 </body>

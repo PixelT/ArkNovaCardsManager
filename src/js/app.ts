@@ -1,5 +1,5 @@
-import animals from '../animals.json';
-import sponsors from '../sponsors.json';
+import animals from '../data/animals.json';
+import sponsors from '../data/sponsors.json';
 
 interface IConfig {
     [key: string]: string;
@@ -17,29 +17,25 @@ interface IDataFilters {
 }
 
 (function() {
-    const elForm: HTMLFormElement = document.querySelector(`.filter`);
+    const elFormFilters: HTMLFormElement = document.querySelector(`.filter`);
+    const elFormTopbar: HTMLFormElement = document.querySelector(`.topbar__form`);
     const elContentAnimalCards: HTMLDivElement = document.querySelector(`.content__animals`);
     const elContentSponsorCards: HTMLDivElement = document.querySelector(`.content__sponsors`);
-    const elContentStats: HTMLDivElement = document.querySelector(`.stats`);
-    const elSearchField: HTMLInputElement = document.querySelector(`.action__search`);
-    const elFilterAction: HTMLSelectElement = document.querySelector(`.filter__action-form`);
-
     const config: IConfig = {
         cardsOnStorage: `anc_on`,
         cardsOffStorage: `anc_off`,
         cardsOnClass: `card--on`,
-        cardsOffClass: `card--off`
+        cardsOffClass: `card--off`,
+        cardsSortBy: `id-asc`,
+        stats: `anc_percentage`
     }
-
-    let dataCards: IDataCards = _setCardsDefault();
 
     let dataFilters: IDataFilters = {
         category: [`animal`, `sponsor`]
     };
-
+    let dataCards: IDataCards = _setCardsDefault();
     let dataStats: IDataStats = _setStats();
-    let matchingAnimalCards: number = 0;
-    let matchingSponsorCards: number = 0;
+    let offcanvasID: HTMLDialogElement = undefined;
     
     function _init(): void {
         _registerEvents();
@@ -47,87 +43,124 @@ interface IDataFilters {
         _displayStats(dataStats);
     }
 
+    function _resetAction() {
+        (document.querySelector(`#action`) as HTMLInputElement).value = '';
+    }
+
+    function _resetMarineWorld() {
+        (document.querySelector(`#marineExt`) as HTMLInputElement).checked = false;
+    }
+
+    function _resetSort() {
+        (document.querySelector(`.dialog__item--id-asc`) as HTMLDivElement).click();
+    }
+
     function _registerEvents(): void {
-        elSearchField && elSearchField.addEventListener(`input`, function() {
-            let _value: any = this.value;
+        (document.querySelectorAll(`.checkbox`) as NodeList).forEach(checkbox => {
+            checkbox.addEventListener(`change`, () => {
+                _updateCards();
+            });
+        });
 
-            if (_value.length > this.maxLength) {
-                this.value = _value.slice(0, this.maxLength);
-            }
+        document.addEventListener(`beforeunload`, () => {
+            console.log('x');
+        });
+
+        (document.querySelector(`.button--cards`) as HTMLButtonElement).addEventListener(`click`, (ev: Event) => {
+            ev.preventDefault();
             
-            if (_value.length === 3) {
-                _value = parseInt(_value);
+            localStorage.setItem(config.cardsOnStorage, JSON.stringify([]));
+            localStorage.setItem(config.cardsOffStorage, JSON.stringify([]));
 
-                if (_value >= 401 && _value <= 528) {
-                    const item = animals.data.filter(obj => {
-                        return obj[`id`] === _value;
-                    });
+            _displayCards(dataCards.animals, dataCards.sponsors);
+        });
 
-                    _collectStats([[item[0].id, item[0].size] as any], []);
-                    _displayCards([[_value] as any], []);
-                } else if (_value >= 201 && _value <= 264) {
-                    const item = sponsors.data.filter(obj => {
-                        return obj[`id`] === _value;
-                    });
+        (document.querySelector(`.button--filter`) as HTMLButtonElement).addEventListener(`click`, () => {
+            dataFilters = {};
+            
+            _resetMarineWorld();
+            _resetAction();
+            _resetSort();
 
-                    _collectStats([], [[item[0].id, item[0].value] as any]);
-                    _displayCards([], [[_value] as any]);
-                }
-            } else {
-                _collectCardsData(dataFilters);
-                _collectStats(dataCards.animals, dataCards.sponsors);
-                _displayCards(dataCards.animals, dataCards.sponsors);
-            }
+            dataCards = _setCardsDefault();
+            dataStats = _setStats();
 
+            _displayCards(dataCards.animals, dataCards.sponsors);
             _displayStats(dataStats);
         });
 
-        elFilterAction.addEventListener('change', () => {
+        (document.querySelector(`.scroll`) as HTMLDivElement).addEventListener(`click`, (ev: Event) => {
+            ev.preventDefault();
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        (document.querySelector(`.topbar__reset`) as HTMLDivElement).addEventListener(`click`, (ev: Event) => {
+            ev.preventDefault();
+
+            _resetAction();
             _updateCards();
+        });
+
+        (document.querySelectorAll(`.topbar__input`) as NodeList).forEach(item => {
+            item.addEventListener(`click`, (ev: Event) => {
+                ev.preventDefault();
+
+                offcanvasID = document.querySelector(`[data-modal="${(ev.currentTarget as HTMLElement).dataset.option}"]`);
+                document.body.classList.add(`_no-scroll`);
+                offcanvasID.showModal();
+            });
+        });
+
+        (document.querySelectorAll(`.dialog__item`) as NodeList).forEach(item => {
+            item.addEventListener(`click`, (ev: Event) => {
+                if (offcanvasID) {
+                    const modalType = ((ev.currentTarget as HTMLElement).closest(`.dialog`) as HTMLDialogElement).dataset.modal;
+                    const modalInput: HTMLInputElement = document.querySelector(`#${modalType}`);
+                    modalInput.value = (ev.currentTarget as HTMLInputElement).dataset.value;
+    
+                    if (modalInput.name === `sort`) {
+                        config.cardsSortBy = modalInput.value.toLowerCase().trim().replace(/\s/g, '');
+    
+                        if (config.cardsSortBy === 'conservation') {
+                            config.cardsSortBy = `${config.cardsSortBy}-desc`;
+                        }
+                        
+                        if (config.cardsSortBy === 'reputation') {
+                            config.cardsSortBy = `${config.cardsSortBy}-desc`;
+                        }
+
+                        console.log(config.cardsSortBy);
+                    }
+    
+                    _updateCards();
+    
+                    document.body.classList.remove(`_no-scroll`);
+                    offcanvasID.close();
+                }
+            });
         });
 
         document.addEventListener(`click`, (ev: Event) => {
             const el: HTMLElement = (ev.target as HTMLElement);
 
-            if (el.classList.contains(`filter__label`) || el.classList.contains(`filter__text`)) {
-                ev.preventDefault();
+            if (ev.target === offcanvasID) {
+                document.body.classList.remove(`_no-scroll`);
+                offcanvasID.close();
+            }
 
-                let radioBox: any = undefined;
+            if (el.classList.contains(`overlay`) || el.classList.contains(`topbar__menu`) || el.classList.contains(`header__close`)) {
 
-                if (el.classList.contains(`filter__text`)) {
-                    radioBox = (ev.target as HTMLElement).parentElement.previousElementSibling;
-                } else {
-                    radioBox = (ev.target as HTMLElement).previousElementSibling;
-                }
-                
-                radioBox.checked = !radioBox.checked;
-                elSearchField.value = '';
-                
-                _updateCards();
+                document.body.classList.toggle(`_sidebar`);
 
-            } else if (el.classList.contains(`button--filter`)) {
-                elSearchField.value = '';
-                dataFilters = {};
-                dataCards = _setCardsDefault();
-                dataStats = _setStats();
-
-                _displayCards(dataCards.animals, dataCards.sponsors);
-                _displayStats(dataStats);
-            } else if (el.classList.contains(`button--cards`)) {
-                ev.preventDefault();
-                localStorage.setItem(config.cardsOnStorage, JSON.stringify([]));
-                localStorage.setItem(config.cardsOffStorage, JSON.stringify([]));
-
-                _displayCards(dataCards.animals, dataCards.sponsors);
-            } else if (el.classList.contains(`filter__action-reset`)) {
-                ev.preventDefault();
-                elFilterAction.selectedIndex = 0;
- 
-                _updateCards();
             } else if (el.classList.contains(`card__image`)) {
+
                 ev.preventDefault();
                 const card: HTMLElement = el.closest(`.card`);
-                let cardID: number = parseInt(card.dataset.id);
+                const cardID: number = parseInt(card.dataset.id);
 
                 _promise().then(() => {
                     if (!card.classList.contains(config.cardsOffClass) && !card.classList.contains(config.cardsOnClass)) {
@@ -145,23 +178,6 @@ interface IDataFilters {
                     }
                 });
                     
-            } else if (el.classList.contains(`toggle--nav`)) {
-                el.closest(`.container__outer`).classList.toggle(`_active`);
-            } else if (el.classList.contains(`toggle--stats`)) {
-                el.closest(`.container__outer`).classList.toggle(`_active`);
-            } else if (el.classList.contains(`action__item--scroll`)) {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            } else if (el.classList.contains(`action__item--search`)) {
-                elSearchField.parentElement.classList.toggle(`action--active`);
-                if (elSearchField.parentElement.classList.contains(`action--active`)) {
-                    elSearchField.focus();
-                } else {
-                    elSearchField.value = '';
-                    _updateCards();
-                }
             }
         });
     }
@@ -174,107 +190,126 @@ interface IDataFilters {
         return {
             animal: isDefault ? 128 : 0,
             sponsor: isDefault ? 64 : 0,
-            type_2: isDefault ? 25 : 0,
-            area_1: isDefault ? 26 : 0,
-            type_1: isDefault ? 25 : 0, 
-            area_5: isDefault ? 26 : 0,
-            type_3: isDefault ? 25 : 0,
+            marineWorld: 0,
+            type_1: isDefault ? 30 : 0, 
+            type_2: isDefault ? 30 : 0,
+            type_3: isDefault ? 29 : 0,
+            type_4: isDefault ? 29 : 0,
+            type_5: isDefault ? 23 : 0,
+            type_6: 0,
+            area_1: isDefault ? 27 : 0,
+            area_2: isDefault ? 21 : 0,
             area_3: isDefault ? 27 : 0,
-            type_4: isDefault ? 25 : 0,
-            area_4: isDefault ? 20 : 0,
-            type_5: isDefault ? 18 : 0,
-            area_2: isDefault ? 19 : 0,
-            size_1: isDefault ? 33 : 0,
-            aviary: isDefault ? 10 : 0,
-            size_2: isDefault ? 30 : 0,
-            terrarium: isDefault ? 25 : 0,
+            area_4: isDefault ? 21 : 0,
+            area_5: isDefault ? 27 : 0,
+            size_1: isDefault ? 24 : 0,
+            size_2: isDefault ? 31 : 0,
             size_3: isDefault ? 24 : 0,
-            rock: isDefault ? 19 : 0,
             size_4: isDefault ? 20 : 0,
-            water: isDefault ? 23 : 0,
             size_5: isDefault ? 19 : 0,
-            science: isDefault ? 50 : 0,
+            aviary: isDefault ? 11 : 0,
+            small: isDefault ? 10 : 0,
+            terrarium: isDefault ? 25 : 0,
+            aquarium: 0,
+            rock: isDefault ? 25 : 0,
+            water: isDefault ? 29 : 0,
             action: isDefault ? '' : '',
         }
     }
 
     function _setCardsDefault(): IDataCards {
+        const animalData = animals.data.filter(item => _filterMarineExt(item));
+        const sponsorData = sponsors.data.filter(item => _filterMarineExt(item));
+
         return {
-            animals: _getCardsID(animals.data, 'size'),
-            sponsors: _getCardsID(sponsors.data, 'value'),
+            animals: _getCardsID(animalData, 'id-asc'),
+            sponsors: _getCardsID(sponsorData, 'id-asc'),
         }
     }
 
+    function _filterMarineExt(item: any) {
+        return (Array.isArray(dataFilters.extension) && dataFilters.extension.includes(`marineext`)) ? true : !item.marineExt;
+    }
+
     function _getCardsID(dataType: Array<any>, sortBy: string): Array<any> {
-        return dataType.sort(_sortByValue(sortBy)).map(item => [item[`id`], item[sortBy], item[`price`]]);
+        return dataType.sort(_sortByValue(sortBy));
     }
 
     function _collectCardsData(dataFilters: any): Object {
-        dataCards.animals = [];
-        dataCards.sponsors = [];
-        
+        dataCards = {
+            animals: [],
+            sponsors: []
+        }
+
+        const animalData = animals.data.filter(item => _filterMarineExt(item));
+        const sponsorData = sponsors.data.filter(item => _filterMarineExt(item));
+
         _resetCards();
-        
-        if (Object.keys(dataFilters).length === 0) {
+
+        if (!dataFilters.category) {
             elContentAnimalCards.innerHTML = _displayMessage(`Select at least one card type: <strong>Animals</strong> | <strong>Sponsors</strong>`);
-        } else if ((Object.keys(dataFilters)?.length === 1 && dataFilters?.category)) {
-            dataFilters?.category.includes(`animal`) ? dataCards.animals = _getCardsID(animals.data, 'size') : [];
-            dataFilters?.category.includes(`sponsor`) ? dataCards.sponsors = _getCardsID(sponsors.data, 'value') : [];
-        } else {
-            if (!dataFilters.category) {
-                dataCards.animals = [];
-                dataCards.sponsors = [];
-                elContentAnimalCards.innerHTML = _displayMessage(`Select at least one card type: <strong>Animals</strong> | <strong>Sponsors</strong>`);
-            }
-            
-            if (dataFilters?.category?.includes(`animal`)) {
-                Object.entries(animals.data).forEach(element => {
-                    for (const property in dataFilters) {
-                        if (property === 'action' && element[1][`action`]?.indexOf(`|`) !== -1) {
-                            element[1][`action`].split(`|`).forEach((el) => {
-                                if (dataFilters?.action[0].trim() === el.trim()) {
-                                    (dataCards.animals).push([+element[1][`id`], +element[1][`size`], +element[1][`price`]]);
-                                } 
-                            });
+            return dataCards;
+        }
+        
+        if (dataFilters.category.includes('animal')) {
+            dataCards.animals = animalData.filter(animal => {
+                for (let filter in dataFilters) {
+                    if (filter === 'extension') continue;
+                    if (dataFilters.hasOwnProperty(filter)) {
+                        if (Array.isArray(dataFilters[filter])) {
+                            if (filter === 'type') {
+                                if (Array.isArray(animal[filter])) {
+                                    for (let i = 0; i < (animal[filter] as Array<Number>).length; i++) {
+                                        if (dataFilters[filter].includes((animal[filter] as Array<Number>)[i])) {
+                                            return true;
+                                        }
+                                    }
+                                    return false;
+                                }
+                            }
+                            if (!dataFilters[filter].includes((animal as any)[filter])) {
+                                return false;
+                            }
                         } else {
-                            if ((dataFilters[property as keyof typeof dataFilters] as any).includes((element[1] as any)[property])) {
-                                (dataCards.animals).push([+element[1][`id`], +element[1][`size`], +element[1][`price`]]);
+                            if (dataFilters[filter] !== (animal as any)[filter]) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+                return true;
+            }).sort(_sortByValue(config.cardsSortBy));
+        }
+
+        if (dataFilters.category.includes('sponsor')) {
+            if (Object.keys(dataFilters)?.length === 1 || (Object.keys(dataFilters).includes(`category`) && Object.keys(dataFilters).includes(`extension`) && Object.keys(dataFilters)?.length === 2)) {
+                dataCards.sponsors = sponsorData;
+            } else {
+                Object.entries(sponsorData).forEach(element => {
+                    for (const property in dataFilters) {
+                        if (property === `category` || !dataFilters || dataFilters[`action`]) continue;
+                        if (property === 'type') {
+                            if (Array.isArray(element[1][property])) {
+                                for (let i = 0; i < (element[1][property] as Array<Number>).length; i++) {
+                                    if ((dataFilters[property as keyof typeof dataFilters] as Array<Number>)?.includes((element[1][property] as Array<Number>)[i])) {
+                                        if (!dataCards.sponsors.some(obj => obj.id === element[1][`id`])) {
+                                            dataCards.sponsors.push(element[1]);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if ((dataFilters[property as keyof typeof dataFilters] as any)?.includes((element[1] as any)[property])) {
+                            if (!dataCards.sponsors.some(obj => obj.id === element[1][`id`])) {
+                                dataCards.sponsors.push(element[1]);
                             }
                         }
                     }
                 });
-            }
-
-            if (dataFilters?.category?.includes(`sponsor`)) {
-                Object.entries(sponsors.data).forEach(element => {
-                    for (const property in dataFilters) {
-                        if (property === `category`) {
-                            continue;
-                        }
-
-                        if ((dataFilters[property as keyof typeof dataFilters] as any)?.includes((element[1] as any)[property])) {
-                            (dataCards.sponsors).push([+element[1][`id`], +element[1][`value`]]);
-                        }
-                    }
-                });
-            }
-
-            const activeFiltersType = Object.keys(dataFilters).length;
-
-            if (!activeFiltersType) {
-                dataCards = _setCardsDefault();
-            }
-
-            if (activeFiltersType > 1) {
-                const dataFilteredAnimals = _filterData(activeFiltersType, dataCards.animals as Array<Number>);
-
-                dataFilteredAnimals.length ? dataCards.animals = dataFilteredAnimals : dataCards.animals = [];
+                dataCards.sponsors;
             }
         }
-
-        dataCards.animals.sort(_sortByValue(1));
-        dataCards.sponsors.sort(_sortByValue(1));
-
+        
         return dataCards;
     }
 
@@ -285,29 +320,29 @@ interface IDataFilters {
             dataAnimals.forEach(elem => {
                 const item = animals.data.filter(obj => {
                     // @ts-ignore
-                    return obj[`id`] === +elem[0];
+                    return obj[`id`] === +elem[`id`];
                 });
 
-                if (item[0][`category`] === `animal`) {
-                    dataStats[`animal`]++;
+                if (item[0][`category`] === `animal`) dataStats[`animal`]++;
+                if (item[0][`marineExt`]) dataStats[`marineWorld`]++;
+                if (item[0][`type`]) {
+                    if (Array.isArray(item[0][`type`])) {
+                        (item[0][`type`] as Array<number>).forEach((el) => {
+                            dataStats[`type_${el}`]++;
+                        });
+                    } else {
+                        dataStats[`type_${item[0][`type`]}`]++;
+                    }
                 }
-    
-                if (item[0][`type`] != 0) {
-                    dataStats[`type_${item[0][`type`]}`]++;
-                }
-    
-                if (item[0][`area`] != 0) {
-                    dataStats[`area_${item[0][`area`]}`]++;
-                }
-    
-                if (item[0][`size`] != 0) {
-                    dataStats[`size_${item[0][`size`]}`]++;
-                }
-                
+                if (item[0][`area`]) dataStats[`area_${item[0][`area`]}`]++;
+                if (item[0][`size`]) dataStats[`size_${item[0][`size`]}`]++;
+
                 item[0][`aviary`] ? dataStats[`aviary`]++ : '';
                 item[0][`terrarium`] ? dataStats[`terrarium`]++ : '';
+                item[0][`aquarium`] ? dataStats[`aquarium`]++ : '';
                 item[0][`isRock`] ? dataStats[`rock`]++ : '';
                 item[0][`isWater`] ? dataStats[`water`]++ : '';
+                item[0][`isPet`] ? dataStats[`small`]++ : '';
             });
         }
 
@@ -315,126 +350,72 @@ interface IDataFilters {
             dataSponsors.forEach(elem => {
                 const item = sponsors.data.filter(obj => {
                     // @ts-ignore
-                    return obj[`id`] === +elem[0];
+                    return obj[`id`] === +elem[`id`];
                 });
 
-                if (item[0][`category`] === `sponsor`) {
-                    dataStats[`sponsor`]++;
-                }
-    
-                if (item[0][`type`] != 0) {
-                    dataStats[`type_${item[0][`type`]}`]++;
-                }
-    
-                if (item[0][`area`] != 0) {
-                    dataStats[`area_${item[0][`area`]}`]++;
-                }
+                if (item[0][`category`] === `sponsor`) dataStats[`sponsor`]++;
+                if (item[0][`marineExt`]) dataStats[`marineWorld`]++;
+                if (item[0][`type`] != 0) dataStats[`type_${item[0][`type`]}`]++;
+                if (item[0][`area`] != 0) dataStats[`area_${item[0][`area`]}`]++;
                 
                 item[0][`isRock`] ? dataStats[`rock`]++ : '';
                 item[0][`isWater`] ? dataStats[`water`]++ : '';
-                item[0][`science`] ? dataStats[`science`]++ : '';
             });
         }
     }
 
-    function _filterData(filters: number, data: Array<Number>): Array<any> {
-        const collection: Object = {};
-        
-        // @ts-ignore
-        data.forEach(id => { collection[id[0]] = [(parseInt(collection[id[0]]) || 0) + 1, id[1], id[2]] });
+    function _sortByValue(sortBy: string | number = `id-desc`) {
+        const sortValue = sortBy.toString().split('-');
 
-        return Object.entries(collection).filter(value => {
-            return +value[1][0] >= +filters;
-        }).map(item => {
-            return [+item[0], +item[1][1], +item[1][2]]
-        });           
-    }
-
-    function _sortByValue(sortBy: string | number = `size`) {
         return function(a: any, b: any): number {
-            if (a[sortBy] === b[sortBy]) return 0;
-            return (a[sortBy] < b[sortBy]) ? 1 : -1;       
+            if (a[sortValue[0]] === b[sortValue[0]]) return 0;
+            if (sortValue[1] && sortValue[1] === `desc`) {
+                return (a[sortValue[0]] > b[sortValue[0]]) ? -1 : 1;
+            } else {
+                return (a[sortValue[0]] < b[sortValue[0]]) ? -1 : 1;
+            }
         }
     };
 
     function _displayStats(data: Object): void {
-        _resetStats();
-
-        let markup = ``;
-        const cardsAmount = matchingAnimalCards + matchingSponsorCards;
-
-        const avgCost = _avgSum(dataCards.animals, 2);
-        const avgSize = _avgSum(dataCards.animals, 1);
-        
-        markup += `
-        <li class="stats__item stats__item--cards">
-            <span class="stats__label stats__label--cards">${cardsAmount} ${cardsAmount === 1 ? `card` : `cards`}</span>
-        </li>
-        `
+        // TODO: Add percentage stats & switcher
+        const isPercentageStats = false;
+        const isMarineWorld: boolean = (Array.isArray(dataFilters.extension) && dataFilters.extension.includes(`marineext`)) ? true : false;
+        const numberOfCards: number = isMarineWorld ? 240 : 192;
 
         Object.entries(data).forEach(([key, value]) => {
-            const percentage = value ? +((value / (matchingAnimalCards + matchingSponsorCards)) * 100).toFixed(1) : 0;
-            let itemClass: string = `stats__item`;
+            if (key.indexOf(`,`) === -1) {
+                const el: HTMLDivElement = document.querySelector(`[data-${key}]`);
 
-            if (!value) {
-                itemClass = `stats__item stats__item--empty`;
+                if (el) {
+                    const statValue = isPercentageStats ? `${((value / numberOfCards) * 100).toFixed(1)}%` : `${value}x`;
+                    el.innerHTML = statValue;
+                }
             }
-            
-            if (key == 'type_null' || key == 'area_null' || key == 'action') {
-                return;
-            }
-            
-            markup += `
-            <li class="${itemClass} icon icon--${key}" data-id="${key}">
-                <span class="stats__label stats__label--cards">${value}x</span>
-                <span class="stats__label stats__label--percentage">${percentage}%</span>
-            </li>
-            `;
         });
-
-        markup += `
-        <li class="stats__average">
-            Average animal:
-            <br>
-            - size: <span>${isNaN(avgSize) ? 0 : avgSize}</span>
-            <br>
-            - cost: <span>${isNaN(avgCost) ? 0 : avgCost}</span>
-        </li>
-        `
-
-        elContentStats.innerHTML = markup;
     }
 
-    function _avgSum(data: Array<any>, index: number): number {
-        // @ts-ignore
-        return +(data.reduce((accumulator: number, currentValue: number) => accumulator + currentValue[index], 0) / data.length).toFixed(2);
-    }
-
-    function _displayCards(dataAnimals: Array<Number>, dataSponsors: Array<Number>): void {        
+    function _displayCards(dataAnimals: Array<Number>, dataSponsors: Array<Number>): void {  
         let animalCardsMarkup: string = '';
         let sponsorCardsMarkup: string = '';
 
         if (dataAnimals?.length) {
             for (const card in dataAnimals) {
-                animalCardsMarkup += _card((dataAnimals as any)[card][0]);
+                animalCardsMarkup += _card((dataAnimals as any)[card][`id`]);
             }
             elContentAnimalCards.innerHTML = animalCardsMarkup;
         } else if ((dataFilters?.category as Array<String>)?.includes(`animal`)) {
             elContentAnimalCards.innerHTML = _displayMessage(`No animals matched`);
         }
 
-        matchingAnimalCards = dataAnimals?.length ? Object.values(dataAnimals).length : 0;
-
         if (dataSponsors?.length) {
             for (const card in dataSponsors) {
-                sponsorCardsMarkup += _card((dataSponsors as any)[card][0]);
+                sponsorCardsMarkup += _card((dataSponsors as any)[card][`id`]);
             }
             elContentSponsorCards.innerHTML = sponsorCardsMarkup;
         } else if ((dataFilters?.category as Array<String>)?.includes(`sponsor`)) {
             elContentSponsorCards.innerHTML = _displayMessage(`No sponsors matched`);
         }
-
-        matchingSponsorCards = dataSponsors?.length ? Object.values(dataSponsors).length : 0;
     }
 
     function _displayMessage(message: string = null): string {
@@ -445,15 +426,31 @@ interface IDataFilters {
         dataFilters = {};
     
         _promise().then(() => {
-            const formData: FormData = new FormData(elForm);
+            const filtersData: FormData = new FormData(elFormFilters);
 
-            for (const [key, value] of formData) {
+            for (const [key, value] of filtersData) {
                 const objValue = isNaN(value as any) ? value : +value;
 
-                if (key === 'action' && !value) {
-                    continue;
+                if (!key || !value) continue;
+                if (dataFilters.hasOwnProperty(key)) {
+                    (dataFilters as any)[key].push(objValue);
+                } else {
+                    Object.assign(dataFilters, {[key]: [objValue]});
                 }
+            }
 
+            const topbarData: FormData = new FormData(elFormTopbar);
+
+            for (const [key, value] of topbarData) {
+                let objValue: string | number;
+
+                if (!key || key === 'sort' || !value) continue;
+                if (isNaN(value as any)) {
+                    objValue = (value as string).replace(/\s/g, `-`).toLowerCase();
+                } else {
+                    objValue = +value;
+                }
+                
                 if (dataFilters.hasOwnProperty(key)) {
                     (dataFilters as any)[key].push(objValue);
                 } else {
@@ -468,10 +465,6 @@ interface IDataFilters {
         });
     }
 
-    function _resetStats(): void {
-        elContentStats.innerHTML = '';
-    }
-
     function _resetCards(): void {
         elContentAnimalCards.innerHTML = '';
         elContentSponsorCards.innerHTML = '';
@@ -481,9 +474,9 @@ interface IDataFilters {
         let cardStatus = '';
         let cardType = '';
 
-        if (id >= 401 && id <= 528) {
+        if (id >= 401 && id <= 560) {
             cardType = 'animal';
-        } else if (id >= 201 && id <= 264) {
+        } else if (id >= 201 && id <= 280) {
             cardType = 'sponsor';
         }
 
@@ -504,7 +497,7 @@ interface IDataFilters {
         `;
     }
 
-    function _addValueToStorage(key: string, id: number): void {
+    function _addValueToStorage(key: string, id: number | boolean): void {
         const values = JSON.parse(localStorage.getItem(key)) || [];
 
         if (!values.includes(id)) {

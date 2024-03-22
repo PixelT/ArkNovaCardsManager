@@ -1,0 +1,25 @@
+$info_background: var(--accent-medium);
+$info_color: var(--color-white);
+$info_padding: 1rem;
+
+$info_font-size: 1.4rem;
+$info_font-weight: 500;
+
+.info {
+    $root: &;
+
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    
+    &__link {
+        background-color: $info_background;
+        color: var(--color-white);
+        display: flex;
+        font-size: $info_font-size;
+        font-weight: $info_font-weight;
+        justify-content: center;
+        padding: $info_padding;
+        text-decoration: none;
+    }
+}

@@ -1,28 +1,38 @@
 $button_background: var(--accent-light);
-$button_border: 2px solid var(--accent-dark);
+$button_border: 1px solid var(--accent-medium);
 $button_color: var(--accent-dark);
-$button_icon-cards: 'icon-settings-cancel';
-$button_icon-filter: 'icon-filter-cancel';
+$button_color--hover: var(--accent-medium);
+$button_padding: 1rem;
+
+$button_font-size: 1.5rem;
+$button_font-weight: 500;
+
+$button_icon-cards: 'photo-x';
+$button_icon-filter: 'filter-x';
+
 $button_image-size: 1rem;
 
 .button {
     $root: &;
     
-    flex: 0 0 calc(50% - 0.5rem);
-    display: flex;
-    align-items: center;
-    border: $button_border;
     background-color: $button_background;
+    border: 0;
+    border-bottom: $button_border;
     color: $button_color;
-    padding: 1rem;
-    border-radius: 0.3rem;
     cursor: pointer;
-    transition: all 0.25s linear;
+    display: flex;
+    flex: 0 0 calc(50% - 0.5rem);
+    font-size: $button_font-size;
+    font-weight: $button_font-weight;
+    justify-content: flex-end;
+    padding: $button_padding;
     padding-left: $button_image-size + 3.3rem;
-    border-radius: 0.5rem;
+    transition: all 0.25s linear;
 
-    &:hover {
-        text-decoration: underline;
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            color: $button_color--hover;
+        }
     }
 
     &--filter {

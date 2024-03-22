@@ -1,67 +1,51 @@
 $container_sidebar-background: var(--accent-light);
-$container_sidebar-width: 39rem;
-$container_stats-background: var(--bg-light);
-$container_stats-width: 17rem;
+$container_sidebar-width: 45rem;
+$container_sidebar-width--mobile: 32rem;
 
 .container {
     $root: &;
     
     display: flex;
-    min-height: 100vh;
     max-width: 100%;
+    min-height: 100vh;
 
     &__outer {
         z-index: 100;
 
-        &--sidebar,
-        &--stats {
-            &._active {
+        &--sidebar {
+            ._sidebar & {
                 z-index: 199;
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    background-color: rgba(#000, 0.75);
-                    width: 99rem;
-                    height: 100vh;
-
-                    @include media('>=laptop') {
-                        content: none;
-                    }
-                }
             }
         }
 
         &--sidebar {
             background-color: $container_sidebar-background;
-            flex: 0 0 32rem;
-            max-width: 32rem;
-            margin-left: -32rem;
-            position: fixed;
-            width: 100%;
-            min-height: 100%;
+            flex: 0 0 $container_sidebar-width--mobile;
+            height: 100vh;
             left: 0;
+            margin-left: -$container_sidebar-width--mobile;
+            max-width: $container_sidebar-width--mobile;
+            position: fixed;
+            top: 0;
+            width: 100%;
 
             @include media('>=phoneLg') {
                 flex: 0 0 $container_sidebar-width;
-                max-width: $container_sidebar-width;
                 margin-left: -$container_sidebar-width;
+                max-width: $container_sidebar-width;
             }
 
-            &._active {
+            @include media('>=laptopLg') {
                 margin-left: 0;
-
-                &::before {
-                    right: -99rem;
-                }
+                position: sticky;
             }
 
-            @include media('>=laptop') {
-                position: relative;
+            ._sidebar & {
                 margin-left: 0;
 
-                &._active {
+                @include media('>=laptopLg') {
                     margin-left: -$container_sidebar-width;
+                    position: relative;
                 }
             }
         }
@@ -71,38 +55,18 @@ $container_stats-width: 17rem;
             max-width: 100%;
             z-index: 99;
         }
-
-        &--stats {
-            background-color: $container_stats-background;
-            flex: 0 0 $container_stats-width;
-            max-width: $container_stats-width;
-            margin-right: -$container_stats-width;
-            position: fixed;
-            min-height: 100%;
-            right: 0;
-
-            &._active {
-                margin-right: 0;
-
-                &::before {
-                    left: -99rem;
-                }
-            }
-
-            @include media('>=laptop') {
-                position: relative;
-                margin-right: 0;
-
-                &._active {
-                    margin-right: -$container_stats-width;
-                }
-            }
-        }
     }
 
     &__inner {
         min-height: auto;
         position: sticky;
         top: 0;
+
+        &--sidebar {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-y: auto;
+        }
     }
 }
