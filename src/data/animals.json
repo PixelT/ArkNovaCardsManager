@@ -3011,7 +3011,7 @@
             "price": 9,
             "science": false,
             "appeal": 4,
-            "action": ""
+            "action": "trade"
         },
         {
             "id": 532,
@@ -3034,7 +3034,7 @@
             "price": 4,
             "science": false,
             "appeal": 1,
-            "action": "see-animal-magnet"
+            "action": "sea-animal-magnet"
         },
         {
             "id": 533,
