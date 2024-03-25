@@ -12,7 +12,7 @@ Simple app to managing and filtering animals & sponsors cards available in Ark N
 - use topbar options to filter cards by type / action or sort by predefined value
 - use reset buttons to reset selected filters / cards statuses
 
-### Innovations in v0.6.0
+### Innovations in v0.6.x
 - support for `Marine Worlds` expansion
 - refreshed look of the application
 - better support for mobile devices

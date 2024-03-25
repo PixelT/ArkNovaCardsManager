@@ -49,42 +49,42 @@ $dialog_sort-padding: 1.8rem 2.5rem 1.8rem 5rem;
         &--id-desc,
         &--price-desc,
         &--appeal-desc {
-            background-image: url('/dist/images/icons/sort-descending-numbers.svg');
+            background-image: url('./images/icons/sort-descending-numbers.svg');
         }
         
         &--id-asc,
         &--price-asc,
         &--appeal-asc {
-            background-image: url('/dist/images/icons/sort-ascending-numbers.svg');
+            background-image: url('./images/icons/sort-ascending-numbers.svg');
         }
 
         &--size-desc {
-            background-image: url('/dist/images/icons/sort-descending-small-big.svg');
+            background-image: url('./images/icons/sort-descending-small-big.svg');
         }
         
         &--size-asc {
-            background-image: url('/dist/images/icons/sort-ascending-small-big.svg');
+            background-image: url('./images/icons/sort-ascending-small-big.svg');
         }
         
         &--conservation,
         &--reputation {
-            background-image: url('/dist/images/icons/sort-descending.svg');
+            background-image: url('./images/icons/sort-descending.svg');
         }
         
         &--type {
-            background-image: url('/dist/images/icons/sort-ascending-shapes.svg');
+            background-image: url('./images/icons/sort-ascending-shapes.svg');
         }
         
         &--area {
-            background-image: url('/dist/images/icons/sort-descending-2.svg');
+            background-image: url('./images/icons/sort-descending-2.svg');
         }
 
         &--name-desc {
-            background-image: url('/dist/images/icons/sort-descending-letters.svg');
+            background-image: url('./images/icons/sort-descending-letters.svg');
         }
         
         &--name-asc {
-            background-image: url('/dist/images/icons/sort-ascending-letters.svg');
+            background-image: url('./images/icons/sort-ascending-letters.svg');
         }
 
         &--marine {

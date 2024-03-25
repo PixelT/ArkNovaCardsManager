@@ -62,10 +62,6 @@ interface IDataFilters {
             });
         });
 
-        document.addEventListener(`beforeunload`, () => {
-            console.log('x');
-        });
-
         (document.querySelector(`.button--cards`) as HTMLButtonElement).addEventListener(`click`, (ev: Event) => {
             ev.preventDefault();
             
@@ -132,8 +128,6 @@ interface IDataFilters {
                         if (config.cardsSortBy === 'reputation') {
                             config.cardsSortBy = `${config.cardsSortBy}-desc`;
                         }
-
-                        console.log(config.cardsSortBy);
                     }
     
                     _updateCards();
@@ -265,6 +259,15 @@ interface IDataFilters {
                                         }
                                     }
                                     return false;
+                                }
+                            }
+                            if (filter === 'action') {
+                                if (animal[filter].indexOf(`|`) !== -1) {
+                                    const actions = animal[filter].split(`|`).map(item => item.trim());
+
+                                    if (actions.includes(dataFilters[filter].toString())) {
+                                        return true;
+                                    }
                                 }
                             }
                             if (!dataFilters[filter].includes((animal as any)[filter])) {
