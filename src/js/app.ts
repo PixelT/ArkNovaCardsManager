@@ -27,7 +27,8 @@ interface IDataFilters {
         cardsOnClass: `card--on`,
         cardsOffClass: `card--off`,
         cardsSortBy: `id-asc`,
-        stats: `anc_percentage`
+        stats: `anc_percentage`,
+        scheme: `anc_scheme`,
     }
 
     let dataFilters: IDataFilters = {
@@ -37,10 +38,60 @@ interface IDataFilters {
     let dataStats: IDataStats = _setStats();
     let offcanvasID: HTMLDialogElement = undefined;
     
-    function _init(): void {
+function _init(): void {
         _registerEvents();
+        _registerSchemeUI();
+        _checkURLSearchParams();
         _displayCards(dataCards.animals, dataCards.sponsors);
         _displayStats(dataStats);
+    }
+
+    function _checkURLSearchParams() {
+        const queryString: string = window.location.search;
+        const urlParams: URLSearchParams = new URLSearchParams(queryString);
+        
+        if (urlParams.has('id')) {
+            const filtersID: string = urlParams.get('id')!;
+            const arrayID: number[] = filtersID.split(',').map(Number);
+        
+            arrayID.forEach((id: number) => {
+                if (isNaN(id)) return;
+
+                const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll('.filter__checkbox');
+        
+                checkboxes.forEach((checkbox: HTMLInputElement) => {
+                    const dataId: string | null = checkbox.getAttribute('data-id');
+                    if (dataId && parseInt(dataId) === id) {
+                        checkbox.checked = true;
+                    }
+                });
+            });
+
+            _updateCards();
+        }
+    }
+
+    function _registerSchemeUI() {
+        let scheme: string = localStorage.getItem(config.scheme);
+
+        if (!scheme) {
+            const prefersDarkScheme: MediaQueryList = window.matchMedia(`(prefers-color-scheme: dark)`);
+            scheme = prefersDarkScheme.matches ? 'dark' : 'light';
+        }
+
+        _setScheme(`data-scheme`, scheme);
+    }
+
+    function _changeSchemeUI(ev: Event) {
+        ev.preventDefault();
+
+        if (document.body.getAttribute(`data-scheme`) === `dark`) {
+            _setScheme(`data-scheme`, `light`);
+            localStorage.setItem(config.scheme, `light`);
+        } else {
+            _setScheme(`data-scheme`, `dark`);
+            localStorage.setItem(config.scheme, `dark`);
+        }
     }
 
     function _resetAction() {
@@ -83,6 +134,10 @@ interface IDataFilters {
 
             _displayCards(dataCards.animals, dataCards.sponsors);
             _displayStats(dataStats);
+        });
+
+        (document.querySelector(`.topbar__scheme`) as HTMLButtonElement).addEventListener(`click`, (ev: Event) => {
+            _changeSchemeUI(ev);
         });
 
         (document.querySelector(`.scroll`) as HTMLDivElement).addEventListener(`click`, (ev: Event) => {
@@ -516,6 +571,10 @@ interface IDataFilters {
             values.splice(values.indexOf(id), 1);
             localStorage.setItem(key, JSON.stringify(values));
         };
+    }
+
+    function _setScheme(dataAttr: string, value: string) {
+        document.body.setAttribute(dataAttr, value);
     }
 
     _init();

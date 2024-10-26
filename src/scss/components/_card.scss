@@ -1,8 +1,11 @@
 $card_background: var(--bg-light);
-$card_border--animal: 4px solid var(--card-animal);
+$card_border--animal: 2px solid var(--card-animal);
 $card_border--off: var(--card-off);
 $card_border--on: var(--card-on);
-$card_border--sponsor: 4px solid var(--card-sponsor);
+$card_border--sponsor: 2px solid var(--card-sponsor);
+$card_width: var(--card-width);
+$card_margin: var(--card-margin);
+$card_aspect-ratio: 0.7;
 
 $card_icon-off: 'ban';
 $card_icon-on: 'check';
@@ -10,21 +13,21 @@ $card_icon-size: 3rem;
 
 $card_id-background--animal: var(--card-animal);
 $card_id-background--sponsor: var(--card-sponsor);
-$card_id-color: var(--color-light);
+$card_id-color: var(--text-dark);
 $card_id-weight: 600;
-$card-id-size: 1.2rem;
+$card-id-size: 1.3rem;
 
 .card {
     $root: &;
 
-    aspect-ratio: 0.7;
+    aspect-ratio: $card_aspect-ratio;
     background-color: $card_background;
     border-radius: 1rem;
     cursor: pointer;
-    flex: 1 1 var(--card-width);
+    flex: 1 1 $card_width;
     height: auto;
-    margin: var(--card-margin);
-    max-width: var(--card-width);
+    margin: $card_margin;
+    max-width: $card_width;
     overflow: hidden;
     position: relative;
     transition: all 0.1s ease-in-out;
@@ -34,7 +37,7 @@ $card-id-size: 1.2rem;
 
         #{$root}__id {
             background-color: $card_id-background--animal;
-            bottom: 32.5%;
+            bottom: 34%;
         }
     }
 
@@ -43,7 +46,7 @@ $card-id-size: 1.2rem;
 
         #{$root}__id {
             background-color: $card_id-background--sponsor;
-            bottom: 37%;
+            bottom: 38%;
         }
     }
     

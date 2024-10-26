@@ -1,36 +1,51 @@
-$topbar_icon-close: 'adjustments';
-$topbar_icon-reset: 'x';
+$topbar_button-menu-icon: 'adjustments';
+$topbar_button-menu-bg: var(--accent-light);
+$topbar_button-menu-icon--size: 2.5rem;
+
+$topbar_icon-reset--light: 'x--light';
+$topbar_icon-reset--dark: 'x--dark';
 $topbar_icon-reset--size: 1.6rem;
+$topbar_icon-fill: var(--text-light);
 
-$topbar_border-color: var(--color-primary-medium);
+$topbar_background-color: var(--bg-light);
+$topbar_border-color: var(--border-dark);
 
-$topbar_label-color: var(--color-primary-dark);
-$topbar_label-size: 1.2rem;
+$topbar_label-color: var(--accent-light);
+$topbar_label-background-color: var(--bg-dark);
+$topbar_label-border-color: var(--border-light);
+$topbar_label-size: 1.3rem;
 $topbar_label-weight: 500;
 
 $topbar_stat-color: var(--color-black);
 $topbar_stat-size: 1.5rem;
-$topbar_stat-weight: 600;
+$topbar_stat-weight: 500;
 
-$topbar_input-color: var(--color-black);
+$topbar_input-color: var(--text-light);
+$topbar_input-backtround-color: var(--bg-dark);
 $topbar_input-size: 1.5rem;
 $topbar_input-weight: 500;
 
-$topbar_placeholder-color: var(--color-primary-medium);
+$topbar_reset-background-color: var(--bg-dark);
+$topbar_reset-border-color: var(--border-light);
+
+$topbar_placeholder-color: var(--text-light);
 $topbar_placeholder-size: 1.5rem;
 $topbar_placeholder-weight: 500;
+
+$topbar_value-color: var(--text-light);
+
+$topbar_ui-background-color: var(--bg-dark);
 
 .topbar {
     $root: &;
 
     align-items: center;
-    background-color: var(--color-primary-light);
-    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.5);
+    background-color: $topbar_background-color;
     display: flex;
     font-size: 1.5rem;
     font-weight: 600;
     justify-content: flex-end;
-    padding: 1.6rem 1.6rem 0.8rem 5.6rem;
+    padding: 0.8rem 1.6rem 0.8rem 5.6rem;
     position: sticky;
     top: 0;
     z-index: 99;
@@ -48,7 +63,7 @@ $topbar_placeholder-weight: 500;
     }
 
     &__menu {
-        background: url('./images/icons/#{$topbar_icon-close}.svg') center center / 2.5rem no-repeat var(--accent-light);
+        background: url('./images/icons/#{$topbar_button-menu-icon}.svg') center center / #{$topbar_button-menu-icon--size} no-repeat $topbar_button-menu-bg;
         border-radius: 0 1rem 1rem 0;
         cursor: pointer;
         height: 4rem;
@@ -68,32 +83,21 @@ $topbar_placeholder-weight: 500;
 
     &__form {
         display: flex;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
     }
 
     &__section {
         display: flex;
-        padding: 0.7rem 0.5rem;
+        padding: 2.1rem 0.5rem 0.7rem 0.5rem;
         position: relative;
 
         @include media('>=phoneLg') {
             padding-inline: 1rem;
         }
-
-        &:not(:last-child) {
-            border-right: 1px solid $topbar_border-color;
-        }
-
-        &--action {
-            display: none;
-
-            @include media('>=tablet') {
-                display: flex;
-            }
-        }
     }
 
     &__item {
-        border: 1px solid $topbar_border-color;
         display: flex;
         height: 3rem;
         margin-inline: 0.5rem;
@@ -108,11 +112,12 @@ $topbar_placeholder-weight: 500;
             margin-bottom: 0.2rem;
             overflow: hidden;
             position: absolute;
-            text-transform: uppercase;
-            white-space: nowrap;;
+            white-space: nowrap;
         }
 
         &--action {
+            width: 20rem;
+
             @include media('>=desktop') {
                 width: 23rem;
             }
@@ -128,10 +133,15 @@ $topbar_placeholder-weight: 500;
                 }
             }
         }
+
+        &--cards {
+            width: 8rem;
+        }
     }
 
     &__icon {
-        width: 1.6rem;
+        width: 1.8rem;
+        stroke: $topbar_icon-fill;
     }
 
     &__input {
@@ -144,6 +154,7 @@ $topbar_placeholder-weight: 500;
         margin: 0;
         outline: none;
         padding: 0 1rem;
+        background-color: $topbar_input-backtround-color;
 
         &::placeholder {
             color: $topbar_placeholder-color;
@@ -153,15 +164,22 @@ $topbar_placeholder-weight: 500;
     }
 
     &__reset {
-        background: url('./images/icons/#{$topbar_icon-reset}.svg') center center / #{$topbar_icon-reset--size} no-repeat var(--color-white);
-        border-left: 1px solid var(--color-primary-light);
-        border-radius: 0 1rem 1rem 0;
+        background: center center / #{$topbar_icon-reset--size} no-repeat $topbar_reset-background-color;
+        border-left: 1px solid $topbar_reset-border-color;
         cursor: pointer;
-        height: 2.8rem;
+        height: 3rem;
         position: absolute;
         right: 0;
         top: 0;
-        width: 2.8rem;
+        width: 3rem;
+
+        [data-scheme="light"] & {
+            background-image: url('./images/icons/#{$topbar_icon-reset--light}.svg');
+        }
+
+        [data-scheme="dark"] & {
+            background-image: url('./images/icons/#{$topbar_icon-reset--dark}.svg');
+        }
     }
 
     &__checkbox {
@@ -179,27 +197,65 @@ $topbar_placeholder-weight: 500;
         justify-content: center;
         position: relative;
         width: 6.5rem;
+        background-color: $topbar_label-background-color;
         
         @include media('>=phoneLg') {
             width: 8rem;
         }
 
+        @include media('>=laptop') {
+            width: 10rem;
+        }
+
         &--option {
-            background-size: 3rem 3100%;
             border-radius: 0;
             filter: grayscale(1);
-            opacity: 0.2;
-            padding-left: 3rem;
+            opacity: 0.25;
+            position: relative;
+            width: 100%;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 4rem;
+                width: 1px;
+                height: 100%;
+                background-color: $topbar_label-border-color;
+            }
 
             .checkbox:checked + & {
                 filter: grayscale(0);
                 opacity: 1;
             }
+
+            #{$root}__icon {
+                margin-inline: 1.2rem;
+            }
         }
 
         &--action,
         &--sort {
-            width: 3rem;
+            width: 4rem;
+            border-right: 1px solid $topbar_label-border-color;
+
+            ._sidebar & {
+                width: 4rem;
+            }
         }
+    }
+
+    &__value {
+        flex: 1;
+        color: $topbar_value-color;
+        text-align: center;
+    }
+
+    &__scheme {
+        border: 0;
+        cursor: pointer;
+        height: 3rem;
+        line-height: 1;
+        background-color: $topbar_ui-background-color;
     }
 }

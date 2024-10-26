@@ -8,6 +8,7 @@ $info_link-color--hover: var(--accent-light);
 
 $info_icon-github: 'brand-github';
 $info_icon-home: 'world-www';
+$info_icon-code: 'code';
 $info_icon-size: 2rem;
 
 $info_font-size: 1.5rem;
@@ -17,16 +18,38 @@ $info_font-weight: 500;
     $root: &;
 
     background-color: $info_background;
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    margin: 0;
-    margin-top: auto;
-    padding: 1rem;
+    overflow: hidden;
+    
+    &__about {
+        color: $info_color;
+        font-size: 1.2rem;
+        padding: 1rem;
+        padding-bottom: 0;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    &__list {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        margin: 0;
+        margin-top: auto;
+        padding: 1rem;
+    }
 
     &__item {
         &:not(:last-child) {
             border-right: 1px solid $info_border-color;
+        }
+
+        &--homepage {
+            display: none;
+
+            @include media('>=phoneLg') {
+                display: block;
+            }
         }
     }
     
@@ -57,5 +80,14 @@ $info_font-weight: 500;
         &--home {
             background-image: url('./images/icons/#{$info_icon-home}.svg');
         }
+
+        &--code {
+            background-image: url('./images/icons/#{$info_icon-code}.svg');
+        }
+    }
+
+    &__text {
+        color: $info_link-color;
+        padding: 1rem;
     }
 }

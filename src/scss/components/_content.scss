@@ -1,6 +1,8 @@
-$content_message-background: var(--bg-error);
-$content_message-border: 1px dashed var(--color-primary-light);
-$content_message-color: var(--color-error);
+$content_background-color: var(--bg-dark);
+$content_border-color: var(--border-light);
+
+$content_message-background: var(--bg-light);
+$content_message-color: var(--text-light);
 $content_message-padding: 1rem 3rem;
 
 $content_stats-width: 17rem;
@@ -10,12 +12,13 @@ $content_stats-width: 17rem;
     
     flex: 1;
     height: 100%;
+    background-color: $content_background-color;
 
     &__area {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        min-height: 100vh;
+        min-height: calc(100vh - 7rem);
         overflow-y: auto;
         padding: 0 1rem;
         width: 100%;
@@ -23,7 +26,6 @@ $content_stats-width: 17rem;
 
     &__message {
         background-color: $content_message-background;
-        border-radius: 1rem;
         color: $content_message-color;
         margin: 0;
         padding: $content_message-padding;
@@ -50,14 +52,13 @@ $content_stats-width: 17rem;
     &__animals,
     &__sponsors {
         align-content: flex-start;
-        border: $content_message-border;
+        border: 1px dashed $content_border-color;
         display: flex;
         flex-wrap: wrap;
         flex: 0 0 100%;
         justify-content: center;
         margin: 1rem;
         padding: 2rem 0;
-        transition: all linear 3s;
 
         &:empty {
             display: none;

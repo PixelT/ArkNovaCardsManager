@@ -55,15 +55,17 @@ body {
     overflow-y: hidden;
 }
 
+@import 'mixins';
+
 @import './components/button';
 @import './components/card';
 @import './components/container';
 @import './components/content';
 @import './components/dialog';
 @import './components/filter';
+@import './components/header';
 @import './components/icon';
 @import './components/info';
-@import './components/logo';
 @import './components/overlay';
 @import './components/scroll';
 @import './components/topbar';

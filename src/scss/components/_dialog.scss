@@ -1,7 +1,11 @@
 
 $dialog_icon-sprites: 'sprites';
-$dialog_item-border: 1px solid var(--color-primary-medium);
+
+$dialog_background-color: var(--bg-dark);
+
+$dialog_item-border-color: var(--bg-light);
 $dialog_item-background--hover: var(--bg-light);
+$dialog_item-color: var(--text-light);
 
 $dialog_action-size: 1.4rem;
 $dialog_action-size--title: 1.6rem;
@@ -10,11 +14,16 @@ $dialog_action-weight--title: 600;
 $dialog_action-padding: 1.8rem 2.5rem;
 
 $dialog_sort-size: 1.6rem;
-$dialog_sort-weight: 600;
-$dialog_sort-padding: 1.8rem 2.5rem 1.8rem 5rem;
+$dialog_sort-weight: 400;
+$dialog_sort-padding: 1.5rem;
+
+$dialog_marine-ext-background-color: var(--bg-light);
+$dialog_marine-ext-background-color--hover: var(--bg-dark);
 
 .dialog {
     $root: &;   
+
+    background-color: $dialog_background-color;
     
     &--offcanvas {
         border: 0;
@@ -31,14 +40,16 @@ $dialog_sort-padding: 1.8rem 2.5rem 1.8rem 5rem;
         list-style: none;
         margin: 0;
         padding: 0;
+        border-left: 5px solid $dialog_item-border-color;
+        color: $dialog_item-color;
     }
 
     &__item {
         background: no-repeat 1.5rem center transparent;
-        border-bottom: $dialog_item-border;
+        border-bottom: 1px solid $dialog_item-border-color;
         cursor: pointer;
         padding: 1rem 2rem;
-        padding-left: 5rem;
+        display: flex;
 
         @media (hover: hover) and (pointer: fine) {
             &:hover {
@@ -46,51 +57,26 @@ $dialog_sort-padding: 1.8rem 2.5rem 1.8rem 5rem;
             }
         }
 
-        &--id-desc,
-        &--price-desc,
-        &--appeal-desc {
-            background-image: url('./images/icons/sort-descending-numbers.svg');
-        }
-        
-        &--id-asc,
-        &--price-asc,
-        &--appeal-asc {
-            background-image: url('./images/icons/sort-ascending-numbers.svg');
-        }
-
-        &--size-desc {
-            background-image: url('./images/icons/sort-descending-small-big.svg');
-        }
-        
-        &--size-asc {
-            background-image: url('./images/icons/sort-ascending-small-big.svg');
-        }
-        
-        &--conservation,
-        &--reputation {
-            background-image: url('./images/icons/sort-descending.svg');
-        }
-        
-        &--type {
-            background-image: url('./images/icons/sort-ascending-shapes.svg');
-        }
-        
-        &--area {
-            background-image: url('./images/icons/sort-descending-2.svg');
-        }
-
-        &--name-desc {
-            background-image: url('./images/icons/sort-descending-letters.svg');
-        }
-        
-        &--name-asc {
-            background-image: url('./images/icons/sort-ascending-letters.svg');
-        }
-
         &--marine {
             #{$root}--action & {
-                &::before {
-                    background: url('./images/general/#{$dialog_icon-sprites}.webp') no-repeat 100% 0 / 2.2rem transparent;
+                position: relative;
+
+                &::after {
+                    content: 'Marine extension';
+                    position: absolute;
+                    top: 0.2rem;
+                    right: 0.2rem;
+                    background-color: $dialog_marine-ext-background-color;
+                    font-size: 1rem;
+                    text-transform: uppercase;
+                    padding: 0.5rem 1rem;
+                    font-weight: 600;
+                }
+
+                &:hover {
+                    &::after {
+                        background-color: $dialog_marine-ext-background-color--hover;
+                    }
                 }
             }
         }
@@ -99,7 +85,7 @@ $dialog_sort-padding: 1.8rem 2.5rem 1.8rem 5rem;
             font-size: $dialog_sort-size;
             font-weight: $dialog_sort-weight;
             padding: $dialog_sort-padding;
-            text-transform: uppercase;
+            align-items: center;
         }
 
         #{$root}--action & {
@@ -107,6 +93,8 @@ $dialog_sort-padding: 1.8rem 2.5rem 1.8rem 5rem;
             font-weight: $dialog_action-weight;
             padding: $dialog_action-padding;
             position: relative;
+            flex-direction: column;
+            align-items: flex-start;
 
             &::before {
                 content: attr(data-value);
@@ -117,6 +105,10 @@ $dialog_sort-padding: 1.8rem 2.5rem 1.8rem 5rem;
                 text-transform: uppercase;
             }
         }
+    }
+
+    &__icon {
+        margin-right: 1.5rem;
     }
     
     &::backdrop {

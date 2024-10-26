@@ -1,7 +1,6 @@
 # Ark Nova Cards Manager
 
-> URL (default): [https://pixelt.github.io/ArkNovaCardsManager/](https://pixelt.github.io/ArkNovaCardsManager/)
-> URL (short): [https://bit.ly/ancm](https://bit.ly/ancm)
+> URL (default): [https://arknova.cards](https://arknova.cards)
 
 ![Screenshot](screenshot.webp)
 

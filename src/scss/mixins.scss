@@ -1,0 +1,33 @@
+@mixin logo ($padding, $textColor, $bgColor, $bgLight, $bgDefault, $bgDark, $bgDot, $boxShadow, $border, $fontSize, $fontWeight) {
+    display: inline-block;
+    text-decoration: none;
+    font-size: $fontSize;
+    color: $textColor;
+    border: $border;
+    padding: #{calc($padding / 2)} $padding #{calc($padding / 2)} $padding;
+    font-weight: $fontWeight;
+    background-color: $bgDark;
+    box-shadow: $boxShadow;
+
+    span {
+        display: inline-block;
+        margin: -#{calc($padding / 2)} -#{$padding} -#{calc($padding / 2)} $padding;
+        padding: #{calc($padding / 2)} $padding #{calc($padding / 2)} $padding;
+        position: relative;
+        color: $textColor;
+        box-shadow: $boxShadow;
+        background-color: $bgDefault;
+
+        &::before {
+            content: '';
+            width: #{calc($fontSize / 2.5)};
+            height: #{calc($fontSize / 2.5)};
+            background-color: $bgDot;
+            position: absolute;
+            left: 0;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            bottom: $padding;
+        }
+    }
+}

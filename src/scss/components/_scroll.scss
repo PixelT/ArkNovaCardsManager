@@ -2,9 +2,10 @@ $croll_height: 4rem;
 $scroll_icon-size: 2.5rem;
 $scroll_icon: 'chevron-up';
 $scroll_width: $croll_height;
+$scroll_background: var(--accent-dark);
 
 .scroll {
-    background: url('./images/icons/#{$scroll_icon}.svg') no-repeat center center / $scroll_icon-size var(--accent-dark);
+    background: url('./images/icons/#{$scroll_icon}.svg') no-repeat center center / $scroll_icon-size $scroll_background;
     bottom: 0;
     cursor: pointer;
     height: $croll_height;
