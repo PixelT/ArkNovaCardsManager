@@ -113,7 +113,7 @@ function _init(): void {
             });
         });
 
-        (document.querySelector(`.button--cards`) as HTMLButtonElement).addEventListener(`click`, (ev: Event) => {
+        (document.querySelector(`.button--cards`) as HTMLButtonElement)?.addEventListener(`click`, (ev: Event) => {
             ev.preventDefault();
             
             localStorage.setItem(config.cardsOnStorage, JSON.stringify([]));
@@ -122,7 +122,7 @@ function _init(): void {
             _displayCards(dataCards.animals, dataCards.sponsors);
         });
 
-        (document.querySelector(`.button--filter`) as HTMLButtonElement).addEventListener(`click`, () => {
+        (document.querySelector(`.button--filter`) as HTMLButtonElement)?.addEventListener(`click`, () => {
             dataFilters = {};
             
             _resetMarineWorld();
@@ -136,11 +136,11 @@ function _init(): void {
             _displayStats(dataStats);
         });
 
-        (document.querySelector(`.topbar__scheme`) as HTMLButtonElement).addEventListener(`click`, (ev: Event) => {
+        (document.querySelector(`.topbar__scheme`) as HTMLButtonElement)?.addEventListener(`click`, (ev: Event) => {
             _changeSchemeUI(ev);
         });
 
-        (document.querySelector(`.scroll`) as HTMLDivElement).addEventListener(`click`, (ev: Event) => {
+        (document.querySelector(`.scroll`) as HTMLDivElement)?.addEventListener(`click`, (ev: Event) => {
             ev.preventDefault();
 
             window.scrollTo({
@@ -149,14 +149,14 @@ function _init(): void {
             });
         });
 
-        (document.querySelector(`.topbar__reset`) as HTMLDivElement).addEventListener(`click`, (ev: Event) => {
+        (document.querySelector(`.topbar__reset`) as HTMLDivElement)?.addEventListener(`click`, (ev: Event) => {
             ev.preventDefault();
 
             _resetAction();
             _updateCards();
         });
 
-        (document.querySelectorAll(`.topbar__input`) as NodeList).forEach(item => {
+        (document.querySelectorAll(`.topbar__input`) as NodeList)?.forEach(item => {
             item.addEventListener(`click`, (ev: Event) => {
                 ev.preventDefault();
 
@@ -164,6 +164,14 @@ function _init(): void {
                 document.body.classList.add(`_no-scroll`);
                 offcanvasID.showModal();
             });
+        });
+
+        (document.querySelectorAll(`.button--extension`)[0] as HTMLDivElement)?.addEventListener(`click`, (ev: Event) => {
+            ev.preventDefault();
+
+            offcanvasID = document.querySelector(`[data-modal="${(ev.currentTarget as HTMLElement).dataset.option}"]`);
+            document.body.classList.add(`_no-scroll`);
+            offcanvasID.showModal();
         });
 
         (document.querySelectorAll(`.dialog__item`) as NodeList).forEach(item => {
@@ -193,12 +201,18 @@ function _init(): void {
             });
         });
 
-        document.addEventListener(`click`, (ev: Event) => {
+        document.addEventListener(`click`, (ev: any) => {
             const el: HTMLElement = (ev.target as HTMLElement);
 
             if (ev.target === offcanvasID) {
-                document.body.classList.remove(`_no-scroll`);
-                offcanvasID.close();
+
+                const rect: DOMRect = offcanvasID.getBoundingClientRect();
+                const isInDialog = (rect.top <= ev.clientY && ev.clientY <= rect.top + rect.height && rect.left <= ev.clientX && ev.clientX <= rect.left + rect.width);
+
+                if (!isInDialog) {
+                    document.body.classList.remove(`_no-scroll`);
+                    offcanvasID.close();
+                }
             }
 
             if (el.classList.contains(`overlay`) || el.classList.contains(`topbar__menu`) || el.classList.contains(`header__close`)) {
@@ -323,6 +337,11 @@ function _init(): void {
                                     if (actions.includes(dataFilters[filter].toString())) {
                                         return true;
                                     }
+                                }
+                            }
+                            if (filter === 'conservation' || filter === 'reputation') {
+                                if (animal[filter] >= 1) {
+                                    return true;
                                 }
                             }
                             if (!dataFilters[filter].includes((animal as any)[filter])) {

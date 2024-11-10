@@ -1,15 +1,10 @@
 $button_background: var(--accent-light);
-$button_border: 1px solid var(--accent-medium);
+$button_border: 2px solid var(--accent-medium);
 $button_color: var(--accent-dark);
 $button_color--hover: var(--accent-medium);
 $button_padding: 1rem;
-
 $button_font-size: 1.5rem;
-$button_font-weight: 500;
-
-$button_icon-cards: 'photo-x';
-$button_icon-filter: 'filter-x';
-
+$button_font-weight: 600;
 $button_image-size: 1rem;
 
 .button {
@@ -17,29 +12,34 @@ $button_image-size: 1rem;
     
     background-color: $button_background;
     border: 0;
-    border-bottom: $button_border;
+    border: $button_border;
     color: $button_color;
     cursor: pointer;
     display: flex;
     flex: 0 0 calc(50% - 0.5rem);
     font-size: $button_font-size;
     font-weight: $button_font-weight;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
     padding: $button_padding;
-    padding-left: $button_image-size + 3.3rem;
     transition: all 0.25s linear;
 
-    @media (hover: hover) and (pointer: fine) {
-        &:hover {
-            color: $button_color--hover;
-        }
+    &:hover {
+        text-decoration: underline;
     }
 
-    &--filter {
-        background: url('./images/icons/#{$button_icon-filter}.svg') $button_image-size center no-repeat;
+    &--extension {
+        margin: 1rem 2rem 1rem 3rem;
+        width: calc(100% - 5rem);
+        border-width: 1px;
+        font-weight: 500;
+
+        @media (hover: hover) and (pointer: fine) {
+            display: flex;
+        }  
     }
 
-    &--cards {
-        background: url('./images/icons/#{$button_icon-cards}.svg') $button_image-size center no-repeat;
+    &__icon {
+        margin-right: $button_padding;
     }
 }

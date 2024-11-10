@@ -7,6 +7,9 @@ $dialog_item-border-color: var(--bg-light);
 $dialog_item-background--hover: var(--bg-light);
 $dialog_item-color: var(--text-light);
 
+$dialog_link-color: var(--accent-light);
+$dialog_text-color: var(--text-light);
+
 $dialog_action-size: 1.4rem;
 $dialog_action-size--title: 1.6rem;
 $dialog_action-weight: 400;
@@ -25,6 +28,11 @@ $dialog_marine-ext-background-color--hover: var(--bg-dark);
 
     background-color: $dialog_background-color;
     
+    strong {
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
     &--offcanvas {
         border: 0;
         height: 100%;
@@ -34,6 +42,16 @@ $dialog_marine-ext-background-color--hover: var(--bg-dark);
         min-height: 100vh;
         padding: 0;
         width: 80%;
+    }
+
+    &--modal {
+        width: 90vw;
+        max-width: 100rem;
+        bottom: 0;
+        color: $dialog_text-color;
+        margin-left: auto;
+        margin-right: auto;
+        border: 5px solid var(--bg-light);
     }
 
     &__list {
@@ -110,9 +128,40 @@ $dialog_marine-ext-background-color--hover: var(--bg-dark);
     &__icon {
         margin-right: 1.5rem;
     }
+
+    &__link {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        &,
+        &:visited,
+        &:hover,
+        &:focus {
+            color: $dialog_link-color;
+            outline: none;
+        }
+    }
     
     &::backdrop {
         background-color: rgba(#222, 0.8);
         cursor: pointer;
+    }
+
+    &__info-link {
+        text-decoration: underline;
+    }
+
+    &__ext-image {
+        width: 100%;
+        max-width: 70rem;
+        display: block;
+        margin: 0 auto;
+        opacity: 0.75;
+        transition: opacity 0.2s linear;
+
+        &:hover {
+            opacity: 1;
+        }
     }
 }

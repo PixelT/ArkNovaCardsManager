@@ -17,9 +17,15 @@ $info_font-weight: 500;
 .info {
     $root: &;
 
-    background-color: $info_background;
-    overflow: hidden;
-    
+    &--footer {
+        background-color: $info_background;
+        overflow: hidden;
+    }
+
+    &__icon {
+        margin-right: 1rem;
+    }
+
     &__about {
         color: $info_color;
         font-size: 1.2rem;

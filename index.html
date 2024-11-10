@@ -202,11 +202,23 @@
                         </label>
                     </fieldset>
                     <div class="filter__buttons">
-                        <button class="button button--filter" type="reset">Reset filters</button>
-                        <button class="button button--cards">Reset cards</button>
+                        <button class="button button--filter" type="reset">
+                            <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4d7c0f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8h.01" /><path d="M13 21h-7a3 3 0 0 1 -3 -3v-12a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v7" /><path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l3 3" /><path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0" /><path d="M22 22l-5 -5" /><path d="M17 22l5 -5" /></svg>
+                            <span class="button__title">Reset filters</span>
+                        </button>
+                        <button class="button button--cards">
+                            <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4d7c0f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.758 19.414l-4.758 1.586v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v1.5" /><path d="M22 22l-5 -5" /><path d="M17 22l5 -5" /></svg>
+                            <span class="button__title"></span>Reset cards</span>
+                        </button>
                     </div>
                 </form>
-                <div class="info">
+                <div class="info info--extension">
+                    <button class="button button--extension" data-option="extension">
+                        <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1" /></svg>
+                        <span class="button__title">Extension for Board Game Arena</span>
+                    </button>
+                </div>
+                <div class="info info--footer">
                     <div class="info__about">
                     App for managing and filtering Ark Nova boardgame cards.
                         <br>
@@ -223,7 +235,7 @@
                             <a href="https://pixeltown.dev" target="_blank" class="info__link info__link--code">pixeltown</a>
                         </li>
                         <li class="info__item">
-                            <span class="info__text">v0.7.0</span>
+                            <span class="info__text">v0.7.1</span>
                         </li>
                     </ul>
                 </div>
@@ -396,6 +408,24 @@
             <li class="dialog__item dialog__item--marine" data-value="Trade">You may trade exactly 1-X Marker of 5 or vice versa.</li> <!-- TODO -->
             <li class="dialog__item" data-value="Venom">Each player ahead of you on the Appeal track gains X Venom token(s).</li>
         </ul>
+    </dialog>
+
+    <dialog class="dialog dialog--modal" data-modal="extension">
+        <p>
+            <strong>Overwiev:</strong><br>
+            This script snippet will add additional button to the <span class="dialog__info-link">boardgamearena.com</span> game table which will link to <span class="dialog__info-link">arknova.cards</span> page with predefined filters based on base projects on current game / table.
+            It will help you to quickly check cards for your actual game without need to manually select base projects.
+        </p>
+        <p>
+            To run this script you need to have installed browser extension which allows you to run UserScripts - <a class="dialog__link" href="https://www.tampermonkey.net/" target="_blank">Tampermonkey</a>
+        </p>
+        <img src="./dist/images/general/web_1.jpg" class="dialog__ext-image" alt="">
+        <p>It will also mark with green icon the cards on your hands that fulfil the basic projects:</p>
+        <img src="./dist/images/general/web_2.jpg" class="dialog__ext-image" alt="">
+        <p>
+            <strong>Installation:</strong><br>
+            Open github gist link: <a class="dialog__link" target="_blank" href="https://gist.github.com/PixelT/78e55bf502631bdb168dcd4fa2cca622">https://gist.github.com/PixelT/78e55bf502631bdb168dcd4fa2cca622</a> and copy <span class="dialog__info-link">arknova.cards.bga.shortcut.js</span> content as new Tampermonkey script / or just click the <span class="dialog__info-link">Raw</span> button to install it automatically.
+        </p>
     </dialog>
 
     <div class="scroll"></div>
