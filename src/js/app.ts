@@ -16,7 +16,7 @@ interface IDataFilters {
     [key: string]: Array<string> | number;
 }
 
-(function() {
+(function () {
     const elFormFilters: HTMLFormElement = document.querySelector(`.filter`);
     const elFormTopbar: HTMLFormElement = document.querySelector(`.topbar__form`);
     const elContentAnimalCards: HTMLDivElement = document.querySelector(`.content__animals`);
@@ -37,8 +37,8 @@ interface IDataFilters {
     let dataCards: IDataCards = _setCardsDefault();
     let dataStats: IDataStats = _setStats();
     let offcanvasID: HTMLDialogElement = undefined;
-    
-function _init(): void {
+
+    function _init(): void {
         _registerEvents();
         _registerSchemeUI();
         _checkURLSearchParams();
@@ -49,18 +49,19 @@ function _init(): void {
     function _checkURLSearchParams() {
         const queryString: string = window.location.search;
         const urlParams: URLSearchParams = new URLSearchParams(queryString);
-        
+
         if (urlParams.has('id')) {
             const filtersID: string = urlParams.get('id')!;
             const arrayID: number[] = filtersID.split(',').map(Number);
-        
+
             arrayID.forEach((id: number) => {
                 if (isNaN(id)) return;
 
                 const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll('.filter__checkbox');
-        
+
                 checkboxes.forEach((checkbox: HTMLInputElement) => {
                     const dataId: string | null = checkbox.getAttribute('data-id');
+
                     if (dataId && parseInt(dataId) === id) {
                         checkbox.checked = true;
                     }
@@ -115,7 +116,7 @@ function _init(): void {
 
         (document.querySelector(`.button--cards`) as HTMLButtonElement)?.addEventListener(`click`, (ev: Event) => {
             ev.preventDefault();
-            
+
             localStorage.setItem(config.cardsOnStorage, JSON.stringify([]));
             localStorage.setItem(config.cardsOffStorage, JSON.stringify([]));
 
@@ -124,7 +125,7 @@ function _init(): void {
 
         (document.querySelector(`.button--filter`) as HTMLButtonElement)?.addEventListener(`click`, () => {
             dataFilters = {};
-            
+
             _resetMarineWorld();
             _resetAction();
             _resetSort();
@@ -180,21 +181,21 @@ function _init(): void {
                     const modalType = ((ev.currentTarget as HTMLElement).closest(`.dialog`) as HTMLDialogElement).dataset.modal;
                     const modalInput: HTMLInputElement = document.querySelector(`#${modalType}`);
                     modalInput.value = (ev.currentTarget as HTMLInputElement).dataset.value;
-    
+
                     if (modalInput.name === `sort`) {
                         config.cardsSortBy = modalInput.value.toLowerCase().trim().replace(/\s/g, '');
-    
+
                         if (config.cardsSortBy === 'conservation') {
                             config.cardsSortBy = `${config.cardsSortBy}-desc`;
                         }
-                        
+
                         if (config.cardsSortBy === 'reputation') {
                             config.cardsSortBy = `${config.cardsSortBy}-desc`;
                         }
                     }
-    
+
                     _updateCards();
-    
+
                     document.body.classList.remove(`_no-scroll`);
                     offcanvasID.close();
                 }
@@ -240,7 +241,7 @@ function _init(): void {
                         card.classList.remove(config.cardsOffClass);
                     }
                 });
-                    
+
             }
         });
     }
@@ -254,7 +255,7 @@ function _init(): void {
             animal: isDefault ? 128 : 0,
             sponsor: isDefault ? 64 : 0,
             marineWorld: 0,
-            type_1: isDefault ? 30 : 0, 
+            type_1: isDefault ? 30 : 0,
             type_2: isDefault ? 30 : 0,
             type_3: isDefault ? 29 : 0,
             type_4: isDefault ? 29 : 0,
@@ -276,7 +277,7 @@ function _init(): void {
             aquarium: 0,
             rock: isDefault ? 25 : 0,
             water: isDefault ? 29 : 0,
-            action: isDefault ? '' : '',
+            action: '',
         }
     }
 
@@ -313,39 +314,48 @@ function _init(): void {
             elContentAnimalCards.innerHTML = _displayMessage(`Select at least one card type: <strong>Animals</strong> | <strong>Sponsors</strong>`);
             return dataCards;
         }
-        
+
         if (dataFilters.category.includes('animal')) {
             dataCards.animals = animalData.filter(animal => {
                 for (let filter in dataFilters) {
-                    if (filter === 'extension') continue;
+                    if (filter === 'extension' || filter === 'category') continue;
                     if (dataFilters.hasOwnProperty(filter)) {
                         if (Array.isArray(dataFilters[filter])) {
                             if (filter === 'type') {
                                 if (Array.isArray(animal[filter])) {
+                                    let hasMatch = false;
                                     for (let i = 0; i < (animal[filter] as Array<Number>).length; i++) {
                                         if (dataFilters[filter].includes((animal[filter] as Array<Number>)[i])) {
-                                            return true;
+                                            hasMatch = true;
+                                            break;
                                         }
                                     }
-                                    return false;
+                                    if (!hasMatch) {
+                                        return false;
+                                    }
+                                } else {
+                                    if (!dataFilters[filter].includes((animal as any)[filter])) {
+                                        return false;
+                                    }
                                 }
-                            }
-                            if (filter === 'action') {
+                            } else if (filter === 'action') {
                                 if (animal[filter].indexOf(`|`) !== -1) {
                                     const actions = animal[filter].split(`|`).map(item => item.trim());
 
-                                    if (actions.includes(dataFilters[filter].toString())) {
-                                        return true;
+                                    if (!actions.includes(dataFilters[filter].toString())) {
+                                        return false;
                                     }
+                                } else {
+                                    return false;
                                 }
-                            }
-                            if (filter === 'conservation' || filter === 'reputation') {
-                                if (animal[filter] >= 1) {
-                                    return true;
+                            } else if (filter === 'conservation' || filter === 'reputation') {
+                                if (animal[filter] < 1) {
+                                    return false;
                                 }
-                            }
-                            if (!dataFilters[filter].includes((animal as any)[filter])) {
-                                return false;
+                            } else {
+                                if (!dataFilters[filter].includes((animal as any)[filter])) {
+                                    return false;
+                                }
                             }
                         } else {
                             if (dataFilters[filter] !== (animal as any)[filter]) {
@@ -386,7 +396,7 @@ function _init(): void {
                 dataCards.sponsors;
             }
         }
-        
+
         return dataCards;
     }
 
@@ -434,7 +444,7 @@ function _init(): void {
                 if (item[0][`marineExt`]) dataStats[`marineWorld`]++;
                 if (item[0][`type`] != 0) dataStats[`type_${item[0][`type`]}`]++;
                 if (item[0][`area`] != 0) dataStats[`area_${item[0][`area`]}`]++;
-                
+
                 item[0][`isRock`] ? dataStats[`rock`]++ : '';
                 item[0][`isWater`] ? dataStats[`water`]++ : '';
             });
@@ -444,7 +454,7 @@ function _init(): void {
     function _sortByValue(sortBy: string | number = `id-desc`) {
         const sortValue = sortBy.toString().split('-');
 
-        return function(a: any, b: any): number {
+        return function (a: any, b: any): number {
             if (a[sortValue[0]] === b[sortValue[0]]) return 0;
             if (sortValue[1] && sortValue[1] === `desc`) {
                 return (a[sortValue[0]] > b[sortValue[0]]) ? -1 : 1;
@@ -472,7 +482,7 @@ function _init(): void {
         });
     }
 
-    function _displayCards(dataAnimals: Array<Number>, dataSponsors: Array<Number>): void {  
+    function _displayCards(dataAnimals: Array<Number>, dataSponsors: Array<Number>): void {
         let animalCardsMarkup: string = '';
         let sponsorCardsMarkup: string = '';
 
@@ -501,7 +511,7 @@ function _init(): void {
 
     function _updateCards(): void {
         dataFilters = {};
-    
+
         _promise().then(() => {
             const filtersData: FormData = new FormData(elFormFilters);
 
@@ -512,7 +522,7 @@ function _init(): void {
                 if (dataFilters.hasOwnProperty(key)) {
                     (dataFilters as any)[key].push(objValue);
                 } else {
-                    Object.assign(dataFilters, {[key]: [objValue]});
+                    Object.assign(dataFilters, { [key]: [objValue] });
                 }
             }
 
@@ -527,11 +537,11 @@ function _init(): void {
                 } else {
                     objValue = +value;
                 }
-                
+
                 if (dataFilters.hasOwnProperty(key)) {
                     (dataFilters as any)[key].push(objValue);
                 } else {
-                    Object.assign(dataFilters, {[key]: [objValue]});
+                    Object.assign(dataFilters, { [key]: [objValue] });
                 }
             }
 
@@ -547,7 +557,7 @@ function _init(): void {
         elContentSponsorCards.innerHTML = '';
     }
 
-    function _card(id: number): string {       
+    function _card(id: number): string {
         let cardStatus = '';
         let cardType = '';
 
@@ -585,7 +595,7 @@ function _init(): void {
 
     function _removeValueFromStorage(key: string, id: number): void {
         const values = JSON.parse(localStorage.getItem(key)) || [];
-        
+
         if (values.includes(id)) {
             values.splice(values.indexOf(id), 1);
             localStorage.setItem(key, JSON.stringify(values));
